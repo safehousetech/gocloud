@@ -48,7 +48,7 @@ func (gce *GCE) CreateNode(request interface{}) (resp interface{}, err error) {
 			MachineType, _ := value.(string)
 			gceinstance.MachineType = MachineType
 
-		case "disk":
+		case "disks":
 			diskparam, _ := value.([]map[string]interface{})
 			var disk Disk
 			var initializeParam InitializeParam
