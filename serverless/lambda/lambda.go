@@ -1,6 +1,5 @@
 package lambda
 
-import "fmt"
 import "io/ioutil"
 
 //GetFunction  describe lambda function.
