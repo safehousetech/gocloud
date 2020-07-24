@@ -56,7 +56,7 @@ func TestGetMLModel(t *testing.T) {
 		"name": "projects/adept-comfort-202709/models/hello",
 	}
 
-	resp, err := googlemachinelearning.GetMLModel(getMLModel)
+	_, err := googlemachinelearning.GetMLModel(getMLModel)
 
 	if err != nil {
 		t.Errorf("Test Fail")

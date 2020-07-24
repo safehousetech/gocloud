@@ -1,7 +1,9 @@
 package bigquery
 
-import "testing"
-import "fmt"
+import (
+	_ "fmt"
+	"testing"
+)
 
 func TestListDatasets(t *testing.T) {
 

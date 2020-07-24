@@ -1,8 +1,11 @@
 package kinesis
 
-import "testing"
-import awsAuth "github.com/cloudlibz/gocloud/auth"
-import "fmt"
+import (
+	_ "fmt"
+	"testing"
+
+	awsAuth "github.com/cloudlibz/gocloud/auth"
+)
 
 func init() {
 	awsAuth.LoadConfig()

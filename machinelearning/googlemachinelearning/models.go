@@ -18,7 +18,7 @@ type DefaultVersion struct {
 	name           string
 	description    string
 	isDefault      bool
-	deploymentUri  string
+	deploymentURI  string
 	createTime     string
 	lastUseTime    string
 	runtimeVersion string

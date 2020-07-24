@@ -32,8 +32,8 @@ func preparedefaultVersion(option CreateMLModel, createMLModeljsonmap map[string
 		createMLModeljsonmap["description"] = option.defaultVersion.description
 	}
 
-	if (option.defaultVersion.deploymentUri) != "" {
-		createMLModeljsonmap["deploymentUri"] = option.defaultVersion.deploymentUri
+	if (option.defaultVersion.deploymentURI) != "" {
+		createMLModeljsonmap["deploymentUri"] = option.defaultVersion.deploymentURI
 	}
 
 	if (option.defaultVersion.isDefault) != false {

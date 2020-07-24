@@ -1,7 +1,9 @@
 package googlecloudfunctions
 
-import "testing"
-import "fmt"
+import (
+	"fmt"
+	"testing"
+)
 
 func TestCallfunction(t *testing.T) {
 

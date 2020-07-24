@@ -7,11 +7,12 @@ import (
 	"encoding/hex"
 	"encoding/json"
 	"fmt"
-	auth "github.com/cloudlibz/gocloud/auth"
 	"io/ioutil"
 	"net/http"
 	"strings"
 	"time"
+
+	auth "github.com/cloudlibz/gocloud/auth"
 )
 
 func hmacsignatureV4(signingKey []byte, stringToSign string) string {

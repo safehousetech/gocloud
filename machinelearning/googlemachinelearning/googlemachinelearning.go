@@ -3,15 +3,18 @@ package googlemachinelearning
 import (
 	"bytes"
 	"encoding/json"
-	googleauth "github.com/cloudlibz/gocloud/googleauth"
 	"io/ioutil"
 	"net/http"
 	"time"
+
+	googleauth "github.com/cloudlibz/gocloud/googleauth"
 )
 
 const (
+	//UnixDate ...
 	UnixDate = "Mon Jan _2 15:04:05 MST 2006"
-	RFC3339  = "2006-01-02T15:04:05Z07:00"
+	//RFC3339 ...
+	RFC3339 = "2006-01-02T15:04:05Z07:00"
 )
 
 //CreateMLModel creates model.
@@ -64,7 +67,7 @@ func (googlemachinelearning *Googlemachinelearning) CreateMLModel(request interf
 
 				case "DeploymentUri":
 					deploymentUriv, _ := defaultVersionparamvalue.(string)
-					option.defaultVersion.deploymentUri = deploymentUriv
+					option.defaultVersion.deploymentURI = deploymentUriv
 
 				case "CreateTime":
 					createTimev := time.Now().UTC().Format(time.RFC3339)
@@ -138,6 +141,10 @@ func (googlemachinelearning *Googlemachinelearning) CreateMLModel(request interf
 
 	createMLModelresp, err := client.Do(createMLModelrequest)
 
+	if err != nil {
+
+	}
+
 	defer createMLModelresp.Body.Close()
 
 	body, err := ioutil.ReadAll(createMLModelresp.Body)
@@ -163,6 +170,10 @@ func (googlemachinelearning *Googlemachinelearning) DeleteMLModel(request interf
 	DeleteMLModelrequest.Header.Set("Content-Type", "application/json")
 
 	DeleteMLModelresp, err := client.Do(DeleteMLModelrequest)
+
+	if err != nil {
+
+	}
 
 	defer DeleteMLModelresp.Body.Close()
 
@@ -191,6 +202,10 @@ func (googlemachinelearning *Googlemachinelearning) GetMLModel(request interface
 	GetMLModelrequest.Header.Set("Content-Type", "application/json")
 
 	GetMLModelresp, err := client.Do(GetMLModelrequest)
+
+	if err != nil {
+
+	}
 
 	defer GetMLModelresp.Body.Close()
 
@@ -258,7 +273,7 @@ func (googlemachinelearning *Googlemachinelearning) UpdateMLModel(request interf
 
 				case "DeploymentUri":
 					deploymentUriv, _ := defaultVersionparamvalue.(string)
-					option.defaultVersion.deploymentUri = deploymentUriv
+					option.defaultVersion.deploymentURI = deploymentUriv
 
 				case "CreateTime":
 					createTimev := time.Now().UTC().Format(time.RFC3339)
@@ -339,6 +354,10 @@ func (googlemachinelearning *Googlemachinelearning) UpdateMLModel(request interf
 	updateMLModelrequest.Header.Set("Content-Type", "application/json")
 
 	updateMLModelresp, err := client.Do(updateMLModelrequest)
+
+	if err != nil {
+
+	}
 
 	defer updateMLModelresp.Body.Close()
 

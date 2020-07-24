@@ -1,7 +1,9 @@
 package clouddataflow
 
-import "testing"
-import "fmt"
+import (
+	_ "fmt"
+	"testing"
+)
 
 func TestListStream(t *testing.T) {
 	var clouddataflow Clouddataflow
@@ -20,7 +22,7 @@ func TestListStream(t *testing.T) {
 func TestDescribeStream(t *testing.T) {
 	var clouddataflow Clouddataflow
 
-	describedtream := map[string]string{
+	liststream := map[string]string{
 		"Project": "gocloud-206919",
 		"JobId":   "2018-07-27_08_37_46-11774589915372519551",
 	}
