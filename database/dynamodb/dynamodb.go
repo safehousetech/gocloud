@@ -1,6 +1,6 @@
 package dynamodb
 
-//List tables.
+//ListTables /List tables.
 func (dynamodb *Dynamodb) ListTables(request interface{}) (resp interface{}, err error) {
 
 	param := request.(map[string]interface{})
@@ -37,7 +37,7 @@ func (dynamodb *Dynamodb) ListTables(request interface{}) (resp interface{}, err
 	return resp, err
 }
 
-//Delete tables.
+//DeleteTables Delete tables.
 func (dynamodb *Dynamodb) DeleteTables(request interface{}) (resp interface{}, err error) {
 	param := request.(map[string]interface{})
 
@@ -69,7 +69,7 @@ func (dynamodb *Dynamodb) DeleteTables(request interface{}) (resp interface{}, e
 	return resp, err
 }
 
-//Create tables.
+//CreateTables Create tables.
 func (dynamodb *Dynamodb) CreateTables(request interface{}) (resp interface{}, err error) {
 	param := request.(map[string]interface{})
 	var createtable Createtable
@@ -91,10 +91,10 @@ func (dynamodb *Dynamodb) CreateTables(request interface{}) (resp interface{}, e
 			for streamSpecificationparamkey, streamSpecificationparamvalue := range streamSpecificationparam {
 				switch streamSpecificationparamkey {
 				case "StreamViewType":
-					createtable.streamSpecification.StreamViewType = streamSpecificationparamvalue.(string)
+					createtable.StreamSpecification.StreamViewType = streamSpecificationparamvalue.(string)
 
 				case "StreamEnabled":
-					createtable.streamSpecification.StreamEnabled = streamSpecificationparamvalue.(bool)
+					createtable.StreamSpecification.StreamEnabled = streamSpecificationparamvalue.(bool)
 				}
 			}
 
@@ -103,7 +103,7 @@ func (dynamodb *Dynamodb) CreateTables(request interface{}) (resp interface{}, e
 			for sSESpecificationparamkey, sSESpecificationparamparamvalue := range sSESpecificationparam {
 				switch sSESpecificationparamkey {
 				case "Enabled":
-					createtable.sSESpecification.Enabled = sSESpecificationparamparamvalue.(bool)
+					createtable.SSESpecification.Enabled = sSESpecificationparamparamvalue.(bool)
 				}
 			}
 
@@ -114,10 +114,10 @@ func (dynamodb *Dynamodb) CreateTables(request interface{}) (resp interface{}, e
 				switch provisionedThroughputparamkey {
 				case "ReadCapacityUnits":
 					ReadCapacityUnitsv, _ := provisionedThroughputparamvalue.(int)
-					createtable.provisionedThroughput.ReadCapacityUnits = ReadCapacityUnitsv
+					createtable.ProvisionedThroughput.ReadCapacityUnits = ReadCapacityUnitsv
 
 				case "WriteCapacityUnits":
-					createtable.provisionedThroughput.WriteCapacityUnits = provisionedThroughputparamvalue.(int)
+					createtable.ProvisionedThroughput.WriteCapacityUnits = provisionedThroughputparamvalue.(int)
 
 				}
 			}
@@ -135,7 +135,7 @@ func (dynamodb *Dynamodb) CreateTables(request interface{}) (resp interface{}, e
 						keySchema.KeyType = keySchemaparamvalue.(string)
 					}
 				}
-				createtable.keySchema = append(createtable.keySchema, keySchema)
+				createtable.KeySchema = append(createtable.KeySchema, keySchema)
 			}
 		case "LocalSecondaryIndexes":
 			localSecondaryIndexesparam, _ := value.([]map[string]interface{})
@@ -161,7 +161,7 @@ func (dynamodb *Dynamodb) CreateTables(request interface{}) (resp interface{}, e
 								}
 							}
 
-							localSecondaryIndexes.keySchema = append(localSecondaryIndexes.keySchema, keySchema)
+							localSecondaryIndexes.KeySchema = append(localSecondaryIndexes.KeySchema, keySchema)
 						}
 
 					case "Projection":
@@ -169,15 +169,15 @@ func (dynamodb *Dynamodb) CreateTables(request interface{}) (resp interface{}, e
 						for projectionparamkey, projectionparamvalue := range projectionparam {
 							switch projectionparamkey {
 							case "NonKeyAttributes":
-								localSecondaryIndexes.projection.NonKeyAttributes = projectionparamvalue.([]string)
+								localSecondaryIndexes.Projection.NonKeyAttributes = projectionparamvalue.([]string)
 
 							case "ProjectionType":
-								localSecondaryIndexes.projection.ProjectionType = projectionparamvalue.(string)
+								localSecondaryIndexes.Projection.ProjectionType = projectionparamvalue.(string)
 							}
 						}
 					}
 				}
-				createtable.localSecondaryIndexes = append(createtable.localSecondaryIndexes, localSecondaryIndexes)
+				createtable.LocalSecondaryIndexes = append(createtable.LocalSecondaryIndexes, localSecondaryIndexes)
 			}
 
 		case "globalSecondaryIndexes":
@@ -203,7 +203,7 @@ func (dynamodb *Dynamodb) CreateTables(request interface{}) (resp interface{}, e
 								}
 							}
 
-							globalSecondaryIndexes.keySchema = append(globalSecondaryIndexes.keySchema, keySchema)
+							globalSecondaryIndexes.KeySchema = append(globalSecondaryIndexes.KeySchema, keySchema)
 						}
 
 					case "Projection":
@@ -211,10 +211,10 @@ func (dynamodb *Dynamodb) CreateTables(request interface{}) (resp interface{}, e
 						for projectionparamkey, projectionparamvalue := range projectionparam {
 							switch projectionparamkey {
 							case "NonKeyAttributes":
-								globalSecondaryIndexes.projection.NonKeyAttributes = projectionparamvalue.([]string)
+								globalSecondaryIndexes.Projection.NonKeyAttributes = projectionparamvalue.([]string)
 
 							case "ProjectionType":
-								globalSecondaryIndexes.projection.ProjectionType = projectionparamvalue.(string)
+								globalSecondaryIndexes.Projection.ProjectionType = projectionparamvalue.(string)
 							}
 						}
 
@@ -224,16 +224,16 @@ func (dynamodb *Dynamodb) CreateTables(request interface{}) (resp interface{}, e
 							switch provisionedThroughputparamkey {
 
 							case "ReadCapacityUnits":
-								createtable.provisionedThroughput.ReadCapacityUnits = provisionedThroughputparamvalue.(int)
+								createtable.ProvisionedThroughput.ReadCapacityUnits = provisionedThroughputparamvalue.(int)
 
 							case "WriteCapacityUnits":
-								createtable.provisionedThroughput.WriteCapacityUnits = provisionedThroughputparamvalue.(int)
+								createtable.ProvisionedThroughput.WriteCapacityUnits = provisionedThroughputparamvalue.(int)
 							}
 						}
 
 					}
 				}
-				createtable.globalSecondaryIndexes = append(createtable.globalSecondaryIndexes, globalSecondaryIndexes)
+				createtable.GlobalSecondaryIndexes = append(createtable.GlobalSecondaryIndexes, globalSecondaryIndexes)
 			}
 
 		case "AttributeDefinitions":
@@ -249,7 +249,7 @@ func (dynamodb *Dynamodb) CreateTables(request interface{}) (resp interface{}, e
 						attributeDefinitions.AttributeType = attributeDefinitionsparamvalue.(string)
 					}
 				}
-				createtable.attributeDefinitions = append(createtable.attributeDefinitions, attributeDefinitions)
+				createtable.AttributeDefinitions = append(createtable.AttributeDefinitions, attributeDefinitions)
 			}
 		}
 	}
@@ -267,7 +267,7 @@ func (dynamodb *Dynamodb) CreateTables(request interface{}) (resp interface{}, e
 	return resp, err
 }
 
-//Describe tables.
+//DescribeTables Describe tables.
 func (dynamodb *Dynamodb) DescribeTables(request interface{}) (resp interface{}, err error) {
 
 	param := request.(map[string]interface{})

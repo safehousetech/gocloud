@@ -4,13 +4,14 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	googleauth "github.com/cloudlibz/gocloud/googleauth"
 	"io/ioutil"
 	"net/http"
 	"time"
+
+	googleauth "github.com/cloudlibz/gocloud/googleauth"
 )
 
-//Create  Create Google cloud function.
+//CreateFunction  Create Google cloud function.
 func (googlecloudfunctions *Googlecloudfunctions) CreateFunction(request interface{}) (resp interface{}, err error) {
 
 	param := request.(map[string]interface{})
@@ -93,6 +94,10 @@ func (googlecloudfunctions *Googlecloudfunctions) CreateFunction(request interfa
 
 	CreateGooglecloudfunctionresp, err := client.Do(CreateGooglecloudfunctionrequest)
 
+	if err != nil {
+		return nil, err
+	}
+
 	defer CreateGooglecloudfunctionresp.Body.Close()
 
 	body, err := ioutil.ReadAll(CreateGooglecloudfunctionresp.Body)
@@ -104,7 +109,7 @@ func (googlecloudfunctions *Googlecloudfunctions) CreateFunction(request interfa
 	return resp, err
 }
 
-//Delete delete function.
+//DeleteFunction Delete delete function.
 func (googlecloudfunctions *Googlecloudfunctions) DeleteFunction(request interface{}) (resp interface{}, err error) {
 
 	options := request.(map[string]string)
@@ -118,6 +123,10 @@ func (googlecloudfunctions *Googlecloudfunctions) DeleteFunction(request interfa
 	DeleteGooglecloudfunctionrequest.Header.Set("Content-Type", "application/json")
 
 	DeleteGooglecloudfunctionresp, err := client.Do(DeleteGooglecloudfunctionrequest)
+
+	if err != nil {
+		return nil, err
+	}
 
 	defer DeleteGooglecloudfunctionresp.Body.Close()
 
@@ -144,6 +153,10 @@ func (googlecloudfunctions *Googlecloudfunctions) GetFunction(request interface{
 	GetGooglecloudfunctionrequest.Header.Set("Content-Type", "application/json")
 
 	GetGooglecloudfunctionsresp, err := client.Do(GetGooglecloudfunctionrequest)
+
+	if err != nil {
+		return nil, err
+	}
 
 	defer GetGooglecloudfunctionsresp.Body.Close()
 
@@ -184,6 +197,10 @@ func (googlecloudfunctions *Googlecloudfunctions) ListFunction(request interface
 
 	listgooglecloudfunctionresp, err := client.Do(listgooglecloudfunctionrequest)
 
+	if err != nil {
+		return nil, err
+	}
+
 	defer listgooglecloudfunctionresp.Body.Close()
 
 	body, err := ioutil.ReadAll(listgooglecloudfunctionresp.Body)
@@ -219,6 +236,10 @@ func (googlecloudfunctions *Googlecloudfunctions) CallFunction(request interface
 	callGooglecloudfunctionrequest.Header.Set("Content-Type", "application/json")
 
 	callGooglecloudfunctionresp, err := client.Do(callGooglecloudfunctionrequest)
+
+	if err != nil {
+		return nil, err
+	}
 
 	defer callGooglecloudfunctionresp.Body.Close()
 

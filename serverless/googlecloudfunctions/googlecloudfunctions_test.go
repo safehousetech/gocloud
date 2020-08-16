@@ -13,7 +13,7 @@ func TestCallfunction(t *testing.T) {
 		"name": "projects/adept-comfort-202709/locations/us-central1/functions/function-1",
 	}
 
-	resp, err := googlecloudfunctions.Callfunction(callfunction)
+	resp, err := googlecloudfunctions.CallFunction(callfunction)
 
 	if err != nil {
 		t.Errorf("Test Fail")
@@ -33,7 +33,7 @@ func TestDeleteFunction(t *testing.T) {
 		"name": "projects/adept-comfort-202709/locations/us-central1/functions/function-6",
 	}
 
-	resp, err := googlecloudfunctions.Deletefunction(deletefunction)
+	resp, err := googlecloudfunctions.DeleteFunction(deletefunction)
 
 	if err != nil {
 		t.Errorf("Test Fail")
@@ -53,7 +53,7 @@ func TestGetFunction(t *testing.T) {
 		"name": "projects/adept-comfort-202709/locations/us-central1/functions/function-1",
 	}
 
-	resp, err := googlecloudfunctions.Getfunction(getfunction)
+	resp, err := googlecloudfunctions.GetFunction(getfunction)
 
 	if err != nil {
 		t.Errorf("Test Fail")
@@ -73,7 +73,7 @@ func TestListFunction(t *testing.T) {
 		"pageSize": "1",
 	}
 
-	resp, err := googlecloudfunctions.Listfunction(listfunction)
+	resp, err := googlecloudfunctions.ListFunction(listfunction)
 
 	if err != nil {
 		t.Errorf("Test Fail")
@@ -112,7 +112,7 @@ func TestCreatefunction(t *testing.T) {
 		"Labels":    labels,
 	}
 
-	resp, err := googlecloudfunctions.Createfunction(createfunction)
+	resp, err := googlecloudfunctions.CreateFunction(createfunction)
 
 	if err != nil {
 		t.Errorf("Test Fail")

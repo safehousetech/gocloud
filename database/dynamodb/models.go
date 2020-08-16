@@ -25,28 +25,28 @@ type Projection struct {
 //GlobalSecondaryIndexes struct reperesnts  Createtable GlobalSecondaryIndexes.
 type GlobalSecondaryIndexes struct {
 	IndexName             string                `json:"IndexName"`
-	keySchema             []KeySchema           `json:"KeySchema"`
-	projection            Projection            `json:"Projection"`
-	provisionedThroughput ProvisionedThroughput `json:"ProvisionedThroughput"`
+	KeySchema             []KeySchema           `json:"KeySchema"`
+	Projection            Projection            `json:"Projection"`
+	ProvisionedThroughput ProvisionedThroughput `json:"ProvisionedThroughput"`
 }
 
 //Createtable struct reperesnts  Createtable.
 type Createtable struct {
-	attributeDefinitions   []AttributeDefinitions   `json:"AttributeDefinitions"`
-	globalSecondaryIndexes []GlobalSecondaryIndexes `json:"GlobalSecondaryIndexes"`
-	localSecondaryIndexes  []LocalSecondaryIndexes  `json:"LocalSecondaryIndexes"`
-	keySchema              []KeySchema              `json:"KeySchema"`
-	provisionedThroughput  ProvisionedThroughput    `json:"ProvisionedThroughput"`
-	sSESpecification       SSESpecification         `json:"SSESpecification"`
-	streamSpecification    StreamSpecification      `json:"StreamSpecification"`
+	AttributeDefinitions   []AttributeDefinitions   `json:"AttributeDefinitions"`
+	GlobalSecondaryIndexes []GlobalSecondaryIndexes `json:"GlobalSecondaryIndexes"`
+	LocalSecondaryIndexes  []LocalSecondaryIndexes  `json:"LocalSecondaryIndexes"`
+	KeySchema              []KeySchema              `json:"KeySchema"`
+	ProvisionedThroughput  ProvisionedThroughput    `json:"ProvisionedThroughput"`
+	SSESpecification       SSESpecification         `json:"SSESpecification"`
+	StreamSpecification    StreamSpecification      `json:"StreamSpecification"`
 	TableName              string                   `json:"TableName"`
 }
 
 //LocalSecondaryIndexes struct reperesnts Createtable LocalSecondaryIndexes.
 type LocalSecondaryIndexes struct {
 	IndexName  string      `json:"IndexName"`
-	keySchema  []KeySchema `json:"KeySchema"`
-	projection Projection  `json:"Projection"`
+	KeySchema  []KeySchema `json:"KeySchema"`
+	Projection Projection  `json:"Projection"`
 }
 
 //ProvisionedThroughput struct reperesnts  Createtable ProvisionedThroughput.

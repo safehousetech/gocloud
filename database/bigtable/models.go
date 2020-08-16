@@ -1,6 +1,8 @@
 package bigtable
 
 //Createbigtable struct reperesnts  Google bigtable.
+
+// Bigtable ...
 type Bigtable struct {
 }
 
@@ -17,7 +19,7 @@ type Table struct {
 
 //Createbigtable struct reperesnts  Create bigtable.
 type Createbigtable struct {
-	tableId       string
+	tableID       string
 	table         Table
 	initialSplits []InitialSplits
 	ClusterStates ClusterStates

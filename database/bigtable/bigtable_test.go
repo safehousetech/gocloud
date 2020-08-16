@@ -1,7 +1,9 @@
 package bigtable
 
-import "testing"
-import "fmt"
+import (
+	"fmt"
+	"testing"
+)
 
 //create bigtable Createtable
 func TestCreateTables(t *testing.T) {
@@ -19,7 +21,7 @@ func TestCreateTables(t *testing.T) {
 		"initialSplits": initialSplits,
 	}
 
-	resp, err := bigtable.Createtables(createtables)
+	resp, err := bigtable.CreateTables(createtables)
 
 	if err != nil {
 		t.Errorf("Test Fail")
@@ -39,7 +41,7 @@ func TestDescribetables(t *testing.T) {
 		"name": "projects/adept-comfort-202709/instances/helloo/tables/bokkkya",
 	}
 
-	resp, err := bigtable.Describetables(describetables)
+	resp, err := bigtable.DescribeTables(describetables)
 
 	if err != nil {
 		t.Errorf("Test Fail")
@@ -61,7 +63,7 @@ func TestListTables(t *testing.T) {
 		"pageToken": "",
 	}
 
-	resp, err := bigtable.Listtables(listtables)
+	resp, err := bigtable.ListTables(listtables)
 
 	if err != nil {
 		t.Errorf("Test Fail")

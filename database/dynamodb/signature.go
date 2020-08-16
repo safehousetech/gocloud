@@ -4,9 +4,10 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	awsauth "github.com/cloudlibz/gocloud/awsauth"
 	"io/ioutil"
 	"net/http"
+
+	awsauth "github.com/cloudlibz/gocloud/awsauth"
 )
 
 //PrepareSignatureV4query creates PrepareSignatureV4 for request.
@@ -28,6 +29,11 @@ func (dynamodb *Dynamodb) PrepareSignatureV4query(params map[string]string, para
 	request, _ := http.NewRequest("POST", ECSEndpoint, bytes.NewBuffer(requestparametersjsonstringbyte))
 	request = awsauth.SignatureV4(request, requestparametersjsonstringbyte, amztarget, method, params["Region"], service, host, ContentType, signedheaders)
 	resp, err := client.Do(request)
+
+	if err != nil {
+		return err
+	}
+
 	defer resp.Body.Close()
 	body, err := ioutil.ReadAll(resp.Body)
 	response["body"] = string(body)

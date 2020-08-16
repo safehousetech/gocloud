@@ -1,8 +1,11 @@
 package dynamodb
 
-import "testing"
-import awsAuth "github.com/cloudlibz/gocloud/auth"
-import "fmt"
+import (
+	"fmt"
+	"testing"
+
+	awsAuth "github.com/cloudlibz/gocloud/auth"
+)
 
 func init() {
 	awsAuth.LoadConfig()
@@ -17,7 +20,7 @@ func TestDescribeTables(t *testing.T) {
 		"TableName": "Thread2",
 	}
 
-	resp, err := dynamodb.Describetables(describetables)
+	resp, err := dynamodb.DescribeTables(describetables)
 
 	if err != nil {
 		t.Errorf("Test Fail")
@@ -39,7 +42,7 @@ func TestListTables(t *testing.T) {
 		"Limit":                   1,
 	}
 
-	resp, err := dynamodb.Listtables(listtables)
+	resp, err := dynamodb.ListTables(listtables)
 
 	if err != nil {
 		t.Errorf("Test Fail")
@@ -59,7 +62,7 @@ func TestDeletetables(t *testing.T) {
 		"TableName": "Thread",
 	}
 
-	resp, err := dynamodb.Deletetables(deletetables)
+	resp, err := dynamodb.DeleteTables(deletetables)
 
 	if err != nil {
 		t.Errorf("Test Fail")

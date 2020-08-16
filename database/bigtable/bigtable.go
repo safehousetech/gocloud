@@ -3,12 +3,13 @@ package bigtable
 import (
 	"bytes"
 	"encoding/json"
-	googleauth "github.com/cloudlibz/gocloud/googleauth"
 	"io/ioutil"
 	"net/http"
+
+	googleauth "github.com/cloudlibz/gocloud/googleauth"
 )
 
-//List list tables.
+// ListTables ...
 func (bigtable *Bigtable) ListTables(request interface{}) (resp interface{}, err error) {
 
 	options := request.(map[string]string)
@@ -31,7 +32,15 @@ func (bigtable *Bigtable) ListTables(request interface{}) (resp interface{}, err
 
 	listbigtablerequest.Header.Set("Content-Type", "application/json")
 
+	if err != nil {
+		return nil, err
+	}
+
 	listbigtableresp, err := client.Do(listbigtablerequest)
+
+	if err != nil {
+		return nil, err
+	}
 
 	defer listbigtableresp.Body.Close()
 
@@ -44,8 +53,7 @@ func (bigtable *Bigtable) ListTables(request interface{}) (resp interface{}, err
 	return resp, err
 }
 
-//Delete delete tables.
-
+// DeleteTables ...
 func (bigtable *Bigtable) DeleteTables(request interface{}) (resp interface{}, err error) {
 
 	options := request.(map[string]string)
@@ -60,6 +68,10 @@ func (bigtable *Bigtable) DeleteTables(request interface{}) (resp interface{}, e
 
 	Deletebigtableresp, err := client.Do(Deletebigtablerequest)
 
+	if err != nil {
+		return nil, err
+	}
+
 	defer Deletebigtableresp.Body.Close()
 
 	body, err := ioutil.ReadAll(Deletebigtableresp.Body)
@@ -71,7 +83,7 @@ func (bigtable *Bigtable) DeleteTables(request interface{}) (resp interface{}, e
 	return resp, err
 }
 
-//describe describe tables.
+// DescribeTables ...
 func (bigtable *Bigtable) DescribeTables(request interface{}) (resp interface{}, err error) {
 
 	options := request.(map[string]string)
@@ -86,6 +98,10 @@ func (bigtable *Bigtable) DescribeTables(request interface{}) (resp interface{},
 
 	Describebigtableresp, err := client.Do(Describebigtablerequest)
 
+	if err != nil {
+		return nil, err
+	}
+
 	defer Describebigtableresp.Body.Close()
 
 	body, err := ioutil.ReadAll(Describebigtableresp.Body)
@@ -97,8 +113,7 @@ func (bigtable *Bigtable) DescribeTables(request interface{}) (resp interface{},
 	return resp, err
 }
 
-//Create Create tables.
-
+// CreateTables ...
 func (bigtable *Bigtable) CreateTables(request interface{}) (resp interface{}, err error) {
 
 	param := request.(map[string]interface{})
@@ -115,7 +130,7 @@ func (bigtable *Bigtable) CreateTables(request interface{}) (resp interface{}, e
 
 		case "tableId":
 			tableIdv, _ := value.(string)
-			option.tableId = tableIdv
+			option.tableID = tableIdv
 
 		case "table":
 			tableparam, _ := value.(map[string]interface{})
@@ -169,6 +184,10 @@ func (bigtable *Bigtable) CreateTables(request interface{}) (resp interface{}, e
 	Createbigtablerequest.Header.Set("Content-Type", "application/json")
 
 	Createbigtableresp, err := client.Do(Createbigtablerequest)
+
+	if err != nil {
+		return nil, err
+	}
 
 	defer Createbigtableresp.Body.Close()
 

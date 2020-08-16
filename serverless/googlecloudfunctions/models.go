@@ -1,8 +1,10 @@
 package googlecloudfunctions
 
 const (
+	// UnixDate ...
 	UnixDate = "Mon Jan _2 15:04:05 MST 2006"
-	RFC3339  = "2006-01-02T15:04:05Z07:00"
+	//RFC3339 ...
+	RFC3339 = "2006-01-02T15:04:05Z07:00"
 )
 
 //Googlecloudfunctions struct reperesnts Google cloud functions service.
