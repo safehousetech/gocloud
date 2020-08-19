@@ -2,7 +2,7 @@ package alicontainer
 
 import (
 	"errors"
-	"github.com/cloudlibz/gocloud/aliauth"
+	"github.com/safehousetech/gocloud/aliauth"
 )
 
 //Alicontainer struct represents Alicontainer attribute and methods associates with it.

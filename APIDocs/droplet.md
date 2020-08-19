@@ -1,7 +1,7 @@
 ```
 package digiocean
 
-import "github.com/cloudlibz/gocloud/compute/droplet"
+import "github.com/safehousetech/gocloud/compute/droplet"
 ```
 
 ### CONSTANTS

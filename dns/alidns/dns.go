@@ -2,7 +2,7 @@ package alidns
 
 import (
 	"fmt"
-	"github.com/cloudlibz/gocloud/aliauth"
+	"github.com/safehousetech/gocloud/aliauth"
 	"strconv"
 )
 

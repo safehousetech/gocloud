@@ -1,7 +1,7 @@
 PACKAGE DOCUMENTATION
 
 package lambda
-    import "github.com/cloudlibz/gocloud/serverless/lambda"
+    import "github.com/safehousetech/gocloud/serverless/lambda"
 
 
 FUNCTIONS

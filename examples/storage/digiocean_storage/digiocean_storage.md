@@ -19,7 +19,7 @@ export DigiOceanAccessToken =  "xxxxxxxxxxxx"
 
 ```js
 
-import "github.com/cloudlibz/gocloud/gocloud"
+import "github.com/safehousetech/gocloud/gocloud"
 
 digioceancloud, _ := gocloud.CloudProvider(gocloud.Digioceanprovider)
 ```

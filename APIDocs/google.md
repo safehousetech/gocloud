@@ -1,5 +1,5 @@
 package google
-    import "github.com/cloudlibz/gocloud/google"
+    import "github.com/safehousetech/gocloud/google"
 
 
 TYPES

@@ -1,7 +1,7 @@
 ```
 package digioceanloadbalancer
 
-import "github.com/cloudlibz/gocloud/loadbalancer/digioceanloadbalancer"
+import "github.com/safehousetech/gocloud/loadbalancer/digioceanloadbalancer"
 ```
 
 ### CONSTANTS

@@ -2,7 +2,7 @@ package vultrstorage
 
 import (
 	"errors"
-	"github.com/cloudlibz/gocloud/vultrauth"
+	"github.com/safehousetech/gocloud/vultrauth"
 )
 
 type VultrStorage struct {

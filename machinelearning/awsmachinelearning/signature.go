@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	awsauth "github.com/cloudlibz/gocloud/awsauth"
+	awsauth "github.com/safehousetech/gocloud/awsauth"
 	"io/ioutil"
 	"net/http"
 )

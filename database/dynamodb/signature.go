@@ -7,7 +7,7 @@ import (
 	"io/ioutil"
 	"net/http"
 
-	awsauth "github.com/cloudlibz/gocloud/awsauth"
+	awsauth "github.com/safehousetech/gocloud/awsauth"
 )
 
 //PrepareSignatureV4query creates PrepareSignatureV4 for request.

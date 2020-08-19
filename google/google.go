@@ -1,18 +1,18 @@
 package google
 
 import (
-	bigquery "github.com/cloudlibz/gocloud/analytics/bigquery"
-	gce "github.com/cloudlibz/gocloud/compute/gce"
-	googlecontainer "github.com/cloudlibz/gocloud/container/googlecontainer"
-	bigtable "github.com/cloudlibz/gocloud/database/bigtable"
-	googledns "github.com/cloudlibz/gocloud/dns/googledns"
-	"github.com/cloudlibz/gocloud/gocloudinterface"
-	googleloadbalancer "github.com/cloudlibz/gocloud/loadbalancer/googleloadbalancer"
-	googlemachinelearning "github.com/cloudlibz/gocloud/machinelearning/googlemachinelearning"
-	googlenotification "github.com/cloudlibz/gocloud/notification/googlenotification"
-	googlecloudfunctions "github.com/cloudlibz/gocloud/serverless/googlecloudfunctions"
-	googlestorage "github.com/cloudlibz/gocloud/storage/googlestorage"
-	clouddataflow "github.com/cloudlibz/gocloud/streamdataprocessing/clouddataflow"
+	bigquery "github.com/safehousetech/gocloud/analytics/bigquery"
+	gce "github.com/safehousetech/gocloud/compute/gce"
+	googlecontainer "github.com/safehousetech/gocloud/container/googlecontainer"
+	bigtable "github.com/safehousetech/gocloud/database/bigtable"
+	googledns "github.com/safehousetech/gocloud/dns/googledns"
+	"github.com/safehousetech/gocloud/gocloudinterface"
+	googleloadbalancer "github.com/safehousetech/gocloud/loadbalancer/googleloadbalancer"
+	googlemachinelearning "github.com/safehousetech/gocloud/machinelearning/googlemachinelearning"
+	googlenotification "github.com/safehousetech/gocloud/notification/googlenotification"
+	googlecloudfunctions "github.com/safehousetech/gocloud/serverless/googlecloudfunctions"
+	googlestorage "github.com/safehousetech/gocloud/storage/googlestorage"
+	clouddataflow "github.com/safehousetech/gocloud/streamdataprocessing/clouddataflow"
 )
 
 // Google  struct represents Google Cloud provider.

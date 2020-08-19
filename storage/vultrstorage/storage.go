@@ -1,7 +1,7 @@
 package vultrstorage
 
 import (
-	"github.com/cloudlibz/gocloud/vultrauth"
+	"github.com/safehousetech/gocloud/vultrauth"
 	"net/http"
 )
 

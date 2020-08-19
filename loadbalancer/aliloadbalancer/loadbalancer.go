@@ -1,7 +1,7 @@
 package aliloadbalancer
 
 import (
-	"github.com/cloudlibz/gocloud/aliauth"
+	"github.com/safehousetech/gocloud/aliauth"
 	"strconv"
 )
 

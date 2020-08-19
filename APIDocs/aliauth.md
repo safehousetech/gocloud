@@ -1,6 +1,6 @@
 ```
 package aliauth
-    import "github.com/cloudlibz/gocloud/aliauth"
+    import "github.com/safehousetech/gocloud/aliauth"
 ```
 
 ### FUNCTIONS

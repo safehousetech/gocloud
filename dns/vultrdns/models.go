@@ -2,7 +2,8 @@ package vultrdns
 
 import (
 	"errors"
-	"github.com/cloudlibz/gocloud/vultrauth"
+
+	"github.com/safehousetech/gocloud/vultrauth"
 )
 
 type VultrDNS struct {

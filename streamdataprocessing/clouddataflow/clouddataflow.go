@@ -7,7 +7,7 @@ import (
 	"net/http"
 	"time"
 
-	googleauth "github.com/cloudlibz/gocloud/googleauth"
+	googleauth "github.com/safehousetech/gocloud/googleauth"
 )
 
 const (

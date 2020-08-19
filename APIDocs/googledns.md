@@ -1,5 +1,5 @@
 package googledns
-    import "github.com/cloudlibz/gocloud/dns/googledns"
+    import "github.com/safehousetech/gocloud/dns/googledns"
 
 
 CONSTANTS

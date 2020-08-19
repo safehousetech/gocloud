@@ -1,14 +1,14 @@
 package azure
 
 import (
-	azurecompute "github.com/cloudlibz/gocloud/compute/azurecompute"
-	azurecontainer "github.com/cloudlibz/gocloud/container/azurecontainer"
-	azurenosql "github.com/cloudlibz/gocloud/database/azurenosql"
-	azuredns "github.com/cloudlibz/gocloud/dns/azuredns"
-	azureloadbalancer "github.com/cloudlibz/gocloud/loadbalancer/azureloadbalancer"
-	azuremachinelearning "github.com/cloudlibz/gocloud/machinelearning/azuremachinelearning"
-	azureserverless "github.com/cloudlibz/gocloud/serverless/azureserverless"
-	azurestorage "github.com/cloudlibz/gocloud/storage/azurestorage"
+	azurecompute "github.com/safehousetech/gocloud/compute/azurecompute"
+	azurecontainer "github.com/safehousetech/gocloud/container/azurecontainer"
+	azurenosql "github.com/safehousetech/gocloud/database/azurenosql"
+	azuredns "github.com/safehousetech/gocloud/dns/azuredns"
+	azureloadbalancer "github.com/safehousetech/gocloud/loadbalancer/azureloadbalancer"
+	azuremachinelearning "github.com/safehousetech/gocloud/machinelearning/azuremachinelearning"
+	azureserverless "github.com/safehousetech/gocloud/serverless/azureserverless"
+	azurestorage "github.com/safehousetech/gocloud/storage/azurestorage"
 )
 
 // Azure  struct represents Microsoft Azure cloud provider.

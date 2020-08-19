@@ -1,6 +1,6 @@
 ```
 package vultrauth
-    import "github.com/cloudlibz/gocloud/vultrauth"
+    import "github.com/safehousetech/gocloud/vultrauth"
 ```
 
 ### FUNCTIONS

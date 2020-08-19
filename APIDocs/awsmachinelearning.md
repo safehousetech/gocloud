@@ -1,7 +1,7 @@
 PACKAGE DOCUMENTATION
 
 package awsmachinelearning
-    import "github.com/cloudlibz/gocloud/machinelearning/awsmachinelearning"
+    import "github.com/safehousetech/gocloud/machinelearning/awsmachinelearning"
 
 
 TYPES

@@ -1,6 +1,6 @@
 ```
 package vultrdns
-    import "github.com/cloudlibz/gocloud/dns/vultrdns"
+    import "github.com/safehousetech/gocloud/dns/vultrdns"
 ```
 
 ### TYPES

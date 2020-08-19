@@ -12,7 +12,7 @@ import (
 	"strings"
 	"time"
 
-	auth "github.com/cloudlibz/gocloud/auth"
+	auth "github.com/safehousetech/gocloud/auth"
 )
 
 func hmacsignatureV4(signingKey []byte, stringToSign string) string {

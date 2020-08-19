@@ -1,16 +1,16 @@
 package vultr
 
 import (
-	"github.com/cloudlibz/gocloud/baremetal/vultrbaremetal"
-	"github.com/cloudlibz/gocloud/compute/vultrcompute"
-	"github.com/cloudlibz/gocloud/container/vultrcontainer"
-	"github.com/cloudlibz/gocloud/database/vultrnosql"
-	"github.com/cloudlibz/gocloud/dns/vultrdns"
-	"github.com/cloudlibz/gocloud/gocloudinterface"
-	"github.com/cloudlibz/gocloud/loadbalancer/vultrloadbalancer"
-	"github.com/cloudlibz/gocloud/machinelearning/vultrmachinelearning"
-	"github.com/cloudlibz/gocloud/serverless/vultrserverless"
-	"github.com/cloudlibz/gocloud/storage/vultrstorage"
+	"github.com/safehousetech/gocloud/baremetal/vultrbaremetal"
+	"github.com/safehousetech/gocloud/compute/vultrcompute"
+	"github.com/safehousetech/gocloud/container/vultrcontainer"
+	"github.com/safehousetech/gocloud/database/vultrnosql"
+	"github.com/safehousetech/gocloud/dns/vultrdns"
+	"github.com/safehousetech/gocloud/gocloudinterface"
+	"github.com/safehousetech/gocloud/loadbalancer/vultrloadbalancer"
+	"github.com/safehousetech/gocloud/machinelearning/vultrmachinelearning"
+	"github.com/safehousetech/gocloud/serverless/vultrserverless"
+	"github.com/safehousetech/gocloud/storage/vultrstorage"
 )
 
 // Vultr struct represents Vultr cloud provider.

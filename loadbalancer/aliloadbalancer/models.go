@@ -2,7 +2,7 @@ package aliloadbalancer
 
 import (
 	"errors"
-	"github.com/cloudlibz/gocloud/aliauth"
+	"github.com/safehousetech/gocloud/aliauth"
 )
 
 //Aliloadbalancer represents Aliloadbalancer struct.

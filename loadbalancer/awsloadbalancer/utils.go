@@ -1,8 +1,8 @@
 package awsloadbalancer
 
 import (
-	"github.com/cloudlibz/gocloud/auth"
-	awsauth "github.com/cloudlibz/gocloud/awsauth"
+	"github.com/safehousetech/gocloud/auth"
+	awsauth "github.com/safehousetech/gocloud/awsauth"
 	"io/ioutil"
 	"net/http"
 	"strconv"

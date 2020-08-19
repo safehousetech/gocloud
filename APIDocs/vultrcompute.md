@@ -1,6 +1,6 @@
 ```
 package vultrcompute
-    import "github.com/cloudlibz/gocloud/compute/vultrcompute"
+    import "github.com/safehousetech/gocloud/compute/vultrcompute"
 ```
 
 ### TYPES

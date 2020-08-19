@@ -1,7 +1,7 @@
 package digioceanloadbalancer
 
 import (
-	digioceanAuth "github.com/cloudlibz/gocloud/digioceanauth"
+	digioceanAuth "github.com/safehousetech/gocloud/digioceanauth"
 	"testing"
 )
 
@@ -38,14 +38,14 @@ func TestCreateLoadBalancer(t *testing.T) {
 	}
 
 	create := map[string]interface{}{
-		"Name":            "example-01",
-		"Algorithm":       "round_robin",
-		"Region":          "nyc3",
-		"ForwardingRules": forwardingrules,
-		"HealthCheck":     healthcheck,
-		"StickySessions":  stickysessions,
-		"DropletIDs":      []int{3164444, 3164445},
-		"Tag":             nil,
+		"Name":                "example-01",
+		"Algorithm":           "round_robin",
+		"Region":              "nyc3",
+		"ForwardingRules":     forwardingrules,
+		"HealthCheck":         healthcheck,
+		"StickySessions":      stickysessions,
+		"DropletIDs":          []int{3164444, 3164445},
+		"Tag":                 nil,
 		"RedirectHTTPToHTTPS": false,
 	}
 

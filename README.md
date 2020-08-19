@@ -1,4 +1,4 @@
-![GoCloud Logo](assets/logo.png)
+[GoCloud Logo](assets/logo.png)
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/0fce581810a6420aaca4ba6757c54529)](https://www.codacy.com/app/cloudlibz/gocloud?utm_source=github.com&utm_medium=referral&utm_content=cloudlibz/gocloud&utm_campaign=Badge_Grade)
 [![Build Status](https://travis-ci.org/cloudlibz/gocloud.svg?branch=master)](https://travis-ci.org/cloudlibz/gocloud)
@@ -99,7 +99,7 @@ func main() {
 
 4. Now we need to fetch the gocloud repository and other necessary packages. Run the following commands in order:
 ```
-$ go get github.com/cloudlibz/gocloud
+$ go get github.com/safehousetech/gocloud
 $ go get golang.org/x/oauth2
 $ go get cloud.google.com/go/compute/metadata
 ```
@@ -178,7 +178,7 @@ https://youtu.be/4LxsAeoonlY?list=PLOdfztY25UNnxK_0KRRHSngJIyVLDKZxq&t=3
 ## Development setup
 
 ```
-$ git clone https://github.com/cloudlibz/gocloud
+$ git clone https://github.com/safehousetech/gocloud
 $ cd gocloud
 ```
 

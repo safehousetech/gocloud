@@ -1,14 +1,14 @@
 package rackspace
 
 import (
-	rackspacecompute "github.com/cloudlibz/gocloud/compute/rackspacecompute"
-	rackspacecontainer "github.com/cloudlibz/gocloud/container/rackspacecontainer"
-	rackspacenosql "github.com/cloudlibz/gocloud/database/rackspacenosql"
-	rackspacedns "github.com/cloudlibz/gocloud/dns/rackspacedns"
-	rackspaceloadbalancer "github.com/cloudlibz/gocloud/loadbalancer/rackspaceloadbalancer"
-	rackspacemachinelearning "github.com/cloudlibz/gocloud/machinelearning/rackspacemachinelearning"
-	rackspaceserverless "github.com/cloudlibz/gocloud/serverless/rackspaceserverless"
-	rackspacestorage "github.com/cloudlibz/gocloud/storage/rackspacestorage"
+	rackspacecompute "github.com/safehousetech/gocloud/compute/rackspacecompute"
+	rackspacecontainer "github.com/safehousetech/gocloud/container/rackspacecontainer"
+	rackspacenosql "github.com/safehousetech/gocloud/database/rackspacenosql"
+	rackspacedns "github.com/safehousetech/gocloud/dns/rackspacedns"
+	rackspaceloadbalancer "github.com/safehousetech/gocloud/loadbalancer/rackspaceloadbalancer"
+	rackspacemachinelearning "github.com/safehousetech/gocloud/machinelearning/rackspacemachinelearning"
+	rackspaceserverless "github.com/safehousetech/gocloud/serverless/rackspaceserverless"
+	rackspacestorage "github.com/safehousetech/gocloud/storage/rackspacestorage"
 )
 
 // Rackspace  struct represents Rackspace cloud provider.

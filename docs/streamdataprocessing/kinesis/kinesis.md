@@ -20,7 +20,7 @@ export AWSSecretKey = "xxxxxxxxxxxx"
 
 ```js
 
-import "github.com/cloudlibz/gocloud/gocloud"
+import "github.com/safehousetech/gocloud/gocloud"
 
 amazoncloud := gocloud.AmazonProvider()
 ```

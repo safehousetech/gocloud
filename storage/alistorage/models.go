@@ -2,7 +2,7 @@ package alistorage
 
 import (
 	"errors"
-	"github.com/cloudlibz/gocloud/aliauth"
+	"github.com/safehousetech/gocloud/aliauth"
 )
 
 // Alistorage struct represents Alistorage attribute and method associates with it.

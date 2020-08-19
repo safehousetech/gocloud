@@ -1,16 +1,16 @@
 package gocloud
 
 import (
-	"github.com/cloudlibz/gocloud/ali"
-	"github.com/cloudlibz/gocloud/aliauth"
-	awsAuth "github.com/cloudlibz/gocloud/auth"
-	"github.com/cloudlibz/gocloud/aws"
-	"github.com/cloudlibz/gocloud/digiocean"
-	"github.com/cloudlibz/gocloud/digioceanauth"
-	"github.com/cloudlibz/gocloud/gocloudinterface"
-	"github.com/cloudlibz/gocloud/google"
-	"github.com/cloudlibz/gocloud/vultr"
-	"github.com/cloudlibz/gocloud/vultrauth"
+	"github.com/safehousetech/gocloud/ali"
+	"github.com/safehousetech/gocloud/aliauth"
+	awsAuth "github.com/safehousetech/gocloud/auth"
+	"github.com/safehousetech/gocloud/aws"
+	"github.com/safehousetech/gocloud/digiocean"
+	"github.com/safehousetech/gocloud/digioceanauth"
+	"github.com/safehousetech/gocloud/gocloudinterface"
+	"github.com/safehousetech/gocloud/google"
+	"github.com/safehousetech/gocloud/vultr"
+	"github.com/safehousetech/gocloud/vultrauth"
 )
 
 /*

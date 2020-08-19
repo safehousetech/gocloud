@@ -2,7 +2,7 @@ package awsauth
 
 import (
 	"encoding/hex"
-	auth "github.com/cloudlibz/gocloud/auth"
+	auth "github.com/safehousetech/gocloud/auth"
 	"net/http"
 	"strings"
 	"time"

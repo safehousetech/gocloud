@@ -1,6 +1,6 @@
 ```
 package vultrbaremetal
-    import "github.com/cloudlibz/gocloud/baremetal/vultrbaremetal"
+    import "github.com/safehousetech/gocloud/baremetal/vultrbaremetal"
 ```
 
 ### TYPES

@@ -3,9 +3,10 @@ package awscontainer
 import (
 	"bytes"
 	"encoding/json"
-	awsauth "github.com/cloudlibz/gocloud/awsauth"
 	"io/ioutil"
 	"net/http"
+
+	awsauth "github.com/safehousetech/gocloud/awsauth"
 )
 
 //preparestoptaskparamsdict create dictnoary for stoptask.

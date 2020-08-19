@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	awsAuth "github.com/cloudlibz/gocloud/auth"
+	awsAuth "github.com/safehousetech/gocloud/auth"
 )
 
 func init() {

@@ -1,7 +1,7 @@
 ```
 package digiocean
 
-import "github.com/cloudlibz/gocloud/digiocean"
+import "github.com/safehousetech/gocloud/digiocean"
 ```
 
 ### TYPES

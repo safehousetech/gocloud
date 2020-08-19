@@ -1,6 +1,6 @@
 ```
 package ecs
-    import "github.com/cloudlibz/gocloud/compute/ecs"
+    import "github.com/safehousetech/gocloud/compute/ecs"
 ```
 
 ### CONSTANTS

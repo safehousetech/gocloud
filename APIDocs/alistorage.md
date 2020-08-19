@@ -1,6 +1,6 @@
 ```
 package alistorage
-    import "github.com/cloudlibz/gocloud/storage/alistorage"
+    import "github.com/safehousetech/gocloud/storage/alistorage"
 ```
 
 ### TYPES

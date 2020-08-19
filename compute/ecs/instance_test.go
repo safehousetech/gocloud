@@ -2,7 +2,7 @@ package ecs
 
 import (
 	"fmt"
-	"github.com/cloudlibz/gocloud/aliauth"
+	"github.com/safehousetech/gocloud/aliauth"
 	"testing"
 )
 

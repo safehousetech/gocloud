@@ -1,6 +1,6 @@
 ```
 package googlecloudfunctions
-    import "github.com/cloudlibz/gocloud/serverless/googlecloudfunctions"
+    import "github.com/safehousetech/gocloud/serverless/googlecloudfunctions"
 ```
 
 

@@ -20,7 +20,7 @@ export AliAccessKeySecret = "xxxxxxxxxxxx"
 ## Initialize library
 
 ```
-import "github.com/cloudlibz/gocloud/gocloud"
+import "github.com/safehousetech/gocloud/gocloud"
 
 alicloud, _ := gocloud.CloudProvider(gocloud.Aliprovider)
 ```

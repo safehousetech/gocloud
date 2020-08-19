@@ -1,8 +1,9 @@
 package digioceandns
 
 import (
-	digioceanAuth "github.com/cloudlibz/gocloud/digioceanauth"
 	"testing"
+
+	digioceanAuth "github.com/safehousetech/gocloud/digioceanauth"
 )
 
 func init() {

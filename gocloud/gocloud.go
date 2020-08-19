@@ -3,19 +3,19 @@ package gocloud
 import (
 	"fmt"
 
-	"github.com/cloudlibz/gocloud/ali"
-	aliAuth "github.com/cloudlibz/gocloud/aliauth"
-	awsAuth "github.com/cloudlibz/gocloud/auth"
-	"github.com/cloudlibz/gocloud/aws"
-	"github.com/cloudlibz/gocloud/azure"
-	"github.com/cloudlibz/gocloud/digiocean"
-	digioceanAuth "github.com/cloudlibz/gocloud/digioceanauth"
-	"github.com/cloudlibz/gocloud/google"
-	"github.com/cloudlibz/gocloud/openstack"
-	"github.com/cloudlibz/gocloud/rackspace"
-	"github.com/cloudlibz/gocloud/rackspaceauth"
-	"github.com/cloudlibz/gocloud/vultr"
-	"github.com/cloudlibz/gocloud/vultrauth"
+	"github.com/safehousetech/gocloud/ali"
+	aliAuth "github.com/safehousetech/gocloud/aliauth"
+	awsAuth "github.com/safehousetech/gocloud/auth"
+	"github.com/safehousetech/gocloud/aws"
+	"github.com/safehousetech/gocloud/azure"
+	"github.com/safehousetech/gocloud/digiocean"
+	digioceanAuth "github.com/safehousetech/gocloud/digioceanauth"
+	"github.com/safehousetech/gocloud/google"
+	"github.com/safehousetech/gocloud/openstack"
+	"github.com/safehousetech/gocloud/rackspace"
+	"github.com/safehousetech/gocloud/rackspaceauth"
+	"github.com/safehousetech/gocloud/vultr"
+	"github.com/safehousetech/gocloud/vultrauth"
 )
 
 // Gocloud is a interface which hides the difference between different cloud providers.

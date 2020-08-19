@@ -47,16 +47,16 @@ func preparelisttablesparamsdict(listtablesjsonmap map[string]interface{}, Exclu
 
 func preparecreatetableStreamSpecificationparams(createtablejsonmap map[string]interface{}, createtable Createtable) {
 
-	if (createtable.streamSpecification != StreamSpecification{}) {
+	if (createtable.StreamSpecification != StreamSpecification{}) {
 
 		streamSpecificationv := make(map[string]interface{})
 
-		if createtable.streamSpecification.StreamViewType != "" {
-			streamSpecificationv["StreamViewType"] = createtable.streamSpecification.StreamViewType
+		if createtable.StreamSpecification.StreamViewType != "" {
+			streamSpecificationv["StreamViewType"] = createtable.StreamSpecification.StreamViewType
 		}
 
-		if createtable.streamSpecification.StreamEnabled {
-			streamSpecificationv["StreamEnabled"] = createtable.streamSpecification.StreamEnabled
+		if createtable.StreamSpecification.StreamEnabled {
+			streamSpecificationv["StreamEnabled"] = createtable.StreamSpecification.StreamEnabled
 		}
 
 		createtablejsonmap["StreamSpecification"] = streamSpecificationv
@@ -64,39 +64,39 @@ func preparecreatetableStreamSpecificationparams(createtablejsonmap map[string]i
 }
 
 func preparecreatetableSSESpecificationparams(createtablejsonmap map[string]interface{}, createtable Createtable) {
-	if (createtable.sSESpecification != SSESpecification{}) {
+	if (createtable.SSESpecification != SSESpecification{}) {
 		sSESpecificationv := make(map[string]interface{})
-		sSESpecificationv["Enabled"] = createtable.sSESpecification.Enabled
+		sSESpecificationv["Enabled"] = createtable.SSESpecification.Enabled
 		createtablejsonmap["SSESpecification"] = sSESpecificationv
 	}
 }
 
 func preparecreatetableProvisionedThroughputparams(createtablejsonmap map[string]interface{}, createtable Createtable) {
-	if (createtable.provisionedThroughput != ProvisionedThroughput{}) {
+	if (createtable.ProvisionedThroughput != ProvisionedThroughput{}) {
 		provisionedThroughputv := make(map[string]interface{})
-		if createtable.provisionedThroughput.ReadCapacityUnits != 0 {
-			provisionedThroughputv["ReadCapacityUnits"] = createtable.provisionedThroughput.ReadCapacityUnits
+		if createtable.ProvisionedThroughput.ReadCapacityUnits != 0 {
+			provisionedThroughputv["ReadCapacityUnits"] = createtable.ProvisionedThroughput.ReadCapacityUnits
 		}
-		if createtable.provisionedThroughput.WriteCapacityUnits != 0 {
-			provisionedThroughputv["WriteCapacityUnits"] = createtable.provisionedThroughput.WriteCapacityUnits
+		if createtable.ProvisionedThroughput.WriteCapacityUnits != 0 {
+			provisionedThroughputv["WriteCapacityUnits"] = createtable.ProvisionedThroughput.WriteCapacityUnits
 		}
 		createtablejsonmap["ProvisionedThroughput"] = provisionedThroughputv
 	}
 }
 
 func prepareAttributeDefinitionsparams(createtablejsonmap map[string]interface{}, createtable Createtable) {
-	if len(createtable.attributeDefinitions) != 0 {
+	if len(createtable.AttributeDefinitions) != 0 {
 		attributeDefinitionvs := make([]map[string]interface{}, 0)
 
-		for i := 0; i < len(createtable.keySchema); i++ {
+		for i := 0; i < len(createtable.KeySchema); i++ {
 			attributeDefinitionv := make(map[string]interface{})
 
-			if createtable.attributeDefinitions[i].AttributeName != "" {
-				attributeDefinitionv["AttributeName"] = createtable.attributeDefinitions[i].AttributeName
+			if createtable.AttributeDefinitions[i].AttributeName != "" {
+				attributeDefinitionv["AttributeName"] = createtable.AttributeDefinitions[i].AttributeName
 			}
 
-			if createtable.attributeDefinitions[i].AttributeType != "" {
-				attributeDefinitionv["AttributeType"] = createtable.attributeDefinitions[i].AttributeType
+			if createtable.AttributeDefinitions[i].AttributeType != "" {
+				attributeDefinitionv["AttributeType"] = createtable.AttributeDefinitions[i].AttributeType
 			}
 
 			attributeDefinitionvs = append(attributeDefinitionvs, attributeDefinitionv)
@@ -107,18 +107,18 @@ func prepareAttributeDefinitionsparams(createtablejsonmap map[string]interface{}
 }
 
 func preparekeySchemaparams(createtablejsonmap map[string]interface{}, createtable Createtable) {
-	if len(createtable.keySchema) != 0 {
+	if len(createtable.KeySchema) != 0 {
 		keySchemavs := make([]map[string]interface{}, 0)
 
-		for i := 0; i < len(createtable.keySchema); i++ {
+		for i := 0; i < len(createtable.KeySchema); i++ {
 			keySchemav := make(map[string]interface{})
 
-			if createtable.keySchema[i].AttributeName != "" {
-				keySchemav["AttributeName"] = createtable.keySchema[i].AttributeName
+			if createtable.KeySchema[i].AttributeName != "" {
+				keySchemav["AttributeName"] = createtable.KeySchema[i].AttributeName
 			}
 
-			if createtable.keySchema[i].KeyType != "" {
-				keySchemav["KeyType"] = createtable.keySchema[i].KeyType
+			if createtable.KeySchema[i].KeyType != "" {
+				keySchemav["KeyType"] = createtable.KeySchema[i].KeyType
 			}
 
 			keySchemavs = append(keySchemavs, keySchemav)
@@ -130,50 +130,50 @@ func preparekeySchemaparams(createtablejsonmap map[string]interface{}, createtab
 
 func prepareGlobalSecondaryIndexesparams(createtablejsonmap map[string]interface{}, createtable Createtable) {
 
-	if len(createtable.globalSecondaryIndexes) != 0 {
+	if len(createtable.GlobalSecondaryIndexes) != 0 {
 
 		globalSecondaryIndexesvarrayjsonmap := make([]map[string]interface{}, 0)
 
-		for i := 0; i < len(createtable.globalSecondaryIndexes); i++ {
+		for i := 0; i < len(createtable.GlobalSecondaryIndexes); i++ {
 
 			globalSecondaryIndexessvjsonmap := make(map[string]interface{})
 
-			if createtable.globalSecondaryIndexes[i].IndexName != "" {
-				globalSecondaryIndexessvjsonmap["IndexName"] = createtable.globalSecondaryIndexes[i].IndexName
+			if createtable.GlobalSecondaryIndexes[i].IndexName != "" {
+				globalSecondaryIndexessvjsonmap["IndexName"] = createtable.GlobalSecondaryIndexes[i].IndexName
 			}
 
 			p := Projection{}
 
-			if createtable.globalSecondaryIndexes[i].projection.ProjectionType == p.ProjectionType && len(createtable.globalSecondaryIndexes[i].projection.NonKeyAttributes) == len(p.NonKeyAttributes) {
+			if createtable.GlobalSecondaryIndexes[i].Projection.ProjectionType == p.ProjectionType && len(createtable.GlobalSecondaryIndexes[i].Projection.NonKeyAttributes) == len(p.NonKeyAttributes) {
 
 				projectionv := make(map[string]interface{})
-				projectionv["ProjectionType"] = createtable.globalSecondaryIndexes[i].projection.ProjectionType
-				projectionv["NonKeyAttributes"] = createtable.globalSecondaryIndexes[i].projection.NonKeyAttributes
+				projectionv["ProjectionType"] = createtable.GlobalSecondaryIndexes[i].Projection.ProjectionType
+				projectionv["NonKeyAttributes"] = createtable.GlobalSecondaryIndexes[i].Projection.NonKeyAttributes
 				globalSecondaryIndexessvjsonmap["Projection"] = projectionv
 			}
 
-			if (createtable.globalSecondaryIndexes[i].provisionedThroughput != ProvisionedThroughput{}) {
+			if (createtable.GlobalSecondaryIndexes[i].ProvisionedThroughput != ProvisionedThroughput{}) {
 
 				provisionedThroughputv := make(map[string]interface{})
-				provisionedThroughputv["ReadCapacityUnits"] = createtable.globalSecondaryIndexes[i].provisionedThroughput.ReadCapacityUnits
-				provisionedThroughputv["WriteCapacityUnits"] = createtable.globalSecondaryIndexes[i].provisionedThroughput.WriteCapacityUnits
+				provisionedThroughputv["ReadCapacityUnits"] = createtable.GlobalSecondaryIndexes[i].ProvisionedThroughput.ReadCapacityUnits
+				provisionedThroughputv["WriteCapacityUnits"] = createtable.GlobalSecondaryIndexes[i].ProvisionedThroughput.WriteCapacityUnits
 				globalSecondaryIndexessvjsonmap["ProvisionedThroughput"] = provisionedThroughputv
 			}
 
-			if len(createtable.globalSecondaryIndexes[i].keySchema) != 0 {
+			if len(createtable.GlobalSecondaryIndexes[i].KeySchema) != 0 {
 
 				keySchemavs := make([]map[string]interface{}, 0)
 
-				for i := 0; i < len(createtable.globalSecondaryIndexes[i].keySchema); i++ {
+				for i := 0; i < len(createtable.GlobalSecondaryIndexes[i].KeySchema); i++ {
 
 					keySchemav := make(map[string]interface{})
 
-					if createtable.globalSecondaryIndexes[i].keySchema[i].AttributeName != "" {
-						keySchemav["AttributeName"] = createtable.globalSecondaryIndexes[i].keySchema[i].AttributeName
+					if createtable.GlobalSecondaryIndexes[i].KeySchema[i].AttributeName != "" {
+						keySchemav["AttributeName"] = createtable.GlobalSecondaryIndexes[i].KeySchema[i].AttributeName
 					}
 
-					if createtable.localSecondaryIndexes[i].keySchema[i].KeyType != "" {
-						keySchemav["KeyType"] = createtable.globalSecondaryIndexes[i].keySchema[i].KeyType
+					if createtable.LocalSecondaryIndexes[i].KeySchema[i].KeyType != "" {
+						keySchemav["KeyType"] = createtable.GlobalSecondaryIndexes[i].KeySchema[i].KeyType
 					}
 
 					keySchemavs = append(keySchemavs, keySchemav)
@@ -192,40 +192,40 @@ func prepareGlobalSecondaryIndexesparams(createtablejsonmap map[string]interface
 
 func prepareLocalSecondaryIndexesparams(createtablejsonmap map[string]interface{}, createtable Createtable) {
 
-	if len(createtable.localSecondaryIndexes) != 0 {
+	if len(createtable.LocalSecondaryIndexes) != 0 {
 
 		localSecondaryIndexesvarrayjsonmap := make([]map[string]interface{}, 0)
 
-		for i := 0; i < len(createtable.localSecondaryIndexes); i++ {
+		for i := 0; i < len(createtable.LocalSecondaryIndexes); i++ {
 
 			localSecondaryIndexesvjsonmap := make(map[string]interface{})
 
-			if createtable.localSecondaryIndexes[i].IndexName != "" {
-				localSecondaryIndexesvjsonmap["IndexName"] = createtable.localSecondaryIndexes[i].IndexName
+			if createtable.LocalSecondaryIndexes[i].IndexName != "" {
+				localSecondaryIndexesvjsonmap["IndexName"] = createtable.LocalSecondaryIndexes[i].IndexName
 			}
 
 			p := Projection{}
 
-			if createtable.localSecondaryIndexes[i].projection.ProjectionType == p.ProjectionType && len(createtable.localSecondaryIndexes[i].projection.NonKeyAttributes) == len(p.NonKeyAttributes) {
+			if createtable.LocalSecondaryIndexes[i].Projection.ProjectionType == p.ProjectionType && len(createtable.LocalSecondaryIndexes[i].Projection.NonKeyAttributes) == len(p.NonKeyAttributes) {
 				projectionv := make(map[string]interface{})
-				projectionv["ProjectionType"] = createtable.localSecondaryIndexes[i].projection.ProjectionType
-				projectionv["NonKeyAttributes"] = createtable.localSecondaryIndexes[i].projection.NonKeyAttributes
+				projectionv["ProjectionType"] = createtable.LocalSecondaryIndexes[i].Projection.ProjectionType
+				projectionv["NonKeyAttributes"] = createtable.LocalSecondaryIndexes[i].Projection.NonKeyAttributes
 				localSecondaryIndexesvjsonmap["Projection"] = projectionv
 			}
 
-			if len(createtable.localSecondaryIndexes[i].keySchema) != 0 {
+			if len(createtable.LocalSecondaryIndexes[i].KeySchema) != 0 {
 
-				lenv := len(createtable.localSecondaryIndexes[i].keySchema)
+				lenv := len(createtable.LocalSecondaryIndexes[i].KeySchema)
 
 				keySchemavs := make([]map[string]interface{}, 0)
 
 				for j := 0; j < lenv; i++ {
 
 					keySchemav := make(map[string]interface{})
-					keySchemav["AttributeName"] = createtable.localSecondaryIndexes[i].keySchema[j].AttributeName
+					keySchemav["AttributeName"] = createtable.LocalSecondaryIndexes[i].KeySchema[j].AttributeName
 
-					if createtable.localSecondaryIndexes[i].keySchema[j].KeyType != "" {
-						keySchemav["KeyType"] = createtable.localSecondaryIndexes[i].keySchema[j].KeyType
+					if createtable.LocalSecondaryIndexes[i].KeySchema[j].KeyType != "" {
+						keySchemav["KeyType"] = createtable.LocalSecondaryIndexes[i].KeySchema[j].KeyType
 					}
 
 					keySchemavs = append(keySchemavs, keySchemav)

@@ -2,10 +2,11 @@ package redshift
 
 import (
 	"fmt"
-	awsAuth "github.com/cloudlibz/gocloud/awsauth"
 	"io/ioutil"
 	"net/http"
 	"strconv"
+
+	awsAuth "github.com/safehousetech/gocloud/awsauth"
 )
 
 func preparedefaultDescribeClusterspram(describeclusterspram map[string]string) {

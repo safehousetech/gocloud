@@ -1,5 +1,5 @@
 package awscontainer
-    import "github.com/cloudlibz/gocloud/container/awscontainer"
+    import "github.com/safehousetech/gocloud/container/awscontainer"
 
 
 TYPES

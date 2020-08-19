@@ -2,7 +2,7 @@ package ecs
 
 import (
 	"errors"
-	"github.com/cloudlibz/gocloud/aliauth"
+	"github.com/safehousetech/gocloud/aliauth"
 )
 
 // CreateNode to store all attribute to create Ali-cloud ECS instance

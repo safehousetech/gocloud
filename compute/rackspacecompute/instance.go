@@ -7,7 +7,7 @@ import (
 	"io/ioutil"
 	"net/http"
 
-	"github.com/cloudlibz/gocloud/rackspaceauth"
+	"github.com/safehousetech/gocloud/rackspaceauth"
 )
 
 var cloudserverEndpoints = rackspaceauth.Token.Endpoints["cloudServer"]

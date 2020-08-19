@@ -1,8 +1,9 @@
 package vultrdns
 
 import (
-	"github.com/cloudlibz/gocloud/vultrauth"
 	"testing"
+
+	"github.com/safehousetech/gocloud/vultrauth"
 )
 
 func init() {

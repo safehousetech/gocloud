@@ -22,7 +22,7 @@ export ClientX509CertURL =  "xxxxxxxxxxxx"
 
 ```js
 
-import "github.com/cloudlibz/gocloud/gocloud"
+import "github.com/safehousetech/gocloud/gocloud"
 
 googlecloud, _ := gocloud.CloudProvider(gocloud.Googleprovider)
 ```

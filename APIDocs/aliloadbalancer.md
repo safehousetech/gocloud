@@ -1,6 +1,6 @@
 ```
 package aliloadbalancer
-    import "github.com/cloudlibz/gocloud/loadbalancer/aliloadbalancer"
+    import "github.com/safehousetech/gocloud/loadbalancer/aliloadbalancer"
 ```
 
 ### CONSTANTS

@@ -1,7 +1,7 @@
 package alistorage
 
 import (
-	"github.com/cloudlibz/gocloud/aliauth"
+	"github.com/safehousetech/gocloud/aliauth"
 	"testing"
 )
 

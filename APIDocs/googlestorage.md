@@ -1,5 +1,5 @@
 package googlestorage
-    import "github.com/cloudlibz/gocloud/storage/googlestorage"
+    import "github.com/safehousetech/gocloud/storage/googlestorage"
 
 
 FUNCTIONS

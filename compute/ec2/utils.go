@@ -5,12 +5,13 @@ import (
 	"encoding/hex"
 	"encoding/xml"
 	"fmt"
-	"github.com/cloudlibz/gocloud/auth"
-	awsAuth "github.com/cloudlibz/gocloud/awsauth"
 	"io/ioutil"
 	"net/http"
 	"strconv"
 	"time"
+
+	"github.com/safehousetech/gocloud/auth"
+	awsAuth "github.com/safehousetech/gocloud/awsauth"
 )
 
 // prepareRunParams base on vps or legacy params

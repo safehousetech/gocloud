@@ -1,7 +1,7 @@
 package awsauth
 
 import (
-	auth "github.com/cloudlibz/gocloud/auth"
+	auth "github.com/safehousetech/gocloud/auth"
 	"net/http"
 	"time"
 )

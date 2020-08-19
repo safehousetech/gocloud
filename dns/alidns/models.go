@@ -2,7 +2,7 @@ package alidns
 
 import (
 	"errors"
-	"github.com/cloudlibz/gocloud/aliauth"
+	"github.com/safehousetech/gocloud/aliauth"
 )
 
 //Alidns represents Alidns attribute and method associates with it.

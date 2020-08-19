@@ -2,8 +2,9 @@ package vultrdns
 
 import (
 	"fmt"
-	"github.com/cloudlibz/gocloud/vultrauth"
 	"net/http"
+
+	"github.com/safehousetech/gocloud/vultrauth"
 )
 
 // ListResourceDnsRecordSets function lists DNS record sets.

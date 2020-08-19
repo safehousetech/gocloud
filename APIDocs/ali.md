@@ -1,6 +1,6 @@
 ```
 package ali
-    import "github.com/cloudlibz/gocloud/ali"
+    import "github.com/safehousetechtechtechtechtechtechtech/gocloud/ali"
 ```
 
 ### TYPES

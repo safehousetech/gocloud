@@ -1,5 +1,5 @@
 package bigtable
-    import "github.com/cloudlibz/gocloud/database/bigtable"
+    import "github.com/safehousetech/gocloud/database/bigtable"
 
 
 FUNCTIONS

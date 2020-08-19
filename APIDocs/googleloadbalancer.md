@@ -1,5 +1,5 @@
 package googleloadbalancer
-    import "github.com/cloudlibz/gocloud/loadbalancer/googleloadbalancer"
+    import "github.com/safehousetech/gocloud/loadbalancer/googleloadbalancer"
 
 
 CONSTANTS

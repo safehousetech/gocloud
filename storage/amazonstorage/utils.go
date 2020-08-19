@@ -2,8 +2,8 @@ package amazonstorage
 
 import (
 	"fmt"
-	auth "github.com/cloudlibz/gocloud/auth"
-	awsauth "github.com/cloudlibz/gocloud/awsauth"
+	auth "github.com/safehousetech/gocloud/auth"
+	awsauth "github.com/safehousetech/gocloud/awsauth"
 	"io/ioutil"
 	"net/http"
 	"strconv"

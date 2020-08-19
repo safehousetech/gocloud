@@ -1,18 +1,18 @@
 package aws
 
 import (
-	redshift "github.com/cloudlibz/gocloud/analytics/redshift"
-	ec2 "github.com/cloudlibz/gocloud/compute/ec2"
-	awscontainer "github.com/cloudlibz/gocloud/container/awscontainer"
-	dynamodb "github.com/cloudlibz/gocloud/database/dynamodb"
-	awsdns "github.com/cloudlibz/gocloud/dns/awsdns"
-	"github.com/cloudlibz/gocloud/gocloudinterface"
-	awsloadbalancer "github.com/cloudlibz/gocloud/loadbalancer/awsloadbalancer"
-	"github.com/cloudlibz/gocloud/machinelearning/awsmachinelearning"
-	amazonsimplenotification "github.com/cloudlibz/gocloud/notification/amazonsimplenotification"
-	lambda "github.com/cloudlibz/gocloud/serverless/lambda"
-	amazonstorage "github.com/cloudlibz/gocloud/storage/amazonstorage"
-	kinesis "github.com/cloudlibz/gocloud/streamdataprocessing/kinesis"
+	redshift "github.com/safehousetech/gocloud/analytics/redshift"
+	ec2 "github.com/safehousetech/gocloud/compute/ec2"
+	awscontainer "github.com/safehousetech/gocloud/container/awscontainer"
+	dynamodb "github.com/safehousetech/gocloud/database/dynamodb"
+	awsdns "github.com/safehousetech/gocloud/dns/awsdns"
+	"github.com/safehousetech/gocloud/gocloudinterface"
+	awsloadbalancer "github.com/safehousetech/gocloud/loadbalancer/awsloadbalancer"
+	"github.com/safehousetech/gocloud/machinelearning/awsmachinelearning"
+	amazonsimplenotification "github.com/safehousetech/gocloud/notification/amazonsimplenotification"
+	lambda "github.com/safehousetech/gocloud/serverless/lambda"
+	amazonstorage "github.com/safehousetech/gocloud/storage/amazonstorage"
+	kinesis "github.com/safehousetech/gocloud/streamdataprocessing/kinesis"
 )
 
 //AWS struct reperents amazon cloud provider.

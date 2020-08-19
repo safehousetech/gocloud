@@ -18,7 +18,7 @@ export VultrAPIKey =  "xxxxxxxxxxxx"
 ## Initialize library
 
 ```
-import "github.com/cloudlibz/gocloud/gocloud"
+import "github.com/safehousetech/gocloud/gocloud"
 
 vultr, _ := gocloud.CloudProvider(gocloud.Vultrprovider)
 ```

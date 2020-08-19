@@ -1,6 +1,6 @@
 ```
 package alidns
-    import "github.com/cloudlibz/gocloud/dns/alidns"
+    import "github.com/safehousetech/gocloud/dns/alidns"
 ```
 
 ### TYPES

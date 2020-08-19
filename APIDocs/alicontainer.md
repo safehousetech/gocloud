@@ -1,6 +1,6 @@
 ```
 package alicontainer
-    import "github.com/cloudlibz/gocloud/container/alicontainer"
+    import "github.com/safehousetech/gocloud/container/alicontainer"
 ```
 
 ### TYPES

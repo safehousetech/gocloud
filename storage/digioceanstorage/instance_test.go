@@ -1,7 +1,7 @@
 package digioceanstorage
 
 import (
-	digioceanAuth "github.com/cloudlibz/gocloud/digioceanauth"
+	digioceanAuth "github.com/safehousetech/gocloud/digioceanauth"
 	"testing"
 )
 

@@ -1,5 +1,5 @@
 package googlemachinelearning
-   import "github.com/cloudlibz/gocloud/machinelearning/googlemachinelearning"
+   import "github.com/safehousetech/gocloud/machinelearning/googlemachinelearning"
 
 
 CONSTANTS

@@ -1,6 +1,6 @@
 ```
 package vultrstorage
-    import "github.com/cloudlibz/gocloud/storage/vultrstorage"
+    import "github.com/safehousetech/gocloud/storage/vultrstorage"
 ```
 
 ### TYPES

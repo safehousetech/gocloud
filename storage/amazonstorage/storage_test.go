@@ -1,7 +1,7 @@
 package amazonstorage
 
 import "testing"
-import awsAuth "github.com/cloudlibz/gocloud/auth"
+import awsAuth "github.com/safehousetech/gocloud/auth"
 
 func init() {
 	awsAuth.LoadConfig()

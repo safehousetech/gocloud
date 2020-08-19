@@ -3,7 +3,7 @@ package googleloadbalancer
 import (
 	"bytes"
 	"encoding/json"
-	googleauth "github.com/cloudlibz/gocloud/googleauth"
+	googleauth "github.com/safehousetech/gocloud/googleauth"
 	"io/ioutil"
 	"net/http"
 	"time"

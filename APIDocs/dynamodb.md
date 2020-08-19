@@ -1,6 +1,6 @@
 ```
 package ecs
-    import "github.com/cloudlibz/gocloud/database/dynamodb"
+    import "github.com/safehousetech/gocloud/database/dynamodb"
 ```
 
 TYPES

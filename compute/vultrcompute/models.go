@@ -2,7 +2,8 @@ package vultrcompute
 
 import (
 	"errors"
-	"github.com/cloudlibz/gocloud/vultrauth"
+
+	"github.com/safehousetech/gocloud/vultrauth"
 )
 
 // VultrCompute struct

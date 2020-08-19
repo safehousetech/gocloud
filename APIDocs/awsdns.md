@@ -1,5 +1,5 @@
 package awsdns
-    import "github.com/cloudlibz/gocloud/dns/awsdns"
+    import "github.com/safehousetech/gocloud/dns/awsdns"
 
 
 FUNCTIONS

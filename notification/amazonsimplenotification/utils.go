@@ -1,8 +1,8 @@
 package amazonsimplenotification
 
 import (
-	"github.com/cloudlibz/gocloud/auth"
-	awsAuth "github.com/cloudlibz/gocloud/awsauth"
+	"github.com/safehousetech/gocloud/auth"
+	awsAuth "github.com/safehousetech/gocloud/awsauth"
 	"io/ioutil"
 	"net/http"
 	"time"

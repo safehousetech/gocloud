@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	digioceanAuth "github.com/cloudlibz/gocloud/digioceanauth"
+	digioceanAuth "github.com/safehousetech/gocloud/digioceanauth"
 	"io/ioutil"
 	"net/http"
 )

@@ -1,7 +1,7 @@
 package ecs
 
 import (
-	"github.com/cloudlibz/gocloud/aliauth"
+	"github.com/safehousetech/gocloud/aliauth"
 	"reflect"
 	"strconv"
 )

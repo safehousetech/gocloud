@@ -1,7 +1,7 @@
 PACKAGE DOCUMENTATION
 
 package kinesis
-    import "github.com/cloudlibz/gocloud/streamdataprocessing/kinesis"
+    import "github.com/safehousetech/gocloud/streamdataprocessing/kinesis"
 
 
 TYPES

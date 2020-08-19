@@ -1,7 +1,7 @@
 package vultrbaremetal
 
 import (
-	"github.com/cloudlibz/gocloud/vultrauth"
+	"github.com/safehousetech/gocloud/vultrauth"
 	"testing"
 )
 
