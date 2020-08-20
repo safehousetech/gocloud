@@ -39,6 +39,7 @@ func preparepayload(request *http.Request) []byte {
 	return payload
 }
 
+//Preparedeletefnrequest ..
 func Preparedeletefnrequest(params map[string]string, region string, response map[string]interface{}) (err error) {
 	service := "lambda"
 	method := "DELETE"
@@ -53,11 +54,11 @@ func Preparedeletefnrequest(params map[string]string, region string, response ma
 	t := time.Now().UTC()
 
 	XAmzDate := t.Format("20060102T150405Z")
-	date_stamp := t.Format("20060102")
+	dateStamp := t.Format("20060102")
 
-	canonical_uri := "/2015-03-31/functions/" + params["FunctionName"]
+	canonicalURI := "/2015-03-31/functions/" + params["FunctionName"]
 
-	request, _ := http.NewRequest("DELETE	", endpoint+canonical_uri, nil)
+	request, _ := http.NewRequest("DELETE	", endpoint+canonicalURI, nil)
 
 	payload := preparepayload(request)
 	payloadHash := sha256Hasher(payload)
@@ -67,30 +68,31 @@ func Preparedeletefnrequest(params map[string]string, region string, response ma
 	// Go encodes a space as '+' but Amazon requires '%20'. Luckily any '+' in the
 	// original query string has been percent escaped so all '+' chars that are left
 	// were originally spaces.
-	canonical_querystring := strings.Replace(queryString, "+", "%20", -1)
-	canonical_headers := "host:" + host + "\n" + "x-amz-date:" + XAmzDate + "\n"
-	canonical_request := method + "\n" + canonical_uri + "\n" + canonical_querystring + "\n" + canonical_headers + "\n" + signedheaders + "\n" + payloadHash
+	canonicalQuerystring := strings.Replace(queryString, "+", "%20", -1)
+	canonicalHeaders := "host:" + host + "\n" + "x-amz-date:" + XAmzDate + "\n"
+	canonicalRequest := method + "\n" + canonicalURI + "\n" + canonicalQuerystring + "\n" + canonicalHeaders + "\n" + signedheaders + "\n" + payloadHash
 
 	algorithm := "AWS4-HMAC-SHA256"
-	credential_scope := date_stamp + "/" + region + "/" + service + "/" + "aws4_request"
-	string_to_sign := algorithm + "\n" + XAmzDate + "\n" + credential_scope + "\n" + sha256Hasher([]byte(canonical_request))
+	credentialScope := dateStamp + "/" + region + "/" + service + "/" + "aws4_request"
+	strToSign := algorithm + "\n" + XAmzDate + "\n" + credentialScope + "\n" + sha256Hasher([]byte(canonicalRequest))
 
-	kDate := hmacSHA256([]byte("AWS4"+SecretAccessKey), date_stamp)
+	kDate := hmacSHA256([]byte("AWS4"+SecretAccessKey), dateStamp)
 	kRegion := hmacSHA256(kDate, region)
 	kService := hmacSHA256(kRegion, service)
 	kSigning := hmacSHA256(kService, "aws4_request")
 
-	signature := hmacsignatureV4(kSigning, string_to_sign)
-	authorization_header := algorithm + " " + "Credential=" + AccessKeyID + "/" + credential_scope + ", " + "SignedHeaders=" + signedheaders + ", " + "Signature=" + signature
+	signature := hmacsignatureV4(kSigning, strToSign)
+	authorizationHeader := algorithm + " " + "Credential=" + AccessKeyID + "/" + credentialScope + ", " + "SignedHeaders=" + signedheaders + ", " + "Signature=" + signature
 
 	request.Header.Add("X-Amz-Date", XAmzDate)
-	request.Header.Add("Authorization", authorization_header)
+	request.Header.Add("Authorization", authorizationHeader)
 
 	client := new(http.Client)
 
 	resp, err := client.Do(request)
 	if err != nil {
 		fmt.Println(err)
+		return
 	}
 
 	defer resp.Body.Close()
@@ -106,6 +108,7 @@ func Preparedeletefnrequest(params map[string]string, region string, response ma
 	return
 }
 
+//Preparegetfnrequest ...
 func Preparegetfnrequest(params map[string]string, region string, response map[string]interface{}) (err error) {
 	service := "lambda"
 	method := "GET"
@@ -120,11 +123,11 @@ func Preparegetfnrequest(params map[string]string, region string, response map[s
 	t := time.Now().UTC()
 
 	XAmzDate := t.Format("20060102T150405Z")
-	date_stamp := t.Format("20060102")
+	dateStamp := t.Format("20060102")
 
-	canonical_uri := "/2015-03-31/functions/" + params["FunctionName"]
+	canonicalURI := "/2015-03-31/functions/" + params["FunctionName"]
 
-	request, _ := http.NewRequest("GET", endpoint+canonical_uri, nil)
+	request, _ := http.NewRequest("GET", endpoint+canonicalURI, nil)
 
 	payload := preparepayload(request)
 	payloadHash := sha256Hasher(payload)
@@ -134,30 +137,31 @@ func Preparegetfnrequest(params map[string]string, region string, response map[s
 	// Go encodes a space as '+' but Amazon requires '%20'. Luckily any '+' in the
 	// original query string has been percent escaped so all '+' chars that are left
 	// were originally spaces.
-	canonical_querystring := strings.Replace(queryString, "+", "%20", -1)
-	canonical_headers := "host:" + host + "\n" + "x-amz-date:" + XAmzDate + "\n"
-	canonical_request := method + "\n" + canonical_uri + "\n" + canonical_querystring + "\n" + canonical_headers + "\n" + signedheaders + "\n" + payloadHash
+	canonicalQuerystring := strings.Replace(queryString, "+", "%20", -1)
+	canonicalHeaders := "host:" + host + "\n" + "x-amz-date:" + XAmzDate + "\n"
+	canonicalRequest := method + "\n" + canonicalURI + "\n" + canonicalQuerystring + "\n" + canonicalHeaders + "\n" + signedheaders + "\n" + payloadHash
 
 	algorithm := "AWS4-HMAC-SHA256"
-	credential_scope := date_stamp + "/" + region + "/" + service + "/" + "aws4_request"
-	string_to_sign := algorithm + "\n" + XAmzDate + "\n" + credential_scope + "\n" + sha256Hasher([]byte(canonical_request))
+	credentialScope := dateStamp + "/" + region + "/" + service + "/" + "aws4_request"
+	strToSign := algorithm + "\n" + XAmzDate + "\n" + credentialScope + "\n" + sha256Hasher([]byte(canonicalRequest))
 
-	kDate := hmacSHA256([]byte("AWS4"+SecretAccessKey), date_stamp)
+	kDate := hmacSHA256([]byte("AWS4"+SecretAccessKey), dateStamp)
 	kRegion := hmacSHA256(kDate, region)
 	kService := hmacSHA256(kRegion, service)
 	kSigning := hmacSHA256(kService, "aws4_request")
 
-	signature := hmacsignatureV4(kSigning, string_to_sign)
-	authorization_header := algorithm + " " + "Credential=" + AccessKeyID + "/" + credential_scope + ", " + "SignedHeaders=" + signedheaders + ", " + "Signature=" + signature
+	signature := hmacsignatureV4(kSigning, strToSign)
+	authorizationHeader := algorithm + " " + "Credential=" + AccessKeyID + "/" + credentialScope + ", " + "SignedHeaders=" + signedheaders + ", " + "Signature=" + signature
 
 	request.Header.Add("X-Amz-Date", XAmzDate)
-	request.Header.Add("Authorization", authorization_header)
+	request.Header.Add("Authorization", authorizationHeader)
 
 	client := new(http.Client)
 
 	resp, err := client.Do(request)
 	if err != nil {
 		fmt.Println(err)
+		return
 	}
 
 	defer resp.Body.Close()
@@ -173,6 +177,7 @@ func Preparegetfnrequest(params map[string]string, region string, response map[s
 	return
 }
 
+//Preparegetrequest ...
 func Preparegetrequest(params map[string]string, region string, response map[string]interface{}) (err error) {
 	service := "lambda"
 	method := "GET"
@@ -187,11 +192,11 @@ func Preparegetrequest(params map[string]string, region string, response map[str
 	t := time.Now().UTC()
 
 	XAmzDate := t.Format("20060102T150405Z")
-	date_stamp := t.Format("20060102")
+	dateStamp := t.Format("20060102")
 
-	canonical_uri := "/2015-03-31/functions/"
+	canonicalURI := "/2015-03-31/functions/"
 
-	request, _ := http.NewRequest("GET", endpoint+canonical_uri, nil)
+	request, _ := http.NewRequest("GET", endpoint+canonicalURI, nil)
 
 	payload := preparepayload(request)
 	payloadHash := sha256Hasher(payload)
@@ -209,30 +214,31 @@ func Preparegetrequest(params map[string]string, region string, response map[str
 	// Go encodes a space as '+' but Amazon requires '%20'. Luckily any '+' in the
 	// original query string has been percent escaped so all '+' chars that are left
 	// were originally spaces.
-	canonical_querystring := strings.Replace(queryString, "+", "%20", -1)
-	canonical_headers := "host:" + host + "\n" + "x-amz-date:" + XAmzDate + "\n"
-	canonical_request := method + "\n" + canonical_uri + "\n" + canonical_querystring + "\n" + canonical_headers + "\n" + signedheaders + "\n" + payloadHash
+	canonicalQuerystring := strings.Replace(queryString, "+", "%20", -1)
+	canonicalHeaders := "host:" + host + "\n" + "x-amz-date:" + XAmzDate + "\n"
+	canonicalRequest := method + "\n" + canonicalURI + "\n" + canonicalQuerystring + "\n" + canonicalHeaders + "\n" + signedheaders + "\n" + payloadHash
 
 	algorithm := "AWS4-HMAC-SHA256"
-	credential_scope := date_stamp + "/" + region + "/" + service + "/" + "aws4_request"
-	string_to_sign := algorithm + "\n" + XAmzDate + "\n" + credential_scope + "\n" + sha256Hasher([]byte(canonical_request))
+	credentialScope := dateStamp + "/" + region + "/" + service + "/" + "aws4_request"
+	strToSign := algorithm + "\n" + XAmzDate + "\n" + credentialScope + "\n" + sha256Hasher([]byte(canonicalRequest))
 
-	kDate := hmacSHA256([]byte("AWS4"+SecretAccessKey), date_stamp)
+	kDate := hmacSHA256([]byte("AWS4"+SecretAccessKey), dateStamp)
 	kRegion := hmacSHA256(kDate, region)
 	kService := hmacSHA256(kRegion, service)
 	kSigning := hmacSHA256(kService, "aws4_request")
 
-	signature := hmacsignatureV4(kSigning, string_to_sign)
-	authorization_header := algorithm + " " + "Credential=" + AccessKeyID + "/" + credential_scope + ", " + "SignedHeaders=" + signedheaders + ", " + "Signature=" + signature
+	signature := hmacsignatureV4(kSigning, strToSign)
+	authorizationHeader := algorithm + " " + "Credential=" + AccessKeyID + "/" + credentialScope + ", " + "SignedHeaders=" + signedheaders + ", " + "Signature=" + signature
 
 	request.Header.Add("X-Amz-Date", XAmzDate)
-	request.Header.Add("Authorization", authorization_header)
+	request.Header.Add("Authorization", authorizationHeader)
 
 	client := new(http.Client)
 
 	resp, err := client.Do(request)
 	if err != nil {
 		fmt.Println(err)
+		return
 	}
 
 	defer resp.Body.Close()
@@ -248,6 +254,7 @@ func Preparegetrequest(params map[string]string, region string, response map[str
 	return
 }
 
+//PreparePostrequest ...
 func PreparePostrequest(params map[string]interface{}, region string, response map[string]interface{}) (err error) {
 
 	service := "lambda"
@@ -265,15 +272,15 @@ func PreparePostrequest(params map[string]interface{}, region string, response m
 	t := time.Now().UTC()
 
 	XAmzDate := t.Format("20060102T150405Z")
-	date_stamp := t.Format("20060102")
+	dateStamp := t.Format("20060102")
 
-	canonical_uri := "/2015-03-31/functions/"
+	canonicalURI := "/2015-03-31/functions/"
 
 	requestparametersjson, _ := json.Marshal(params)
 	requestparametersjsonstring := string(requestparametersjson)
 	requestparametersjsonstringbyte := []byte(requestparametersjsonstring)
 
-	request, _ := http.NewRequest("POST", endpoint+canonical_uri, bytes.NewBuffer(requestparametersjsonstringbyte))
+	request, _ := http.NewRequest("POST", endpoint+canonicalURI, bytes.NewBuffer(requestparametersjsonstringbyte))
 
 	payload := preparepayload(request)
 	payloadHash := sha256Hasher(payload)
@@ -281,36 +288,37 @@ func PreparePostrequest(params map[string]interface{}, region string, response m
 	// Go encodes a space as '+' but Amazon requires '%20'. Luckily any '+' in the
 	// original query string has been percent escaped so all '+' chars that are left
 	// were originally spaces.
-	canonical_querystring := ""
+	canonicalQuerystring := ""
 
-	canonical_headers := "content-type:" + ContentType + "\n" + "host:" + host + "\n" + "x-amz-date:" + XAmzDate + "\n"
+	canonicalHeaders := "content-type:" + ContentType + "\n" + "host:" + host + "\n" + "x-amz-date:" + XAmzDate + "\n"
 
 	//payload_hashstring := sha256Hasher(request_parameters)
 
-	canonical_request := method + "\n" + canonical_uri + "\n" + canonical_querystring + "\n" + canonical_headers + "\n" + signedheaders + "\n" + payloadHash
+	canonicalRequest := method + "\n" + canonicalURI + "\n" + canonicalQuerystring + "\n" + canonicalHeaders + "\n" + signedheaders + "\n" + payloadHash
 
 	algorithm := "AWS4-HMAC-SHA256"
-	credential_scope := date_stamp + "/" + region + "/" + service + "/" + "aws4_request"
-	string_to_sign := algorithm + "\n" + XAmzDate + "\n" + credential_scope + "\n" + sha256Hasher([]byte(canonical_request))
+	credentialScope := dateStamp + "/" + region + "/" + service + "/" + "aws4_request"
+	strToSign := algorithm + "\n" + XAmzDate + "\n" + credentialScope + "\n" + sha256Hasher([]byte(canonicalRequest))
 
-	kDate := hmacSHA256([]byte("AWS4"+SecretAccessKey), date_stamp)
+	kDate := hmacSHA256([]byte("AWS4"+SecretAccessKey), dateStamp)
 	kRegion := hmacSHA256(kDate, region)
 	kService := hmacSHA256(kRegion, service)
 	kSigning := hmacSHA256(kService, "aws4_request")
 
-	signature := hmacsignatureV4(kSigning, string_to_sign)
-	authorization_header := algorithm + " " + "Credential=" + AccessKeyID + "/" + credential_scope + ", " + "SignedHeaders=" + signedheaders + ", " + "Signature=" + signature
+	signature := hmacsignatureV4(kSigning, strToSign)
+	authorizationHeader := algorithm + " " + "Credential=" + AccessKeyID + "/" + credentialScope + ", " + "SignedHeaders=" + signedheaders + ", " + "Signature=" + signature
 
 	request.Header.Set("Content-Type", ContentType)
 	request.Header.Set("Host", "lambda.us-east-1.amazonaws.com")
 	request.Header.Add("X-Amz-Date", XAmzDate)
-	request.Header.Add("Authorization", authorization_header)
+	request.Header.Add("Authorization", authorizationHeader)
 
 	client := new(http.Client)
 
 	resp, err := client.Do(request)
 	if err != nil {
 		fmt.Println(err)
+		return
 	}
 
 	defer resp.Body.Close()

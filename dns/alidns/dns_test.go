@@ -1,8 +1,9 @@
 package alidns
 
 import (
-	"github.com/safehousetech/gocloud/aliauth"
 	"testing"
+
+	"github.com/safehousetech/gocloud/aliauth"
 )
 
 func init() {
@@ -18,7 +19,7 @@ func TestCreateDns(t *testing.T) {
 		"Value":      "202.106.0.20",
 		"TTL":        600,
 	}
-	_, err := aliDNS.CreateDns(createDNS)
+	_, err := aliDNS.CreateDNS(createDNS)
 	if err != nil {
 		t.Errorf("CreateDns Test Fail: %s", err)
 		return
@@ -35,7 +36,7 @@ func TestCreateDNSBuilder(t *testing.T) {
 		Value("202.106.0.20").
 		TTL(600).
 		Build()
-	_, err = aliDNS.CreateDns(createDNS)
+	_, err = aliDNS.CreateDNS(createDNS)
 	if err != nil {
 		t.Errorf("CreateDns Test Fail: %s", err)
 		return
@@ -48,7 +49,7 @@ func TestDeleteDns(t *testing.T) {
 	deleteDNS := map[string]interface{}{
 		"RecordId": "9999985",
 	}
-	_, err := aliDNS.DeleteDns(deleteDNS)
+	_, err := aliDNS.DeleteDNS(deleteDNS)
 	if err != nil {
 		t.Errorf("DeleteDns Test Fail: %s", err)
 		return
@@ -58,8 +59,8 @@ func TestDeleteDns(t *testing.T) {
 
 func TestDeleteDNSBuilder(t *testing.T) {
 	var aliDNS Alidns
-	deleteDNS, err := NewDeleteDNSBuilder().RecordId("9999985").Build()
-	_, err = aliDNS.DeleteDns(deleteDNS)
+	deleteDNS, err := NewDeleteDNSBuilder().RecordID("9999985").Build()
+	_, err = aliDNS.DeleteDNS(deleteDNS)
 	if err != nil {
 		t.Errorf("DeleteDns Test Fail: %s", err)
 		return
@@ -77,7 +78,7 @@ func TestListDns(t *testing.T) {
 		"TypeKeyWord":  "MX",
 		"ValueKeyWord": "com",
 	}
-	resp, err := aliDNS.ListDns(list)
+	resp, err := aliDNS.ListDNS(list)
 	if err != nil {
 		t.Errorf("ListDns Test Fail: %s", err)
 		return
@@ -93,7 +94,7 @@ func TestListDNSBuilder(t *testing.T) {
 		PageNumber(1).
 		PageSize(20).
 		Build()
-	resp, err := aliDNS.ListDns(list)
+	resp, err := aliDNS.ListDNS(list)
 	if err != nil {
 		t.Errorf("ListDns Test Fail: %s", err)
 		return
@@ -109,16 +110,16 @@ func TestParseListDnsResp(t *testing.T) {
 		"PageNumber": 1,
 		"PageSize":   20,
 	}
-	resp, err := aliDNS.ListDns(list)
+	resp, err := aliDNS.ListDNS(list)
 	if err != nil {
 		t.Errorf("ListDns Test Fail: %s", err)
 		return
 	}
-	listDnsResp, err := ParseListDnsResp(resp)
+	listDNSResp, err := ParseListDNSResp(resp)
 	if err != nil {
 		t.Errorf("ListDns Test Fail: %s", err)
 	}
-	for _, value := range listDnsResp.DomainRecords.Record {
+	for _, value := range listDNSResp.DomainRecords.Record {
 		t.Logf("%+v\n", value)
 	}
 }

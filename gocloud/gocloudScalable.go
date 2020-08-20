@@ -61,7 +61,7 @@ type awsProvider interface {
 }
 
 // AmazonProvider return AWS API to users
-func AmazonProvider() awsProvider {
+func AmazonProvider() *aws.AWS {
 	awsAuth.LoadConfig()
 	return new(aws.AWS)
 }
@@ -92,8 +92,8 @@ type googleProvider interface {
 	Streamdataprocessing() gocloudinterface.Streamdataprocessing
 }
 
-// GoogleProvider return Google cloud API to users
-func GoogleProvider() googleProvider {
+//GoogleProvider return Google cloud API to users
+func GoogleProvider() *google.Google {
 	return new(google.Google)
 }
 
@@ -115,7 +115,7 @@ type digitalOceanProvider interface {
 }
 
 // DigitalOceanProvider return Digital Ocean API to users
-func DigitalOceanProvider() digitalOceanProvider {
+func DigitalOceanProvider() *digiocean.DigitalOcean {
 	digioceanauth.LoadConfig()
 	return new(digiocean.DigitalOcean)
 }
@@ -129,7 +129,7 @@ type aliProvider interface {
 }
 
 // AlibabaCloudProvider return Ali-cloud API to users
-func AlibabaCloudProvider() aliProvider {
+func AlibabaCloudProvider() *ali.Ali {
 	aliauth.LoadConfig()
 	return new(ali.Ali)
 }
@@ -152,7 +152,7 @@ type vultrProvider interface {
 }
 
 // VultrProvider return Vultr API to users
-func VultrProvider() vultrProvider {
+func VultrProvider() *vultr.Vultr {
 	vultrauth.LoadConfig()
 	return new(vultr.Vultr)
 }

@@ -24,22 +24,27 @@ type Ali struct {
 	alimachinelearning.Alimachinelearning
 }
 
+//Compute .
 func (*Ali) Compute() gocloudinterface.Compute {
 	return &ecs.ECS{}
 }
 
+//Storage .
 func (*Ali) Storage() gocloudinterface.Storage {
 	return &alistorage.Alistorage{}
 }
 
+//LoadBalancer .
 func (*Ali) LoadBalancer() gocloudinterface.LoadBalancer {
 	return &aliloadbalancer.Aliloadbalancer{}
 }
 
+//Container .
 func (*Ali) Container() gocloudinterface.Container {
 	return &alicontainer.Alicontainer{}
 }
 
+//DNS .
 func (*Ali) DNS() gocloudinterface.DNS {
 	return &alidns.Alidns{}
 }

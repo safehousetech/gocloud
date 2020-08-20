@@ -12,6 +12,7 @@ import (
 
 const formatISO8601 = "2006-01-02T15:04:05Z"
 
+//LoadBalancerSignAndDoRequest .
 func LoadBalancerSignAndDoRequest(action string, params map[string]interface{}, response map[string]interface{}) error {
 	// Add common params and action param
 	params["Action"] = action
@@ -40,6 +41,7 @@ func LoadBalancerSignAndDoRequest(action string, params map[string]interface{}, 
 	return err
 }
 
+//DNSSignAndDoRequest .
 func DNSSignAndDoRequest(action string, params map[string]interface{}, response map[string]interface{}) error {
 	// Add common params and action param
 	params["Action"] = action
@@ -55,6 +57,7 @@ func DNSSignAndDoRequest(action string, params map[string]interface{}, response 
 	return err
 }
 
+//ECSSignAndDoRequest .
 func ECSSignAndDoRequest(action string, params map[string]interface{}, response map[string]interface{}) error {
 	// Add common params and action param
 	params["Action"] = action
@@ -118,7 +121,9 @@ func signAndDoRequest(endpoint string, params map[string]interface{}, response m
 	requestURL := "https://" + endpoint + "/?" + query.Encode() + "&Signature=" + url.QueryEscape(base64Sign)
 
 	httpReq, err := http.NewRequest("GET", requestURL, nil)
-
+	if err != nil {
+		return err
+	}
 	resp, err := http.DefaultClient.Do(httpReq)
 	if err != nil {
 		return err

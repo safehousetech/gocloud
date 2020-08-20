@@ -16,7 +16,7 @@ import (
 
 // prepareRunParams base on vps or legacy params
 func prepareRunParams(options RunInstances) map[string]string {
-	if options.SubnetId != "" || len(options.NetworkInterfaces) > 0 {
+	if options.SubnetID != "" || len(options.NetworkInterfaces) > 0 {
 		return makeParamsVPC("RunInstances")
 	}
 	return makeParams("RunInstances")
@@ -49,8 +49,8 @@ func prepareBlockDevices(params map[string]string, blockDevs []BlockDeviceMappin
 		if b.VirtualName != "" {
 			params[prefix+".VirtualName"] = b.VirtualName
 		}
-		if b.SnapshotId != "" {
-			params[prefix+".Ebs.SnapshotId"] = b.SnapshotId
+		if b.SnapshotID != "" {
+			params[prefix+".Ebs.SnapshotId"] = b.SnapshotID
 		}
 		if b.VolumeType != "" {
 			params[prefix+".Ebs.VolumeType"] = b.VolumeType
@@ -73,12 +73,12 @@ func prepareNetworkInterfaces(params map[string]string, nics []RunNetworkInterfa
 	for i, ni := range nics {
 		n := strconv.Itoa(i)
 		prefix := "NetworkInterface." + n
-		if ni.Id != "" {
-			params[prefix+".NetworkInterfaceId"] = ni.Id
+		if ni.ID != "" {
+			params[prefix+".NetworkInterfaceId"] = ni.ID
 		}
 		params[prefix+".DeviceIndex"] = strconv.Itoa(ni.DeviceIndex)
-		if ni.SubnetId != "" {
-			params[prefix+".SubnetId"] = ni.SubnetId
+		if ni.SubnetID != "" {
+			params[prefix+".SubnetId"] = ni.SubnetID
 		}
 		if ni.Description != "" {
 			params[prefix+".Description"] = ni.Description
@@ -127,7 +127,7 @@ func buildError(r *http.Response) error {
 	if len(errors.Errors) > 0 {
 		err = errors.Errors[0]
 	}
-	err.RequestId = errors.RequestId
+	err.RequestID = errors.RequestID
 	err.StatusCode = r.StatusCode
 	if err.Message == "" {
 		err.Message = r.Status
@@ -136,7 +136,7 @@ func buildError(r *http.Response) error {
 }
 
 type xmlErrors struct {
-	RequestId string  `xml:"RequestID"`
+	RequestID string  `xml:"RequestID"`
 	Errors    []Error `xml:"Errors>Error"`
 }
 
@@ -150,8 +150,7 @@ func (err *Error) Error() string {
 	return fmt.Sprintf("%s (%s)", err.Message, err.Code)
 }
 
-//pass the param to query and add signature to it base on secret key and acces key
-
+//PrepareSignatureV2query pass the param to query and add signature to it base on secret key and acces key
 func (ec2 *EC2) PrepareSignatureV2query(params map[string]string, Region string, response map[string]interface{}) error {
 
 	EC2Endpoint := "https://ec2." + Region + ".amazonaws.com"

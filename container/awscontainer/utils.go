@@ -188,8 +188,8 @@ func preparestarttaskoverridesparams(starttaskjsonmap map[string]interface{}, st
 			if starttask.overrides.ContainerOverrides[i].Memory != 0 {
 				containerOverride["memory"] = starttask.overrides.ContainerOverrides[i].Memory
 			}
-			if starttask.overrides.ContainerOverrides[i].Cpu != 0 {
-				containerOverride["cpu"] = starttask.overrides.ContainerOverrides[i].Cpu
+			if starttask.overrides.ContainerOverrides[i].CPU != 0 {
+				containerOverride["cpu"] = starttask.overrides.ContainerOverrides[i].CPU
 			}
 			if len(starttask.overrides.ContainerOverrides[i].Command) != 0 {
 				containerOverride["command"] = starttask.overrides.ContainerOverrides[i].Command
@@ -250,8 +250,8 @@ func prepareruntaskoverridesparams(runtaskjsonmap map[string]interface{}, runtas
 			if runtask.overrides.ContainerOverrides[i].Memory != 0 {
 				containerOverride["memory"] = runtask.overrides.ContainerOverrides[i].Memory
 			}
-			if runtask.overrides.ContainerOverrides[i].Cpu != 0 {
-				containerOverride["cpu"] = runtask.overrides.ContainerOverrides[i].Cpu
+			if runtask.overrides.ContainerOverrides[i].CPU != 0 {
+				containerOverride["cpu"] = runtask.overrides.ContainerOverrides[i].CPU
 			}
 			if len(runtask.overrides.ContainerOverrides[i].Command) != 0 {
 				containerOverride["command"] = runtask.overrides.ContainerOverrides[i].Command
@@ -397,6 +397,9 @@ func (ecscontainer *Ecscontainer) PrepareSignatureV4query(params map[string]stri
 	request, _ := http.NewRequest("POST", ECSEndpoint, bytes.NewBuffer(requestparametersjsonstringbyte))
 	request = awsauth.SignatureV4(request, requestparametersjsonstringbyte, amztarget, method, params["Region"], service, host, ContentType, signedheaders)
 	resp, err := client.Do(request)
+	if err != nil {
+		return err
+	}
 	defer resp.Body.Close()
 	body, err := ioutil.ReadAll(resp.Body)
 	response["body"] = string(body)

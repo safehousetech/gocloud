@@ -70,8 +70,8 @@ func (redshift *Redshift) CreateDatasets(request interface{}) (resp interface{},
 			createCluster.dBName = dBName
 
 		case "ElasticIp":
-			elasticIp, _ := value.(string)
-			createCluster.elasticIp = elasticIp
+			elasticIP, _ := value.(string)
+			createCluster.elasticIP = elasticIP
 
 		case "Encrypted":
 			encrypted, _ := value.(bool)
@@ -94,8 +94,8 @@ func (redshift *Redshift) CreateDatasets(request interface{}) (resp interface{},
 			createCluster.iamRoles = iamRoles
 
 		case "KmsKeyId":
-			kmsKeyId, _ := value.(string)
-			createCluster.kmsKeyId = kmsKeyId
+			kmsKeyID, _ := value.(string)
+			createCluster.kmsKeyID = kmsKeyID
 
 		case "NumberOfNodes":
 			numberOfNodes, _ := value.(int)
@@ -300,8 +300,8 @@ func (redshift *Redshift) UpdateDatasets(request interface{}) (resp interface{},
 			createCluster.dBName = dBName
 
 		case "ElasticIp":
-			elasticIp, _ := value.(string)
-			createCluster.elasticIp = elasticIp
+			elasticIP, _ := value.(string)
+			createCluster.elasticIP = elasticIP
 
 		case "Encrypted":
 			encrypted, _ := value.(bool)
@@ -324,8 +324,8 @@ func (redshift *Redshift) UpdateDatasets(request interface{}) (resp interface{},
 			createCluster.iamRoles = iamRoles
 
 		case "KmsKeyId":
-			kmsKeyId, _ := value.(string)
-			createCluster.kmsKeyId = kmsKeyId
+			kmsKeyID, _ := value.(string)
+			createCluster.kmsKeyID = kmsKeyID
 
 		case "NumberOfNodes":
 			numberOfNodes, _ := value.(int)

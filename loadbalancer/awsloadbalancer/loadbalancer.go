@@ -40,7 +40,7 @@ func (awsloadbalancer *Awsloadbalancer) CreateLoadBalancer(request interface{}) 
 				listener.InstancePort = Listenersparam[i]["InstancePort"]
 				listener.LoadBalancerPort = Listenersparam[i]["LoadBalancerPort"]
 				listener.Protocol = Listenersparam[i]["Protocol"]
-				listener.SSLCertificateId = Listenersparam[i]["SSLCertificateId"]
+				listener.SSLCertificateID = Listenersparam[i]["SSLCertificateId"]
 				options.Listeners = append(options.Listeners, listener)
 			}
 		}

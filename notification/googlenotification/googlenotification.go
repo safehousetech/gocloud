@@ -3,9 +3,10 @@ package googlenotification
 import (
 	"bytes"
 	"encoding/json"
-	googleauth "github.com/safehousetech/gocloud/googleauth"
 	"io/ioutil"
 	"net/http"
+
+	googleauth "github.com/safehousetech/gocloud/googleauth"
 )
 
 //ListTopic list topic
@@ -33,6 +34,11 @@ func (googlenotification *Googlenotification) ListTopic(request interface{}) (re
 	listtopicrequest.Header.Set("Content-Type", "application/json")
 
 	listtopicresp, err := client.Do(listtopicrequest)
+
+	if err != nil {
+		return nil, err
+	}
+
 	defer listtopicresp.Body.Close()
 
 	body, err := ioutil.ReadAll(listtopicresp.Body)
@@ -56,6 +62,11 @@ func (googlenotification *Googlenotification) GetTopic(request interface{}) (res
 	gettopicrequest, err := http.NewRequest("GET", url, nil)
 
 	gettopicresp, err := client.Do(gettopicrequest)
+
+	if err != nil {
+		return nil, err
+	}
+
 	defer gettopicresp.Body.Close()
 
 	body, err := ioutil.ReadAll(gettopicresp.Body)
@@ -79,6 +90,10 @@ func (googlenotification *Googlenotification) DeleteTopic(request interface{}) (
 	gettopicrequest, err := http.NewRequest("DELETE", url, nil)
 
 	gettopicresp, err := client.Do(gettopicrequest)
+
+	if err != nil {
+		return nil, err
+	}
 
 	defer gettopicresp.Body.Close()
 
@@ -111,6 +126,10 @@ func (googlenotification *Googlenotification) CreateTopic(request interface{}) (
 	gettopicrequest, err := http.NewRequest("PUT", url, bytes.NewBuffer(createtopicjsonstringbyte))
 
 	gettopicresp, err := client.Do(gettopicrequest)
+
+	if err != nil {
+		return nil, err
+	}
 
 	defer gettopicresp.Body.Close()
 

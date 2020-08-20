@@ -24,9 +24,9 @@ func preparecreateMLModelparamsdict(createMLModeljsonmap map[string]interface{},
 		createMLModeljsonmap["TrainingDataSourceId"] = createMLModel.TrainingDataSourceID
 	}
 
-	if createMLModel.parameters.String != "" {
+	if createMLModel.Parameters.String != "" {
 		parameters := make(map[string]string)
-		parameters["string"] = createMLModel.parameters.String
+		parameters["string"] = createMLModel.Parameters.String
 		createMLModeljsonmap["parameters"] = parameters
 	}
 
@@ -39,10 +39,10 @@ func preparecreateMLModel(params map[string]string, createMLModel CreateMLModel,
 	params["amztarget"] = "AmazonML_20141212.CreateMLModel"
 }
 
-func preparedeletemodel(params map[string]string, MLModelId string, Region string) {
+func preparedeletemodel(params map[string]string, MLModelID string, Region string) {
 
-	if MLModelId != "" {
-		params["MLModelId"] = MLModelId
+	if MLModelID != "" {
+		params["MLModelId"] = MLModelID
 	}
 
 	if Region != "" {
@@ -51,10 +51,10 @@ func preparedeletemodel(params map[string]string, MLModelId string, Region strin
 
 	params["amztarget"] = "AmazonML_20141212.DeleteMLModel"
 }
-func preparegetmodel(params map[string]string, MLModelId string, Verbose string, Region string) {
+func preparegetmodel(params map[string]string, MLModelID string, Verbose string, Region string) {
 
-	if MLModelId != "" {
-		params["MLModelId"] = MLModelId
+	if MLModelID != "" {
+		params["MLModelId"] = MLModelID
 	}
 
 	if Verbose != "" {
@@ -68,10 +68,10 @@ func preparegetmodel(params map[string]string, MLModelId string, Verbose string,
 	params["amztarget"] = "AmazonML_20141212.GetMLModel"
 }
 
-func prepareupdatemodelparamsdict(updatemodeljsonmap map[string]interface{}, MLModelId string, ScoreThreshold int, MLModelName string) {
+func prepareupdatemodelparamsdict(updatemodeljsonmap map[string]interface{}, MLModelID string, ScoreThreshold int, MLModelName string) {
 
-	if MLModelId != "" {
-		updatemodeljsonmap["MLModelId"] = MLModelId
+	if MLModelID != "" {
+		updatemodeljsonmap["MLModelId"] = MLModelID
 	}
 
 	if MLModelName != "" {

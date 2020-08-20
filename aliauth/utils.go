@@ -10,6 +10,7 @@ import (
 	"time"
 )
 
+//StrMissRequired .
 const StrMissRequired = "miss required parameter: "
 
 // PutStructIntoMap puts key and value of struct into map[string]interface{}

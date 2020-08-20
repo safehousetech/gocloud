@@ -1,9 +1,10 @@
 package ecs
 
 import (
-	"github.com/safehousetech/gocloud/aliauth"
 	"reflect"
 	"strconv"
+
+	"github.com/safehousetech/gocloud/aliauth"
 )
 
 // StartNode start ECS instances accept map[string]interface{}
@@ -261,6 +262,7 @@ func (ecs *ECS) CreateNode(request interface{}) (resp interface{}, err error) {
 	return resp, err
 }
 
+//ListNodeType ...
 func (ecs *ECS) ListNodeType(request interface{}) (resp interface{}, err error) {
 	params := make(map[string]interface{})
 	response := make(map[string]interface{})

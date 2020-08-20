@@ -2,20 +2,21 @@ package amazonstorage
 
 import (
 	"fmt"
-	auth "github.com/safehousetech/gocloud/auth"
-	awsauth "github.com/safehousetech/gocloud/awsauth"
 	"io/ioutil"
 	"net/http"
 	"strconv"
 	"time"
+
+	auth "github.com/safehousetech/gocloud/auth"
+	awsauth "github.com/safehousetech/gocloud/awsauth"
 )
 
 var timeNow = time.Now
 
 func prepareVolume(params map[string]string, volume CreateVolume) {
 	params["AvailabilityZone"] = volume.AvailZone
-	if volume.SnapshotId != "" {
-		params["SnapshotId"] = volume.SnapshotId
+	if volume.SnapshotID != "" {
+		params["SnapshotId"] = volume.SnapshotID
 	}
 	if volume.VolumeType != "" {
 		params["VolumeType"] = volume.VolumeType
@@ -47,7 +48,8 @@ func makeParamsWithVersion(action, version string) map[string]string {
 	return params
 }
 
-func (amazonstorage *Amazonstorage) PrepareSignatureV2query(params map[string]string, Region string, response map[string]interface{}) error {
+//PrepareSignatureV2query ...
+func (amazonstorage *AmazonStorage) PrepareSignatureV2query(params map[string]string, Region string, response map[string]interface{}) error {
 
 	EC2Endpoint := "https://ec2." + Region + ".amazonaws.com"
 

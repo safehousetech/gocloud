@@ -1,12 +1,13 @@
 package awsloadbalancer
 
 import (
-	"github.com/safehousetech/gocloud/auth"
-	awsauth "github.com/safehousetech/gocloud/awsauth"
 	"io/ioutil"
 	"net/http"
 	"strconv"
 	"time"
+
+	"github.com/safehousetech/gocloud/auth"
+	awsauth "github.com/safehousetech/gocloud/awsauth"
 )
 
 //timeNow represents time variable.
@@ -90,7 +91,7 @@ func prepareListeners(params map[string]string, Listeners []Listener) {
 		params[prefix+".InstancePort"] = Listeners[i].InstancePort
 		params[prefix+".Protocol"] = Listeners[i].Protocol
 		params[prefix+".InstanceProtocol"] = Listeners[i].InstanceProtocol
-		params[prefix+".SSLCertificateId"] = Listeners[i].SSLCertificateId
+		params[prefix+".SSLCertificateId"] = Listeners[i].SSLCertificateID
 	}
 }
 

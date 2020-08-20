@@ -1,15 +1,17 @@
 package amazonsimplenotification
 
 import (
-	"github.com/safehousetech/gocloud/auth"
-	awsAuth "github.com/safehousetech/gocloud/awsauth"
 	"io/ioutil"
 	"net/http"
 	"time"
+
+	"github.com/safehousetech/gocloud/auth"
+	awsAuth "github.com/safehousetech/gocloud/awsauth"
 )
 
 var timeNow = time.Now
 
+//PrepareSignatureV2query ..
 func (amazonsimplenotification *Amazonsimplenotification) PrepareSignatureV2query(params map[string]string, Region string, response map[string]interface{}) error {
 
 	EC2Endpoint := "https://sns." + Region + ".amazonaws.com"

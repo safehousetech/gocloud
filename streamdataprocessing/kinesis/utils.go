@@ -16,18 +16,18 @@ func preparedeletestream(params map[string]string, Region string) {
 	params["amztarget"] = "Kinesis_20131202.DeleteStream"
 }
 
-func preparedescribestreamdict(describestreamjsonmap map[string]interface{}, streamName string, limit string, exclusiveStartShardId string) {
+func preparedescribestreamdict(describeStreamJSONmap map[string]interface{}, streamName string, limit string, exclusiveStartShardID string) {
 
-	if exclusiveStartShardId != "" {
-		describestreamjsonmap["ExclusiveStartShardId"] = exclusiveStartShardId
+	if exclusiveStartShardID != "" {
+		describeStreamJSONmap["ExclusiveStartShardId"] = exclusiveStartShardID
 	}
 
 	if streamName != "" {
-		describestreamjsonmap["StreamName"] = streamName
+		describeStreamJSONmap["StreamName"] = streamName
 	}
 
 	if limit != "" {
-		describestreamjsonmap["Limit"] = limit
+		describeStreamJSONmap["Limit"] = limit
 	}
 }
 
@@ -50,10 +50,10 @@ func preparecreatestreamdict(createstreamjsonmap map[string]interface{}, streamN
 	}
 }
 
-func preparecreatestream(params map[string]string, Region string) {
+func preparecreatestream(params map[string]string, region string) {
 
-	if Region != "" {
-		params["Region"] = Region
+	if region != "" {
+		params["Region"] = region
 	}
 	params["amztarget"] = "Kinesis_20131202.CreateStream"
 }
@@ -69,10 +69,10 @@ func prepareliststreamdict(liststreamjsonmap map[string]interface{}, exclusiveSt
 	}
 }
 
-func prepareliststream(params map[string]string, Region string) {
+func prepareliststream(params map[string]string, region string) {
 
-	if Region != "" {
-		params["Region"] = Region
+	if region != "" {
+		params["Region"] = region
 	}
 	params["amztarget"] = "Kinesis_20131202.ListStreams"
 }

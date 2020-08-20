@@ -11,7 +11,7 @@ import (
 	cinder "github.com/safehousetech/gocloud/storage/cinder"
 )
 
-//openstack  struct represents openstack cloud provider.
+//Openstack  struct represents openstack cloud provider.
 type Openstack struct {
 	nova.Nova
 	cinder.Cinder

@@ -14,6 +14,7 @@ import (
 	"time"
 )
 
+//ContainerSignAndDoRequest .
 func ContainerSignAndDoRequest(region string, method string, path string, query map[string]interface{}, args interface{}, response map[string]interface{}) error {
 	var reqBody []byte
 	var err error
@@ -61,6 +62,7 @@ func ContainerSignAndDoRequest(region string, method string, path string, query 
 	if err != nil {
 		return err
 	}
+
 	defer resp.Body.Close()
 
 	body, err := ioutil.ReadAll(resp.Body)

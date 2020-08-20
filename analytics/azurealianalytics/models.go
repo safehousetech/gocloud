@@ -1,5 +1,5 @@
 package azurealianalytics
 
-//azurealianalytics struct reperesnts azure analytics service.
+//Azurealianalytics struct reperesnts azure analytics service.
 type Azurealianalytics struct {
 }

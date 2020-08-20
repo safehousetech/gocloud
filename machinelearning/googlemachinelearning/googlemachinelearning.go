@@ -3,6 +3,7 @@ package googlemachinelearning
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 	"time"
@@ -142,7 +143,8 @@ func (googlemachinelearning *Googlemachinelearning) CreateMLModel(request interf
 	createMLModelresp, err := client.Do(createMLModelrequest)
 
 	if err != nil {
-
+		fmt.Println(err)
+		return
 	}
 
 	defer createMLModelresp.Body.Close()
@@ -172,7 +174,8 @@ func (googlemachinelearning *Googlemachinelearning) DeleteMLModel(request interf
 	DeleteMLModelresp, err := client.Do(DeleteMLModelrequest)
 
 	if err != nil {
-
+		fmt.Println(err)
+		return
 	}
 
 	defer DeleteMLModelresp.Body.Close()
@@ -204,7 +207,8 @@ func (googlemachinelearning *Googlemachinelearning) GetMLModel(request interface
 	GetMLModelresp, err := client.Do(GetMLModelrequest)
 
 	if err != nil {
-
+		fmt.Println(err)
+		return
 	}
 
 	defer GetMLModelresp.Body.Close()
@@ -356,7 +360,8 @@ func (googlemachinelearning *Googlemachinelearning) UpdateMLModel(request interf
 	updateMLModelresp, err := client.Do(updateMLModelrequest)
 
 	if err != nil {
-
+		fmt.Println(err)
+		return
 	}
 
 	defer updateMLModelresp.Body.Close()

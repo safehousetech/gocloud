@@ -1,5 +1,5 @@
 package alialianalytics
 
-//Alimachinelearning struct reperesnts ali analytics service.
+//Alialianalytics struct reperesnts ali analytics service.
 type Alialianalytics struct {
 }

@@ -4,8 +4,8 @@ package awsdns
 type Awsdns struct {
 }
 
-//ListResourceDnsRecordSets represents ListResourceDnsRecordSets.
-type ListResourceDnsRecordSets struct {
+//ListResourceDNSRecordSets represents ListResourceDNSRecordSets.
+type ListResourceDNSRecordSets struct {
 	Name       string
 	Type       string
 	Identifier string
@@ -26,7 +26,7 @@ type Change struct {
 
 //AliasTarget represents AliasTarget.
 type AliasTarget struct {
-	HostedZoneId         string
+	HostedZoneID         string
 	DNSName              string
 	EvaluateTargetHealth bool
 }
@@ -60,7 +60,7 @@ type ResourceRecordSet struct {
 	Records       []string     `xml:"ResourceRecords>ResourceRecord>Value,omitempty"`
 	SetIdentifier string       `xml:"SetIdentifier,omitempty"`
 	Weight        int          `xml:"Weight,omitempty"`
-	HealthCheckId string       `xml:"HealthCheckId,omitempty"`
+	HealthCheckID string       `xml:"HealthCheckId,omitempty"`
 	Region        string       `xml:"Region,omitempty"`
 	Failover      string       `xml:"Failover,omitempty"`
 	AliasTarget   *AliasTarget `xml:"AliasTarget,omitempty"`

@@ -55,6 +55,7 @@ func prepareDescribeClusterspram(describeclusterspram map[string]string, describ
 	}
 }
 
+//PrepareSignaturequery .
 func PrepareSignaturequery(describeclusterspram map[string]string, region string) (response map[string]interface{}, err error) {
 
 	service := "redshift"
@@ -77,7 +78,9 @@ func PrepareSignaturequery(describeclusterspram map[string]string, region string
 
 	if err != nil {
 		fmt.Println(err)
+		return nil, err
 	}
+
 	defer r.Body.Close()
 
 	body, err := ioutil.ReadAll(r.Body)
@@ -150,15 +153,15 @@ func preparecreateClusterpram(createClusterpram map[string]string, createCluster
 		createClusterpram["DBName"] = createCluster.dBName
 	}
 
-	if createCluster.elasticIp != "" {
-		createClusterpram["ElasticIp"] = createCluster.elasticIp
+	if createCluster.elasticIP != "" {
+		createClusterpram["ElasticIp"] = createCluster.elasticIP
 	}
 
-	if createCluster.encrypted == true {
+	if createCluster.encrypted {
 		createClusterpram["Encrypted"] = "true"
 	}
 
-	if createCluster.enhancedVpcRouting == true {
+	if createCluster.enhancedVpcRouting {
 		createClusterpram["EnhancedVpcRouting"] = "true"
 	}
 
@@ -170,8 +173,8 @@ func preparecreateClusterpram(createClusterpram map[string]string, createCluster
 		createClusterpram["HsmConfigurationIdentifier"] = createCluster.hsmConfigurationIdentifier
 	}
 
-	if createCluster.kmsKeyId != "" {
-		createClusterpram["KmsKeyId"] = createCluster.kmsKeyId
+	if createCluster.kmsKeyID != "" {
+		createClusterpram["KmsKeyId"] = createCluster.kmsKeyID
 	}
 
 	if createCluster.numberOfNodes > 0 {
@@ -269,11 +272,11 @@ func prepareDeleteClusterpram(deleteClusterpram map[string]string, deleteCluster
 		deleteClusterpram["finalClusterSnapshotIdentifier"] = deleteCluster.finalClusterSnapshotIdentifier
 	}
 
-	if deleteCluster.skipFinalClusterSnapshot == true {
+	if deleteCluster.skipFinalClusterSnapshot {
 		deleteClusterpram["SkipFinalClusterSnapshot"] = "true"
 	}
 
-	if deleteCluster.skipFinalClusterSnapshot == false {
+	if !deleteCluster.skipFinalClusterSnapshot {
 		deleteClusterpram["SkipFinalClusterSnapshot"] = "false"
 	}
 

@@ -1,17 +1,21 @@
 package designate
 
-func (designate *Designate) ListResourceDnsRecordSets(request interface{}) (resp interface{}, err error) {
+//ListResourceDNSRecordSets ..
+func (designate *Designate) ListResourceDNSRecordSets(request interface{}) (resp interface{}, err error) {
 	return resp, err
 }
 
-func (designate *Designate) ListDns(request interface{}) (resp interface{}, err error) {
+//ListDNS ..
+func (designate *Designate) ListDNS(request interface{}) (resp interface{}, err error) {
 	return resp, err
 }
 
-func (designate *Designate) DeleteDns(request interface{}) (resp interface{}, err error) {
+//DeleteDNS ..
+func (designate *Designate) DeleteDNS(request interface{}) (resp interface{}, err error) {
 	return resp, err
 }
 
-func (designate *Designate) CreateDns(request interface{}) (resp interface{}, err error) {
+//CreateDNS ..
+func (designate *Designate) CreateDNS(request interface{}) (resp interface{}, err error) {
 	return resp, err
 }

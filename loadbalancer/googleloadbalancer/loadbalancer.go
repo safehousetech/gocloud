@@ -3,10 +3,11 @@ package googleloadbalancer
 import (
 	"bytes"
 	"encoding/json"
-	googleauth "github.com/safehousetech/gocloud/googleauth"
 	"io/ioutil"
 	"net/http"
 	"time"
+
+	googleauth "github.com/safehousetech/gocloud/googleauth"
 )
 
 const (
@@ -105,6 +106,10 @@ func (googleloadbalancer *Googleloadbalancer) CreateLoadBalancer(request interfa
 
 	CreateLoadBalancerresp, err := client.Do(CreateLoadBalancerrequest)
 
+	if err != nil {
+		return nil, err
+	}
+
 	defer CreateLoadBalancerresp.Body.Close()
 
 	body, err := ioutil.ReadAll(CreateLoadBalancerresp.Body)
@@ -129,6 +134,10 @@ func (googleloadbalancer *Googleloadbalancer) DeleteLoadBalancer(request interfa
 	DeleteLoadBalancerrequest.Header.Set("Content-Type", "application/json")
 
 	DeleteLoadBalancerresp, err := client.Do(DeleteLoadBalancerrequest)
+
+	if err != nil {
+		return nil, err
+	}
 
 	defer DeleteLoadBalancerresp.Body.Close()
 
@@ -156,6 +165,10 @@ func (googleloadbalancer *Googleloadbalancer) ListLoadBalancer(request interface
 	ListLoadBalancerrequest.Header.Set("Content-Type", "application/json")
 
 	ListLoadBalancerresp, err := client.Do(ListLoadBalancerrequest)
+
+	if err != nil {
+		return nil, err
+	}
 
 	defer ListLoadBalancerresp.Body.Close()
 
@@ -228,6 +241,10 @@ func (googleloadbalancer *Googleloadbalancer) AttachNodeWithLoadBalancer(request
 
 	AttachNodeWithLoadBalancerresp, err := client.Do(AttachNodeWithLoadBalancerrequest)
 
+	if err != nil {
+		return nil, err
+	}
+
 	defer AttachNodeWithLoadBalancerresp.Body.Close()
 
 	body, err := ioutil.ReadAll(AttachNodeWithLoadBalancerresp.Body)
@@ -297,6 +314,10 @@ func (googleloadbalancer *Googleloadbalancer) DetachNodeWithLoadBalancer(request
 	DetachNodeWithLoadBalancerrequest.Header.Set("Content-Type", "application/json")
 
 	DetachNodeWithLoadBalancerresp, err := client.Do(DetachNodeWithLoadBalancerrequest)
+
+	if err != nil {
+		return nil, err
+	}
 
 	defer DetachNodeWithLoadBalancerresp.Body.Close()
 

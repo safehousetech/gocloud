@@ -2,6 +2,7 @@ package digioceanauth
 
 import (
 	"encoding/json"
+	"fmt"
 	"log"
 	"os"
 )
@@ -19,7 +20,12 @@ func LoadConfig() {
 
 	// Read from file first.
 	var home = os.Getenv("HOME")
-	file, _ := os.Open(home + "/.gocloud" + "/digioceancloudconfig.json")
+	file, err := os.Open(home + "/.gocloud" + "/digioceancloudconfig.json")
+
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
 
 	// Defer the closing of our file so that we can parse it later on.
 	defer file.Close()

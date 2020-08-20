@@ -4,8 +4,8 @@ package googledns
 type Googledns struct {
 }
 
-//CreateDns struct represents CreateDns attribute.
-type CreateDns struct {
+//CreateDNS struct represents CreateDNS attribute.
+type CreateDNS struct {
 	CreationTime  string   `json:"creationTime"`
 	Description   string   `json:"description"`
 	DNSName       string   `json:"dnsName"`

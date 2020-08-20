@@ -5,6 +5,7 @@ import (
 	"crypto/tls"
 	"crypto/x509"
 	"encoding/json"
+	"fmt"
 	"io"
 	"io/ioutil"
 	"net/http"
@@ -67,7 +68,8 @@ func clusterProjectSignAndDoRequest(method string, path string, clusterID string
 
 	httpResp, err := httpClient.Do(httpReq)
 	if err != nil {
-		return
+		fmt.Println(err)
+		return nil, err
 	}
 	defer httpResp.Body.Close()
 

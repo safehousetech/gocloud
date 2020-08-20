@@ -68,6 +68,7 @@ func (rackspacecompute *Rackspacecompute) CreateNode(request interface{}) (resp 
 	createNoderesp, err := http.DefaultClient.Do(createNodereq)
 	if err != nil {
 		fmt.Println(err)
+		return nil, err
 	}
 
 	defer createNoderesp.Body.Close()

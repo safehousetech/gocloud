@@ -3,6 +3,7 @@ package rackspaceauth
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -33,8 +34,12 @@ func LoadConfigAndAuthenticate() {
 
 	// Read from file first.
 	var home = os.Getenv("HOME")
-	file, _ := os.Open(home + "/.gocloud" + "/rackspacecloudconfig.json")
+	file, err := os.Open(home + "/.gocloud" + "/rackspacecloudconfig.json")
 
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
 	// Defer the closing of our file so that we can parse it later on.
 	defer file.Close()
 
@@ -97,7 +102,9 @@ func LoadConfigAndAuthenticate() {
 	for _, service := range serviceCatalogJSON {
 		endpointsBytes, _ := json.Marshal(service["endpoints"].([]map[string]interface{}))
 		serviceName := service["name"].(string)
-		json.Unmarshal(endpointsBytes, Token.Endpoints[serviceName])
+		endpoint := []Endpoint{}
+		json.Unmarshal(endpointsBytes, &endpoint)
+		Token.Endpoints[serviceName] = endpoint
 	}
 	Token.RackSpaceAuthToken = tokenJSON["id"].(string)
 	tenantJSON := tokenJSON["tenant"].(map[string]interface{})

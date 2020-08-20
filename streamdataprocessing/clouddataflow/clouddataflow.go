@@ -11,12 +11,14 @@ import (
 )
 
 const (
+	//UnixDate ...
 	UnixDate = "Mon Jan _2 15:04:05 MST 2006"
-	RFC3339  = "2006-01-02T15:04:05Z07:00"
+	//RFC3339 ...
+	RFC3339 = "2006-01-02T15:04:05Z07:00"
 )
 
 //DescribeStream Describe Stream
-func (clouddataflow *Clouddataflow) DescribeStream(request interface{}) (resp interface{}, err error) {
+func (cloudDataFlow *CloudDataFlow) DescribeStream(request interface{}) (resp interface{}, err error) {
 
 	options := request.(map[string]string)
 
@@ -38,6 +40,11 @@ func (clouddataflow *Clouddataflow) DescribeStream(request interface{}) (resp in
 	describestreamrequest.Header.Set("Content-Type", "application/json")
 
 	describestreamresp, err := client.Do(describestreamrequest)
+
+	if err != nil {
+		return nil, err
+	}
+
 	defer describestreamresp.Body.Close()
 
 	body, err := ioutil.ReadAll(describestreamresp.Body)
@@ -50,7 +57,7 @@ func (clouddataflow *Clouddataflow) DescribeStream(request interface{}) (resp in
 }
 
 //ListStream ListStream
-func (clouddataflow *Clouddataflow) ListStream(request interface{}) (resp interface{}, err error) {
+func (cloudDataFlow *CloudDataFlow) ListStream(request interface{}) (resp interface{}, err error) {
 
 	options := request.(map[string]string)
 
@@ -86,6 +93,11 @@ func (clouddataflow *Clouddataflow) ListStream(request interface{}) (resp interf
 	liststreamrequest.Header.Set("Content-Type", "application/json")
 
 	liststreamresp, err := client.Do(liststreamrequest)
+
+	if err != nil {
+		return nil, err
+	}
+
 	defer liststreamresp.Body.Close()
 
 	body, err := ioutil.ReadAll(liststreamresp.Body)
@@ -98,23 +110,23 @@ func (clouddataflow *Clouddataflow) ListStream(request interface{}) (resp interf
 }
 
 //DeleteStream Delete Stream
-func (clouddataflow *Clouddataflow) DeleteStream(request interface{}) (resp interface{}, err error) {
+func (cloudDataFlow *CloudDataFlow) DeleteStream(request interface{}) (resp interface{}, err error) {
 	return resp, err
 }
 
-//DescribeStream Describe Stream
-func (clouddataflow *Clouddataflow) UpdateStream(request interface{}) (resp interface{}, err error) {
+//UpdateStream Describe Stream
+func (cloudDataFlow *CloudDataFlow) UpdateStream(request interface{}) (resp interface{}, err error) {
 
 	param := request.(map[string]interface{})
-	var jobId string
-	var option Createstream
+	var jobID string
+	var option CreateStream
 
 	for key, value := range param {
 		switch key {
 
 		case "JobId":
 			jobIdv, _ := value.(string)
-			jobId = jobIdv
+			jobID = jobIdv
 
 		case "ProjectID":
 			projectIdv, _ := value.(string)
@@ -194,7 +206,7 @@ func (clouddataflow *Clouddataflow) UpdateStream(request interface{}) (resp inte
 					}
 
 				}
-				option.stageStates = append(option.stageStates, stageState)
+				option.StageStates = append(option.StageStates, stageState)
 			}
 
 		case "Environment":
@@ -214,11 +226,11 @@ func (clouddataflow *Clouddataflow) UpdateStream(request interface{}) (resp inte
 
 						case "Major":
 							majorv, _ := versionparamvalue.(string)
-							option.environment.version.Major = majorv
+							option.Environment.Version.Major = majorv
 
 						case "JobType":
 							jobTypev, _ := versionparamvalue.(string)
-							option.environment.version.JobType = jobTypev
+							option.Environment.Version.JobType = jobTypev
 						}
 					}
 
@@ -232,15 +244,15 @@ func (clouddataflow *Clouddataflow) UpdateStream(request interface{}) (resp inte
 
 						case "Name":
 							namev, _ := useragentparamvalue.(string)
-							option.environment.userAgent.Name = namev
+							option.Environment.UserAgent.Name = namev
 
 						case "BuildDate":
 							buildDatev, _ := useragentparamvalue.(string)
-							option.environment.userAgent.BuildDate = buildDatev
+							option.Environment.UserAgent.BuildDate = buildDatev
 
 						case "Version":
 							versionv, _ := useragentparamvalue.(string)
-							option.environment.userAgent.Version = versionv
+							option.Environment.UserAgent.Version = versionv
 
 						case "Support":
 							supportparam, _ := useragentparamvalue.(map[string]interface{})
@@ -251,11 +263,11 @@ func (clouddataflow *Clouddataflow) UpdateStream(request interface{}) (resp inte
 
 								case "Status":
 									statusv, _ := supportparamvalue.(string)
-									option.environment.userAgent.support.Status = statusv
+									option.Environment.UserAgent.Support.Status = statusv
 
 								case "URL":
 									urlv, _ := supportparamvalue.(string)
-									option.environment.userAgent.support.URL = urlv
+									option.Environment.UserAgent.Support.URL = urlv
 
 								}
 							}
@@ -275,7 +287,7 @@ func (clouddataflow *Clouddataflow) UpdateStream(request interface{}) (resp inte
 	updatestreamjsonstring := string(updatestreamjson)
 	var updatestreamjsonstringbyte = []byte(updatestreamjsonstring)
 
-	url := "https://dataflow.googleapis.com/v1b3/projects/" + option.ProjectID + "/jobs/" + jobId
+	url := "https://dataflow.googleapis.com/v1b3/projects/" + option.ProjectID + "/jobs/" + jobID
 	client := googleauth.SignJWT()
 
 	updatestreamrequest, err := http.NewRequest("POST", url, bytes.NewBuffer(updatestreamjsonstringbyte))
@@ -289,6 +301,11 @@ func (clouddataflow *Clouddataflow) UpdateStream(request interface{}) (resp inte
 	updatestreamrequest.Header.Set("Content-Type", "application/json")
 
 	updatestreamresp, err := client.Do(updatestreamrequest)
+
+	if err != nil {
+		return nil, err
+	}
+
 	defer updatestreamresp.Body.Close()
 
 	body, err := ioutil.ReadAll(updatestreamresp.Body)
@@ -302,11 +319,11 @@ func (clouddataflow *Clouddataflow) UpdateStream(request interface{}) (resp inte
 }
 
 //CreateStream Create Stream
-func (clouddataflow *Clouddataflow) CreateStream(request interface{}) (resp interface{}, err error) {
+func (cloudDataFlow *CloudDataFlow) CreateStream(request interface{}) (resp interface{}, err error) {
 
 	param := request.(map[string]interface{})
 	var View string
-	var option Createstream
+	var option CreateStream
 
 	for key, value := range param {
 		switch key {
@@ -393,7 +410,7 @@ func (clouddataflow *Clouddataflow) CreateStream(request interface{}) (resp inte
 					}
 
 				}
-				option.stageStates = append(option.stageStates, stageState)
+				option.StageStates = append(option.StageStates, stageState)
 			}
 
 		case "Environment":
@@ -413,11 +430,11 @@ func (clouddataflow *Clouddataflow) CreateStream(request interface{}) (resp inte
 
 						case "Major":
 							majorv, _ := versionparamvalue.(string)
-							option.environment.version.Major = majorv
+							option.Environment.Version.Major = majorv
 
 						case "JobType":
 							jobTypev, _ := versionparamvalue.(string)
-							option.environment.version.JobType = jobTypev
+							option.Environment.Version.JobType = jobTypev
 						}
 					}
 
@@ -431,15 +448,15 @@ func (clouddataflow *Clouddataflow) CreateStream(request interface{}) (resp inte
 
 						case "Name":
 							namev, _ := useragentparamvalue.(string)
-							option.environment.userAgent.Name = namev
+							option.Environment.UserAgent.Name = namev
 
 						case "BuildDate":
 							buildDatev, _ := useragentparamvalue.(string)
-							option.environment.userAgent.BuildDate = buildDatev
+							option.Environment.UserAgent.BuildDate = buildDatev
 
 						case "Version":
 							versionv, _ := useragentparamvalue.(string)
-							option.environment.userAgent.Version = versionv
+							option.Environment.UserAgent.Version = versionv
 
 						case "Support":
 							supportparam, _ := useragentparamvalue.(map[string]interface{})
@@ -450,11 +467,11 @@ func (clouddataflow *Clouddataflow) CreateStream(request interface{}) (resp inte
 
 								case "Status":
 									statusv, _ := supportparamvalue.(string)
-									option.environment.userAgent.support.Status = statusv
+									option.Environment.UserAgent.Support.Status = statusv
 
 								case "URL":
 									urlv, _ := supportparamvalue.(string)
-									option.environment.userAgent.support.URL = urlv
+									option.Environment.UserAgent.Support.URL = urlv
 
 								}
 							}
@@ -496,6 +513,11 @@ func (clouddataflow *Clouddataflow) CreateStream(request interface{}) (resp inte
 	createstreamrequest.Header.Set("Content-Type", "application/json")
 
 	createstreamresp, err := client.Do(createstreamrequest)
+
+	if err != nil {
+		return nil, err
+	}
+
 	defer createstreamresp.Body.Close()
 
 	body, err := ioutil.ReadAll(createstreamresp.Body)

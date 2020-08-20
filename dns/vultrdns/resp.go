@@ -4,23 +4,26 @@ import (
 	"encoding/json"
 )
 
-type ListDnsResp struct {
+//ListDNSResp ...
+type ListDNSResp struct {
 	StatusCode int
-	DnsSlice   []DnsInfo
+	DNSSlice   []DNSInfo
 }
 
-type DnsInfo struct {
+//DNSInfo ...
+type DNSInfo struct {
 	Tpye     string `json:"tpye"`
 	Name     string `json:"name"`
 	Data     string `json:"data"`
 	Priority int    `json:"priority"`
 	RecordID int    `json:"RECORDID"`
-	Ttl      int    `json:"ttl"`
+	TTL      int    `json:"ttl"`
 }
 
-func ParseListDnsResp(resp interface{}) (listDnsResp ListDnsResp, err error) {
+//ParseListDNSResp ...
+func ParseListDNSResp(resp interface{}) (listDNSResp ListDNSResp, err error) {
 	response := resp.(map[string]interface{})
-	err = json.Unmarshal([]byte(response["body"].(string)), &listDnsResp.DnsSlice)
-	listDnsResp.StatusCode = response["status"].(int)
+	err = json.Unmarshal([]byte(response["body"].(string)), &listDNSResp.DNSSlice)
+	listDNSResp.StatusCode = response["status"].(int)
 	return
 }

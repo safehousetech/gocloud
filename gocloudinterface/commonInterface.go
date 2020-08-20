@@ -41,8 +41,8 @@ type Container interface {
 
 // DNS module unified API
 type DNS interface {
-	ListDns(request interface{}) (resp interface{}, err error)
-	CreateDns(request interface{}) (resp interface{}, err error)
-	DeleteDns(request interface{}) (resp interface{}, err error)
-	ListResourceDnsRecordSets(request interface{}) (resp interface{}, err error)
+	ListDNS(request interface{}) (resp interface{}, err error)
+	CreateDNS(request interface{}) (resp interface{}, err error)
+	DeleteDNS(request interface{}) (resp interface{}, err error)
+	ListResourceDNSRecordSets(request interface{}) (resp interface{}, err error)
 }

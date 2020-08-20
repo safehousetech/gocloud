@@ -4,24 +4,27 @@ import (
 	"fmt"
 )
 
-//WIP
+//StartNode WIP
 func (nova *Nova) StartNode(request interface{}) (resp interface{}, err error) {
 	return resp, err
 }
 
+//StopNode .
 func (nova *Nova) StopNode(request interface{}) (resp interface{}, err error) {
 	return resp, err
 }
 
+//RebootNode .
 func (nova *Nova) RebootNode(request interface{}) (resp interface{}, err error) {
 	return resp, err
 }
 
+//DeleteNode .
 func (nova *Nova) DeleteNode(request interface{}) (resp interface{}, err error) {
 	return resp, err
 }
 
-//WIP
+//CreateNode WIP
 func (nova *Nova) CreateNode(request interface{}) (resp interface{}, err error) {
 	var options CreateServer
 
@@ -78,7 +81,7 @@ func (nova *Nova) CreateNode(request interface{}) (resp interface{}, err error) 
 						var personality Personality
 						personality.Path = personalityV[i]["Path"]
 						personality.Contents = personalityV[i]["Contents"]
-						server.personality = append(server.personality, personality)
+						server.Personality = append(server.Personality, personality)
 					}
 
 				case "UserData":
@@ -89,7 +92,7 @@ func (nova *Nova) CreateNode(request interface{}) (resp interface{}, err error) 
 					metadataV, _ := servervalue.(map[string]string)
 					var metadata Metadata
 					metadata.MyServerName = metadataV["MyServerName"]
-					server.metadata = metadata
+					server.MetaData = metadata
 
 				case "Networks":
 					networksV, _ := servervalue.(string)
@@ -100,18 +103,18 @@ func (nova *Nova) CreateNode(request interface{}) (resp interface{}, err error) 
 					for i := 0; i < len(securityGroupsV); i++ {
 						var securityGroup SecurityGroups
 						securityGroup.Name = securityGroupsV[i]["Name"]
-						server.securityGroups = append(server.securityGroups, securityGroup)
+						server.SecurityGroups = append(server.SecurityGroups, securityGroup)
 					}
 
 				}
 
 			}
 
-			options.server = server
+			options.Server = server
 
 		case "oSSCHHNTSchedulerHints":
 			oSSCHHNTSchedulerHintsv, _ := value.(string)
-			options.oSSCHHNTSchedulerHints.SameHost = oSSCHHNTSchedulerHintsv
+			options.OOSSCHHNTSchedulerHints.SameHost = oSSCHHNTSchedulerHintsv
 		}
 	}
 	fmt.Println(options)

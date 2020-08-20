@@ -1,17 +1,19 @@
 package googlestorage
 
+//GoogleStorage ...
 type GoogleStorage struct {
-	Name   string `json:"name"`
-	Type   string `json:"type"`
-	Zone   string `json:"zone"`
-	SizeGb string `json:"sizeGb"`
+	Sname  string `json:"sname"`
+	SType  string `json:"stype"`
+	Szone  string `json:"Szone"`
+	SizeGB string `json:"sizeGB"`
 }
 
+//Snapshot ...
 type Snapshot struct {
 	Name                     string                  `json:"name"`
 	CreationTimestamp        string                  `json:"creationTimestamp"`
 	Description              string                  `json:"description"`
-	DiskSizeGb               string                  `json:"diskSizeGb"`
+	DiskSizeGB               string                  `json:"diskSizeGB"`
 	ID                       string                  `json:"id"`
 	Kind                     string                  `json:"kind"`
 	LabelFingerprint         string                  `json:"labelFingerprint"`
@@ -26,16 +28,19 @@ type Snapshot struct {
 	SnapshotEncryptionKeys   SnapshotEncryptionKey   `json:"snapshotEncryptionKey"`
 }
 
+//SourceDiskEncryptionKey ...
 type SourceDiskEncryptionKey struct {
 	RawKey string `json:"rawKey"`
 	Sha256 string `json:"sha256"`
 }
 
+//SnapshotEncryptionKey ...
 type SnapshotEncryptionKey struct {
 	RawKey string `json:"rawKey"`
 	Sha256 string `json:"sha256"`
 }
 
+//AttachDisk ...
 type AttachDisk struct {
 	Source             string            `json:"source"`
 	DeviceName         string            `json:"deviceName"`
@@ -51,6 +56,7 @@ type AttachDisk struct {
 	InitializeParam    InitializeParams  `json:"initializeParams"`
 }
 
+//InitializeParams ...
 type InitializeParams struct {
 	DiskName                  string                   `json:"diskName"`
 	DiskType                  string                   `json:"diskType"`
@@ -59,7 +65,8 @@ type InitializeParams struct {
 	SourceImageEncryptionKeys SourceImageEncryptionKey `json:"sourceImageEncryptionKey"`
 }
 
-type Creatdisk struct {
+//CreateDisk ...
+type CreateDisk struct {
 	Name                         string                      `json:"name"`
 	Type                         string                      `json:"type"`
 	Zone                         string                      `json:"zone"`
@@ -86,16 +93,19 @@ type Creatdisk struct {
 	SourceSnapshot      string `json:"sourceSnapshot"`
 }
 
+//SourceImageEncryptionKey ...
 type SourceImageEncryptionKey struct {
 	RawKey string `json:"rawKey"`
 	Sha256 string `json:"sha256"`
 }
 
+//DiskEncryptionKey ...
 type DiskEncryptionKey struct {
 	RawKey string `json:"rawKey"`
 	Sha256 string `json:"sha256"`
 }
 
+//SourceSnapshotEncryptionKey ...
 type SourceSnapshotEncryptionKey struct {
 	RawKey string `json:"rawKey"`
 	Sha256 string `json:"sha256"`

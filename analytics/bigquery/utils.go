@@ -1,50 +1,52 @@
 package bigquery
 
 const (
+	//UnixDate ...
 	UnixDate = "Mon Jan _2 15:04:05 MST 2006"
-	RFC3339  = "2006-01-02T15:04:05Z07:00"
+	//RFC3339 ...
+	RFC3339 = "2006-01-02T15:04:05Z07:00"
 )
 
 func createdatasetsdictnoaryconvert(option CreateDatasets, createdatasetsjsonmap map[string]interface{}) {
 
-	if option.defaultTableExpirationMs != "" {
-		createdatasetsjsonmap["defaultTableExpirationMs"] = option.defaultTableExpirationMs
+	if option.DefaultTableExpirationMs != "" {
+		createdatasetsjsonmap["defaultTableExpirationMs"] = option.DefaultTableExpirationMs
 	}
 
-	if option.defaultTableExpirationMs != "" {
-		createdatasetsjsonmap["defaultTableExpirationMs"] = option.defaultTableExpirationMs
+	if option.DefaultTableExpirationMs != "" {
+		createdatasetsjsonmap["defaultTableExpirationMs"] = option.DefaultTableExpirationMs
 	}
 
-	if option.defaultTableExpirationMs != "" {
-		createdatasetsjsonmap["description"] = option.description
+	if option.DefaultTableExpirationMs != "" {
+		createdatasetsjsonmap["description"] = option.Description
 	}
 
-	if option.etag != "" {
-		createdatasetsjsonmap["etag"] = option.etag
+	if option.Etag != "" {
+		createdatasetsjsonmap["etag"] = option.Etag
 	}
 
-	if option.id != "" {
-		createdatasetsjsonmap["id"] = option.id
+	if option.ID != "" {
+		createdatasetsjsonmap["id"] = option.ID
 	}
 
-	if option.friendlyName != "" {
-		createdatasetsjsonmap["friendlyName"] = option.friendlyName
+	if option.FriendlyName != "" {
+		createdatasetsjsonmap["friendlyName"] = option.FriendlyName
 	}
 
-	if option.kind != "" {
-		createdatasetsjsonmap["kind"] = option.kind
+	if option.Kind != "" {
+		createdatasetsjsonmap["kind"] = option.Kind
 	}
 
-	if option.lastModifiedTime != "" {
-		createdatasetsjsonmap["lastModifiedTime"] = option.lastModifiedTime
+	if option.LastModifiedTime != "" {
+		createdatasetsjsonmap["lastModifiedTime"] = option.LastModifiedTime
 	}
 
-	if option.location != "" {
-		createdatasetsjsonmap["location"] = option.location
+	if option.Location != "" {
+		createdatasetsjsonmap["location"] = option.Location
 	}
 
-	if option.selfLink != "" {
-		createdatasetsjsonmap["selfLink"] = option.selfLink
+	if option.SelfLink != "" {
+		createdatasetsjsonmap["selfLink"] = option.SelfLink
 	}
 
 	preparedatasetReferenceparam(option, createdatasetsjsonmap)
@@ -55,12 +57,12 @@ func preparedatasetReferenceparam(option CreateDatasets, createdatasetsjsonmap m
 
 	datasetReferencejsonmap := make(map[string]interface{})
 
-	if option.datasetReference.projectID != "" {
-		datasetReferencejsonmap["projectId"] = option.datasetReference.projectID
+	if option.DatasetReference.ProjectID != "" {
+		datasetReferencejsonmap["projectId"] = option.DatasetReference.ProjectID
 	}
 
-	if option.datasetReference.datasetID != "" {
-		datasetReferencejsonmap["datasetId"] = option.datasetReference.datasetID
+	if option.DatasetReference.DatasetID != "" {
+		datasetReferencejsonmap["datasetId"] = option.DatasetReference.DatasetID
 	}
 
 	createdatasetsjsonmap["datasetReference"] = datasetReferencejsonmap
@@ -68,50 +70,50 @@ func preparedatasetReferenceparam(option CreateDatasets, createdatasetsjsonmap m
 
 func prepareAccessparam(option CreateDatasets, createdatasetsjsonmap map[string]interface{}) {
 
-	if len(option.access) != 0 {
+	if len(option.Access) != 0 {
 
 		accessarrayjsonmap := make([]map[string]interface{}, 0)
 
-		for i := 0; i < len(option.access); i++ {
+		for i := 0; i < len(option.Access); i++ {
 
 			accessjsonmap := make(map[string]interface{})
 
-			if option.access[i].domain != "" {
-				accessjsonmap["domain"] = option.access[i].domain
+			if option.Access[i].Domain != "" {
+				accessjsonmap["domain"] = option.Access[i].Domain
 			}
 
-			if option.access[i].groupByEmail != "" {
-				accessjsonmap["groupByEmail"] = option.access[i].groupByEmail
+			if option.Access[i].GroupByEmail != "" {
+				accessjsonmap["groupByEmail"] = option.Access[i].GroupByEmail
 			}
 
-			if option.access[i].role != "" {
-				accessjsonmap["role"] = option.access[i].role
+			if option.Access[i].Role != "" {
+				accessjsonmap["role"] = option.Access[i].Role
 			}
 
-			if option.access[i].specialGroup != "" {
-				accessjsonmap["specialGroup"] = option.access[i].specialGroup
+			if option.Access[i].SpecialGroup != "" {
+				accessjsonmap["specialGroup"] = option.Access[i].SpecialGroup
 			}
 
-			if option.access[i].userByEmail != "" {
-				accessjsonmap["userByEmail"] = option.access[i].userByEmail
+			if option.Access[i].UserByEmail != "" {
+				accessjsonmap["userByEmail"] = option.Access[i].UserByEmail
 			}
 
 			v := View{}
 
-			if option.access[i].view != v {
+			if option.Access[i].View != v {
 
 				viewjsonmap := make(map[string]interface{})
 
-				if option.access[i].view.datasetID != "" {
-					viewjsonmap["datasetID"] = option.access[i].view.datasetID
+				if option.Access[i].View.DatasetID != "" {
+					viewjsonmap["datasetID"] = option.Access[i].View.DatasetID
 				}
 
-				if option.access[i].view.projectID != "" {
-					viewjsonmap["projectID"] = option.access[i].view.projectID
+				if option.Access[i].View.ProjectID != "" {
+					viewjsonmap["projectID"] = option.Access[i].View.ProjectID
 				}
 
-				if option.access[i].view.tableID != "" {
-					viewjsonmap["tableID"] = option.access[i].view.tableID
+				if option.Access[i].View.TableID != "" {
+					viewjsonmap["tableID"] = option.Access[i].View.TableID
 				}
 
 				accessjsonmap["view"] = viewjsonmap

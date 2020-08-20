@@ -6,7 +6,7 @@ import (
 )
 
 func TestListStream(t *testing.T) {
-	var clouddataflow Clouddataflow
+	var clouddataflow CloudDataFlow
 
 	liststream := map[string]string{
 		"Project": "gocloud-206919",
@@ -20,7 +20,7 @@ func TestListStream(t *testing.T) {
 }
 
 func TestDescribeStream(t *testing.T) {
-	var clouddataflow Clouddataflow
+	var clouddataflow CloudDataFlow
 
 	liststream := map[string]string{
 		"Project": "gocloud-206919",
@@ -35,7 +35,7 @@ func TestDescribeStream(t *testing.T) {
 }
 
 func TestCreateStream(t *testing.T) {
-	var clouddataflow Clouddataflow
+	var clouddataflow CloudDataFlow
 
 	userAgent := make(map[string]interface{})
 
@@ -119,7 +119,7 @@ func TestCreateStream(t *testing.T) {
 
 func TestUpdateStream(t *testing.T) {
 
-	var clouddataflow Clouddataflow
+	var clouddataflow CloudDataFlow
 
 	userAgent := make(map[string]interface{})
 

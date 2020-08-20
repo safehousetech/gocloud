@@ -18,7 +18,7 @@ func TestVultrDNS_CreateDns(t *testing.T) {
 		"type":   "A",
 		"data":   "192.0.2.1",
 	}
-	resp, err := vultrDNS.CreateDns(createDNS)
+	resp, err := vultrDNS.CreateDNS(createDNS)
 	if err != nil {
 		t.Errorf("CreateDns Test Fail: %s", err)
 		return
@@ -43,7 +43,7 @@ func TestCreateDNSBuilder(t *testing.T) {
 		t.Errorf("CreateDns Test Fail: %s", err)
 		return
 	}
-	resp, err := vultrDNS.CreateDns(createDNS)
+	resp, err := vultrDNS.CreateDNS(createDNS)
 	if err != nil {
 		t.Errorf("CreateDns Test Fail: %s", err)
 		return
@@ -62,7 +62,7 @@ func TestVultrDNS_ListDns(t *testing.T) {
 	listDNS := map[string]interface{}{
 		"domain": "oddcn.cn",
 	}
-	resp, err := vultrDNS.ListDns(listDNS)
+	resp, err := vultrDNS.ListDNS(listDNS)
 	if err != nil {
 		t.Errorf("ListDns Test Fail: %s", err)
 		return
@@ -84,7 +84,7 @@ func TestListDNSBuilder(t *testing.T) {
 		t.Errorf("ListDns Test Fail: %s", err)
 		return
 	}
-	resp, err := vultrDNS.ListDns(listDNS)
+	resp, err := vultrDNS.ListDNS(listDNS)
 	if err != nil {
 		t.Errorf("ListDns Test Fail: %s", err)
 		return
@@ -103,7 +103,7 @@ func TestVultrDNS_DeleteDns(t *testing.T) {
 		"domain":   "oddcn.cn",
 		"RECORDID": 7065075,
 	}
-	resp, err := vultrDNS.DeleteDns(deleteDNS)
+	resp, err := vultrDNS.DeleteDNS(deleteDNS)
 	if err != nil {
 		t.Errorf("DeleteDns Test Fail: %s", err)
 		return
@@ -120,13 +120,13 @@ func TestDeleteDNSBuilder(t *testing.T) {
 	var vultrDNS VultrDNS
 	deleteDNS, err := NewDeleteDNSBuilder().
 		Domain("oddcn.cn").
-		RECORDID(7065075).
+		RecordID(7065075).
 		Build()
 	if err != nil {
 		t.Errorf("DeleteDns Test Fail: %s", err)
 		return
 	}
-	resp, err := vultrDNS.DeleteDns(deleteDNS)
+	resp, err := vultrDNS.DeleteDNS(deleteDNS)
 	if err != nil {
 		t.Errorf("DeleteDns Test Fail: %s", err)
 		return
@@ -148,13 +148,19 @@ func TestParseListDnsResp(t *testing.T) {
 		t.Errorf("ListDns Test Fail: %s", err)
 		return
 	}
-	resp, err := vultrDNS.ListDns(listDNS)
+	resp, err := vultrDNS.ListDNS(listDNS)
 	if err != nil {
 		t.Errorf("ListDns Test Fail: %s", err)
 		return
 	}
-	listDnsResp, err := ParseListDnsResp(resp)
-	for _, dns := range listDnsResp.DnsSlice {
+
+	listDNSResp, err := ParseListDNSResp(resp)
+	if err != nil {
+		t.Errorf("ListDns Test Fail: %s", err)
+		return
+	}
+
+	for _, dns := range listDNSResp.DNSSlice {
 		t.Logf("%+v\n", dns)
 	}
 }

@@ -27,49 +27,60 @@ type Google struct {
 	googlemachinelearning.Googlemachinelearning
 	bigquery.Bigquery
 	googlenotification.Googlenotification
-	clouddataflow.Clouddataflow
+	clouddataflow.CloudDataFlow
 }
 
+//Compute ...
 func (*Google) Compute() gocloudinterface.Compute {
 	return &gce.GCE{}
 }
 
+//Storage ...
 func (*Google) Storage() gocloudinterface.Storage {
 	return &googlestorage.GoogleStorage{}
 }
 
+//LoadBalancer ...
 func (*Google) LoadBalancer() gocloudinterface.LoadBalancer {
 	return &googleloadbalancer.Googleloadbalancer{}
 }
 
+//Container ...
 func (*Google) Container() gocloudinterface.Container {
 	return &googlecontainer.Googlecontainer{}
 }
 
+//DNS ...
 func (*Google) DNS() gocloudinterface.DNS {
 	return &googledns.Googledns{}
 }
 
+//Serverless ...
 func (*Google) Serverless() gocloudinterface.Serverless {
 	return &googlecloudfunctions.Googlecloudfunctions{}
 }
 
+//Database ...
 func (*Google) Database() gocloudinterface.Database {
 	return &bigtable.Bigtable{}
 }
 
+//Analytics ...
 func (*Google) Analytics() gocloudinterface.Analytics {
 	return &bigquery.Bigquery{}
 }
 
+//Notification ...
 func (*Google) Notification() gocloudinterface.Notification {
 	return &googlenotification.Googlenotification{}
 }
 
+//MachineLearning ...
 func (*Google) MachineLearning() gocloudinterface.MachineLearning {
 	return &googlemachinelearning.Googlemachinelearning{}
 }
 
+//Streamdataprocessing ...
 func (*Google) Streamdataprocessing() gocloudinterface.Streamdataprocessing {
-	return &clouddataflow.Clouddataflow{}
+	return &clouddataflow.CloudDataFlow{}
 }

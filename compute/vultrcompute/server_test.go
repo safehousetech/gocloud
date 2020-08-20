@@ -156,7 +156,7 @@ func TestVultrCompute_DeleteNode(t *testing.T) {
 func TestDeleteNodeBuilder(t *testing.T) {
 	var vultrServer VultrCompute
 	destroy, err := NewDeleteNodeBuilder().
-		SUBID(6492936).
+		SubID(6492936).
 		Build()
 	if err != nil {
 		t.Errorf("DeleteNode Test Fail: %s", err)

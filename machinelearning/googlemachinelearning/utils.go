@@ -14,7 +14,7 @@ func createMLModeldictnoaryconvert(option CreateMLModel, createMLModeljsonmap ma
 		createMLModeljsonmap["regions"] = option.regions
 	}
 
-	if option.onlinePredictionLogging != false {
+	if !option.onlinePredictionLogging {
 		createMLModeljsonmap["onlinePredictionLogging"] = option.onlinePredictionLogging
 	}
 

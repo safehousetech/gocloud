@@ -1,21 +1,21 @@
 package azuredns
 
-// ListResourceDnsRecordSets function lists DNS record sets.
-func (azuredns *Azuredns) ListResourceDnsRecordSets(request interface{}) (resp interface{}, err error) {
+// ListResourceDNSRecordSets function lists DNS record sets.
+func (azuredns *Azuredns) ListResourceDNSRecordSets(request interface{}) (resp interface{}, err error) {
 	return resp, err
 }
 
-// ListDns function lists DNS records.
-func (azuredns *Azuredns) ListDns(request interface{}) (resp interface{}, err error) {
+// ListDNS function lists DNS records.
+func (azuredns *Azuredns) ListDNS(request interface{}) (resp interface{}, err error) {
 	return resp, err
 }
 
-// DeleteDns function deletes a DNS record.
-func (azuredns *Azuredns) DeleteDns(request interface{}) (resp interface{}, err error) {
+// DeleteDNS function deletes a DNS record.
+func (azuredns *Azuredns) DeleteDNS(request interface{}) (resp interface{}, err error) {
 	return resp, err
 }
 
-// CreateDns function creates a new DNS record.
-func (azuredns *Azuredns) CreateDns(request interface{}) (resp interface{}, err error) {
+// CreateDNS function creates a new DNS record.
+func (azuredns *Azuredns) CreateDNS(request interface{}) (resp interface{}, err error) {
 	return resp, err
 }

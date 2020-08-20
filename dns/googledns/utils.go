@@ -1,7 +1,7 @@
 package googledns
 
 //CreateDnsedictnoaryconvert convert CreateDns parameters to CreateDns dictnoary.
-func CreateDnsedictnoaryconvert(option CreateDns, CreateDnsjsonmap map[string]interface{}) {
+func CreateDnsedictnoaryconvert(option CreateDNS, CreateDnsjsonmap map[string]interface{}) {
 
 	if len(option.NameServers) != 0 {
 		CreateDnsjsonmap["nameServers"] = option.NameServers

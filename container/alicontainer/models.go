@@ -2,6 +2,7 @@ package alicontainer
 
 import (
 	"errors"
+
 	"github.com/safehousetech/gocloud/aliauth"
 )
 
@@ -69,77 +70,91 @@ type cluster struct {
 	MasterURL string `json:"master_url"`
 }
 
-// CreateCluster builder pattern code
+// CreateClusterBuilder pattern code
 type CreateClusterBuilder struct {
 	createCluster *CreateCluster
 }
 
+//NewCreateClusterBuilder .
 func NewCreateClusterBuilder() *CreateClusterBuilder {
 	createCluster := &CreateCluster{}
 	b := &CreateClusterBuilder{createCluster: createCluster}
 	return b
 }
 
+//RegionID .
 func (b *CreateClusterBuilder) RegionID(regionID string) *CreateClusterBuilder {
 	b.createCluster.RegionID = regionID
 	return b
 }
 
+//Name .
 func (b *CreateClusterBuilder) Name(name string) *CreateClusterBuilder {
 	b.createCluster.Name = name
 	return b
 }
 
+//Size .
 func (b *CreateClusterBuilder) Size(size int64) *CreateClusterBuilder {
 	b.createCluster.Size = size
 	return b
 }
 
+//InstanceType .
 func (b *CreateClusterBuilder) InstanceType(instanceType string) *CreateClusterBuilder {
 	b.createCluster.InstanceType = instanceType
 	return b
 }
 
+//NetworkMode .
 func (b *CreateClusterBuilder) NetworkMode(networkMode string) *CreateClusterBuilder {
 	b.createCluster.NetworkMode = networkMode
 	return b
 }
 
+//SubnetCIDR .
 func (b *CreateClusterBuilder) SubnetCIDR(subnetCIDR string) *CreateClusterBuilder {
 	b.createCluster.SubnetCIDR = subnetCIDR
 	return b
 }
 
+//VPCID ..
 func (b *CreateClusterBuilder) VPCID(vPCID string) *CreateClusterBuilder {
 	b.createCluster.VPCID = vPCID
 	return b
 }
 
+//VSwitchID .
 func (b *CreateClusterBuilder) VSwitchID(vSwitchID string) *CreateClusterBuilder {
 	b.createCluster.VSwitchID = vSwitchID
 	return b
 }
 
+//Password .
 func (b *CreateClusterBuilder) Password(password string) *CreateClusterBuilder {
 	b.createCluster.Password = password
 	return b
 }
 
+//DataDiskCategory .
 func (b *CreateClusterBuilder) DataDiskCategory(dataDiskCategory string) *CreateClusterBuilder {
 	b.createCluster.DataDiskCategory = dataDiskCategory
 	return b
 }
 
+//DataDiskSize .
 func (b *CreateClusterBuilder) DataDiskSize(dataDiskSize int64) *CreateClusterBuilder {
 	b.createCluster.DataDiskSize = dataDiskSize
 	return b
 }
 
+//ECSImageID .
 func (b *CreateClusterBuilder) ECSImageID(eCSImageID string) *CreateClusterBuilder {
 	b.createCluster.ECSImageID = eCSImageID
 	return b
 }
 
+//IOOptimized .
 func (b *CreateClusterBuilder) IOOptimized(iOOptimized string) *CreateClusterBuilder {
 	b.createCluster.IOOptimized = iOOptimized
 	return b
@@ -147,17 +162,20 @@ func (b *CreateClusterBuilder) IOOptimized(iOOptimized string) *CreateClusterBui
 
 var isNeedSLBSet bool
 
+//NeedSLB .
 func (b *CreateClusterBuilder) NeedSLB(needSLB bool) *CreateClusterBuilder {
 	isNeedSLBSet = true
 	b.createCluster.NeedSLB = needSLB
 	return b
 }
 
+//ReleaseEipFlag .
 func (b *CreateClusterBuilder) ReleaseEipFlag(releaseEipFlag bool) *CreateClusterBuilder {
 	b.createCluster.ReleaseEipFlag = releaseEipFlag
 	return b
 }
 
+//Build .
 func (b *CreateClusterBuilder) Build() (map[string]interface{}, error) {
 	if b.createCluster.RegionID == "" {
 		return nil, errors.New(aliauth.StrMissRequired + "RegionID")
@@ -223,27 +241,31 @@ func (b *CreateClusterBuilder) Build() (map[string]interface{}, error) {
 	return params, nil
 }
 
-// DeleteCluster builder pattern code
+// DeleteClusterBuilder pattern code
 type DeleteClusterBuilder struct {
 	deleteCluster *DeleteCluster
 }
 
+//NewDeleteClusterBuilder ..
 func NewDeleteClusterBuilder() *DeleteClusterBuilder {
 	deleteCluster := &DeleteCluster{}
 	b := &DeleteClusterBuilder{deleteCluster: deleteCluster}
 	return b
 }
 
+//RegionID ..
 func (b *DeleteClusterBuilder) RegionID(regionID string) *DeleteClusterBuilder {
 	b.deleteCluster.RegionID = regionID
 	return b
 }
 
+//ClusterID .
 func (b *DeleteClusterBuilder) ClusterID(clusterID string) *DeleteClusterBuilder {
 	b.deleteCluster.ClusterID = clusterID
 	return b
 }
 
+//Build ..
 func (b *DeleteClusterBuilder) Build() (map[string]interface{}, error) {
 	if b.deleteCluster.RegionID == "" {
 		return nil, errors.New(aliauth.StrMissRequired + "RegionID")
@@ -257,52 +279,61 @@ func (b *DeleteClusterBuilder) Build() (map[string]interface{}, error) {
 	return params, nil
 }
 
-// RunTask builder pattern code
+// RunTaskBuilder pattern code
 type RunTaskBuilder struct {
 	runTask *RunTask
 }
 
+//NewRunTaskBuilder ..
 func NewRunTaskBuilder() *RunTaskBuilder {
 	runTask := &RunTask{}
 	b := &RunTaskBuilder{runTask: runTask}
 	return b
 }
 
+//ClusterID ..
 func (b *RunTaskBuilder) ClusterID(clusterID string) *RunTaskBuilder {
 	b.runTask.ClusterID = clusterID
 	return b
 }
 
+//Name ..
 func (b *RunTaskBuilder) Name(name string) *RunTaskBuilder {
 	b.runTask.Name = name
 	return b
 }
 
+//Description .
 func (b *RunTaskBuilder) Description(description string) *RunTaskBuilder {
 	b.runTask.Description = description
 	return b
 }
 
+//Template .
 func (b *RunTaskBuilder) Template(template string) *RunTaskBuilder {
 	b.runTask.Template = template
 	return b
 }
 
+//Version .
 func (b *RunTaskBuilder) Version(version string) *RunTaskBuilder {
 	b.runTask.Version = version
 	return b
 }
 
+//Environment .
 func (b *RunTaskBuilder) Environment(environment map[string]string) *RunTaskBuilder {
 	b.runTask.Environment = environment
 	return b
 }
 
+//LatestImage .
 func (b *RunTaskBuilder) LatestImage(latestImage bool) *RunTaskBuilder {
 	b.runTask.LatestImage = latestImage
 	return b
 }
 
+//Build .
 func (b *RunTaskBuilder) Build() (map[string]interface{}, error) {
 	if b.runTask.ClusterID == "" {
 		return nil, errors.New(aliauth.StrMissRequired + "ClusterID")
@@ -325,27 +356,31 @@ func (b *RunTaskBuilder) Build() (map[string]interface{}, error) {
 	return params, nil
 }
 
-// StartTask builder pattern code
+// StartTaskBuilder pattern code
 type StartTaskBuilder struct {
 	startTask *StartTask
 }
 
+//NewStartTaskBuilder .
 func NewStartTaskBuilder() *StartTaskBuilder {
 	startTask := &StartTask{}
 	b := &StartTaskBuilder{startTask: startTask}
 	return b
 }
 
+//ClusterID .
 func (b *StartTaskBuilder) ClusterID(clusterID string) *StartTaskBuilder {
 	b.startTask.ClusterID = clusterID
 	return b
 }
 
+//Name .
 func (b *StartTaskBuilder) Name(name string) *StartTaskBuilder {
 	b.startTask.Name = name
 	return b
 }
 
+//Build .
 func (b *StartTaskBuilder) Build() (map[string]interface{}, error) {
 	if b.startTask.ClusterID == "" {
 		return nil, errors.New(aliauth.StrMissRequired + "ClusterID")
@@ -359,32 +394,37 @@ func (b *StartTaskBuilder) Build() (map[string]interface{}, error) {
 	return params, nil
 }
 
-// StopTask builder pattern code
+// StopTaskBuilder pattern code
 type StopTaskBuilder struct {
 	stopTask *StopTask
 }
 
+//NewStopTaskBuilder .
 func NewStopTaskBuilder() *StopTaskBuilder {
 	stopTask := &StopTask{}
 	b := &StopTaskBuilder{stopTask: stopTask}
 	return b
 }
 
+//ClusterID .
 func (b *StopTaskBuilder) ClusterID(clusterID string) *StopTaskBuilder {
 	b.stopTask.ClusterID = clusterID
 	return b
 }
 
+//Name .
 func (b *StopTaskBuilder) Name(name string) *StopTaskBuilder {
 	b.stopTask.Name = name
 	return b
 }
 
+//Timeout .
 func (b *StopTaskBuilder) Timeout(timeout int) *StopTaskBuilder {
 	b.stopTask.Timeout = timeout
 	return b
 }
 
+//Build .
 func (b *StopTaskBuilder) Build() (map[string]interface{}, error) {
 	if b.stopTask.ClusterID == "" {
 		return nil, errors.New(aliauth.StrMissRequired + "ClusterID")

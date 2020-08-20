@@ -1,8 +1,9 @@
 package alistorage
 
 import (
-	"github.com/safehousetech/gocloud/aliauth"
 	"testing"
+
+	"github.com/safehousetech/gocloud/aliauth"
 )
 
 func init() {

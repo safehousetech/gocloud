@@ -6,9 +6,11 @@ import (
 	"github.com/safehousetech/gocloud/vultrauth"
 )
 
+//VultrDNS ...
 type VultrDNS struct {
 }
 
+//CreateDNS ...
 type CreateDNS struct {
 	domain   string // Domain name to add record to
 	name     string // Name (subdomain) of record
@@ -18,56 +20,66 @@ type CreateDNS struct {
 	priority int    // (only required for MX and SRV) Priority of this record (omit the priority from the data)
 }
 
+//ListDNS ...
 type ListDNS struct {
 	domain string // Domain to list records for
 }
 
+//DeleteDNS ...
 type DeleteDNS struct {
 	domain   string // Domain name to delete record from
 	RECORDID int    // ID of record to delete (see /dns/records)
 }
 
-// CreateDNS builder pattern code
+// CreateDNSBuilder pattern code
 type CreateDNSBuilder struct {
 	createDNS *CreateDNS
 }
 
+//NewCreateDNSBuilder ...
 func NewCreateDNSBuilder() *CreateDNSBuilder {
 	createDNS := &CreateDNS{}
 	b := &CreateDNSBuilder{createDNS: createDNS}
 	return b
 }
 
+//Domain ..
 func (b *CreateDNSBuilder) Domain(domain string) *CreateDNSBuilder {
 	b.createDNS.domain = domain
 	return b
 }
 
+//Name ..
 func (b *CreateDNSBuilder) Name(name string) *CreateDNSBuilder {
 	b.createDNS.name = name
 	return b
 }
 
+//Type ..
 func (b *CreateDNSBuilder) Type(typeV string) *CreateDNSBuilder {
 	b.createDNS.Type = typeV
 	return b
 }
 
+//Data ..
 func (b *CreateDNSBuilder) Data(data string) *CreateDNSBuilder {
 	b.createDNS.data = data
 	return b
 }
 
-func (b *CreateDNSBuilder) Ttl(ttl int) *CreateDNSBuilder {
+//TTL ...
+func (b *CreateDNSBuilder) TTL(ttl int) *CreateDNSBuilder {
 	b.createDNS.ttl = ttl
 	return b
 }
 
+//Priority ...
 func (b *CreateDNSBuilder) Priority(priority int) *CreateDNSBuilder {
 	b.createDNS.priority = priority
 	return b
 }
 
+//Build ...
 func (b *CreateDNSBuilder) Build() (map[string]interface{}, error) {
 	if b.createDNS.domain == "" {
 		return nil, errors.New(vultrauth.StrMissRequired + "domain")
@@ -98,22 +110,25 @@ func (b *CreateDNSBuilder) Build() (map[string]interface{}, error) {
 	return params, nil
 }
 
-// ListDNS builder pattern code
+// ListDNSBuilder pattern code
 type ListDNSBuilder struct {
 	listDNS *ListDNS
 }
 
+//NewListDNSBuilder ..
 func NewListDNSBuilder() *ListDNSBuilder {
 	listDNS := &ListDNS{}
 	b := &ListDNSBuilder{listDNS: listDNS}
 	return b
 }
 
+//Domain ...
 func (b *ListDNSBuilder) Domain(domain string) *ListDNSBuilder {
 	b.listDNS.domain = domain
 	return b
 }
 
+//Build ...
 func (b *ListDNSBuilder) Build() (map[string]interface{}, error) {
 	if b.listDNS.domain == "" {
 		return nil, errors.New(vultrauth.StrMissRequired + "domain")
@@ -124,27 +139,31 @@ func (b *ListDNSBuilder) Build() (map[string]interface{}, error) {
 	return params, nil
 }
 
-// DeleteDNS builder pattern code
+// DeleteDNSBuilder pattern code
 type DeleteDNSBuilder struct {
 	deleteDNS *DeleteDNS
 }
 
+//NewDeleteDNSBuilder ..
 func NewDeleteDNSBuilder() *DeleteDNSBuilder {
 	deleteDNS := &DeleteDNS{}
 	b := &DeleteDNSBuilder{deleteDNS: deleteDNS}
 	return b
 }
 
+//Domain ..
 func (b *DeleteDNSBuilder) Domain(domain string) *DeleteDNSBuilder {
 	b.deleteDNS.domain = domain
 	return b
 }
 
-func (b *DeleteDNSBuilder) RECORDID(rECORDID int) *DeleteDNSBuilder {
-	b.deleteDNS.RECORDID = rECORDID
+//RecordID ...
+func (b *DeleteDNSBuilder) RecordID(recordID int) *DeleteDNSBuilder {
+	b.deleteDNS.RECORDID = recordID
 	return b
 }
 
+//Build ..
 func (b *DeleteDNSBuilder) Build() (map[string]interface{}, error) {
 	if b.deleteDNS.domain == "" {
 		return nil, errors.New(vultrauth.StrMissRequired + "domain")

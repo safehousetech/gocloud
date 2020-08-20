@@ -7,14 +7,14 @@ import (
 	"github.com/safehousetech/gocloud/vultrauth"
 )
 
-// ListResourceDnsRecordSets function lists DNS record sets.
-func (vultrDNS *VultrDNS) ListResourceDnsRecordSets(request interface{}) (resp interface{}, err error) {
+// ListResourceDNSRecordSets function lists DNS record sets.
+func (vultrDNS *VultrDNS) ListResourceDNSRecordSets(request interface{}) (resp interface{}, err error) {
 	fmt.Println("\nThis API is not provided by Vultr cloud")
 	return resp, err
 }
 
-// ListDns function lists DNS records.
-func (vultrDNS *VultrDNS) ListDns(request interface{}) (resp interface{}, err error) {
+// ListDNS function lists DNS records.
+func (vultrDNS *VultrDNS) ListDNS(request interface{}) (resp interface{}, err error) {
 	param := make(map[string]interface{})
 	param = request.(map[string]interface{})
 
@@ -35,8 +35,8 @@ func (vultrDNS *VultrDNS) ListDns(request interface{}) (resp interface{}, err er
 	return resp, err
 }
 
-// DeleteDns function deletes a DNS record.
-func (vultrDNS *VultrDNS) DeleteDns(request interface{}) (resp interface{}, err error) {
+// DeleteDNS function deletes a DNS record.
+func (vultrDNS *VultrDNS) DeleteDNS(request interface{}) (resp interface{}, err error) {
 	param := make(map[string]interface{})
 	param = request.(map[string]interface{})
 
@@ -48,8 +48,8 @@ func (vultrDNS *VultrDNS) DeleteDns(request interface{}) (resp interface{}, err 
 	return resp, err
 }
 
-// CreateDns function creates a new DNS record.
-func (vultrDNS *VultrDNS) CreateDns(request interface{}) (resp interface{}, err error) {
+// CreateDNS function creates a new DNS record.
+func (vultrDNS *VultrDNS) CreateDNS(request interface{}) (resp interface{}, err error) {
 	param := make(map[string]interface{})
 	param = request.(map[string]interface{})
 

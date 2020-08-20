@@ -2,12 +2,14 @@ package awsauth
 
 import (
 	"encoding/hex"
-	auth "github.com/safehousetech/gocloud/auth"
 	"net/http"
 	"strings"
 	"time"
+
+	auth "github.com/safehousetech/gocloud/auth"
 )
 
+//Getrequestsign4 .
 func Getrequestsign4(request *http.Request, region string, service string) *http.Request {
 
 	var algorithm string
@@ -24,7 +26,7 @@ func Getrequestsign4(request *http.Request, region string, service string) *http
 
 	xamzdate := t.Format("20060102T150405Z")
 
-	date_stamp := t.Format("20060102")
+	dateStamp := t.Format("20060102")
 
 	defaultscontenttype := map[string]string{
 		"Content-Type": "application/x-www-form-urlencoded; charset=utf-8",
@@ -50,23 +52,23 @@ func Getrequestsign4(request *http.Request, region string, service string) *http
 
 	signedHeaders = "content-type;host;x-amz-content-sha256;x-amz-date"
 	ContentType := "application/x-www-form-urlencoded; charset=utf-8"
-	X_Amz_Date := request.Header.Get("X-Amz-Date")
+	xAmzDate := request.Header.Get("X-Amz-Date")
 
-	canonical_headers := "content-type:" + ContentType + "\n" + "host:" + host + "\n" + "x-amz-content-sha256:" + payloadHash + "\n" + "x-amz-date:" + X_Amz_Date + "\n"
+	canonicalHeaders := "content-type:" + ContentType + "\n" + "host:" + host + "\n" + "x-amz-content-sha256:" + payloadHash + "\n" + "x-amz-date:" + xAmzDate + "\n"
 
 	queryString := request.URL.Query().Encode()
-	canonical_querystring := strings.Replace(queryString, "+", "%20", -1)
+	canonicalQueryString := strings.Replace(queryString, "+", "%20", -1)
 
-	canonical_uri := "/"
+	canonicalURI := "/"
 
-	canonicalRequest := request.Method + "\n" + canonical_uri + "\n" + canonical_querystring + "\n" + canonical_headers + "\n" + signedHeaders + "\n" + payloadHash
+	canonicalRequest := request.Method + "\n" + canonicalURI + "\n" + canonicalQueryString + "\n" + canonicalHeaders + "\n" + signedHeaders + "\n" + payloadHash
 	hashedCanonReq := sha256Hasher([]byte(canonicalRequest))
 
 	// TASK 2. http://docs.aws.amazon.com/general/latest/gr/sigv4-create-string-to-sign.html
 
 	requestTs := request.Header.Get("X-Amz-Date")
 	algorithm = "AWS4-HMAC-SHA256"
-	date = date_stamp
+	date = dateStamp
 
 	credentialScope = date + "/" + region + "/" + service + "/" + "aws4_request"
 	stringToSign := algorithm + "\n" + requestTs + "\n" + credentialScope + "\n" + hashedCanonReq

@@ -1,9 +1,10 @@
 package redshift
 
-//redshift struct reperesnts aws alianalytics service.
+//Redshift struct reperesnts aws alianalytics service.
 type Redshift struct {
 }
 
+//Describecluster .
 type Describecluster struct {
 	clusterIdentifier string
 	marker            string
@@ -12,12 +13,14 @@ type Describecluster struct {
 	tagValues         []string
 }
 
+//DeleteCluster .
 type DeleteCluster struct {
 	clusterIdentifier              string
 	finalClusterSnapshotIdentifier string
 	skipFinalClusterSnapshot       bool
 }
 
+//CreateCluster .
 type CreateCluster struct {
 	clusterIdentifier                string
 	masterUsername                   string
@@ -31,12 +34,12 @@ type CreateCluster struct {
 	clusterType                      string
 	clusterVersion                   string
 	dBName                           string
-	elasticIp                        string
+	elasticIP                        string
 	encrypted                        bool
 	enhancedVpcRouting               bool
 	hsmClientCertificateIdentifier   string
 	hsmConfigurationIdentifier       string
-	kmsKeyId                         string
+	kmsKeyID                         string
 	numberOfNodes                    int
 	port                             int
 	preferredMaintenanceWindow       string

@@ -2,9 +2,10 @@ package alicontainer
 
 import (
 	"fmt"
-	"github.com/safehousetech/gocloud/aliauth"
 	"net/http"
 	"strconv"
+
+	"github.com/safehousetech/gocloud/aliauth"
 )
 
 // CreateCluster creates container cluster
@@ -163,7 +164,7 @@ func (alicontainer *Alicontainer) RunTask(request interface{}) (resp interface{}
 	return resp, err
 }
 
-// RunTask starts project of container cluster
+// StartTask starts project of container cluster
 func (alicontainer *Alicontainer) StartTask(request interface{}) (resp interface{}, err error) {
 	param := make(map[string]interface{})
 
@@ -192,7 +193,7 @@ func (alicontainer *Alicontainer) DeleteService(request interface{}) (resp inter
 	return resp, err
 }
 
-// RunTask stops project of container cluster
+// StopTask stops project of container cluster
 func (alicontainer *Alicontainer) StopTask(request interface{}) (resp interface{}, err error) {
 	param := make(map[string]interface{})
 

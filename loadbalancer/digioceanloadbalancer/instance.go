@@ -4,9 +4,10 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	digioceanAuth "github.com/safehousetech/gocloud/digioceanauth"
 	"io/ioutil"
 	"net/http"
+
+	digioceanAuth "github.com/safehousetech/gocloud/digioceanauth"
 )
 
 // loadBalancerBasePath is the endpoint URL for digitalocean API.
@@ -134,6 +135,7 @@ func (digioceanloadbalancer *DigioceanLoadBalancer) CreateLoadBalancer(request i
 	createLoadBalancerResp, err := http.DefaultClient.Do(createLoadBalancerReq)
 	if err != nil {
 		fmt.Println(err)
+		return
 	}
 
 	defer createLoadBalancerResp.Body.Close()
@@ -166,6 +168,7 @@ func (digioceanloadbalancer *DigioceanLoadBalancer) DeleteLoadBalancer(request i
 	deleteLoadBalancerResp, err := http.DefaultClient.Do(deleteLoadBalancerReq)
 	if err != nil {
 		fmt.Println(err)
+		return
 	}
 
 	defer deleteLoadBalancerResp.Body.Close()
@@ -195,6 +198,7 @@ func (digioceanloadbalancer *DigioceanLoadBalancer) ListLoadBalancer(request int
 	listLoadBalancerResp, err := http.DefaultClient.Do(listLoadBalancerReq)
 	if err != nil {
 		fmt.Println(err)
+		return
 	}
 
 	defer listLoadBalancerResp.Body.Close()
@@ -254,6 +258,7 @@ func (digioceanloadbalancer *DigioceanLoadBalancer) AttachNodeWithLoadBalancer(r
 	attachDropeltToLoadBalancerResp, err := http.DefaultClient.Do(attachDropeltToLoadBalancerReq)
 	if err != nil {
 		fmt.Println(err)
+		return
 	}
 
 	defer attachDropeltToLoadBalancerResp.Body.Close()
@@ -312,6 +317,7 @@ func (digioceanloadbalancer *DigioceanLoadBalancer) DetachNodeWithLoadBalancer(r
 	detachDropeltToLoadBalancerResp, err := http.DefaultClient.Do(detachDropeltToLoadBalancerReq)
 	if err != nil {
 		fmt.Println(err)
+		return
 	}
 
 	defer detachDropeltToLoadBalancerResp.Body.Close()

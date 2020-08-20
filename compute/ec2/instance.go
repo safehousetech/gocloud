@@ -5,8 +5,7 @@ import (
 	"strconv"
 )
 
-// start ec2 instance accept array of instance-id
-
+// StartNode start ec2 instance accept array of instance-id
 func (ec2 *EC2) StartNode(request interface{}) (resp interface{}, err error) {
 
 	param := request.(map[string]string)
@@ -25,8 +24,7 @@ func (ec2 *EC2) StartNode(request interface{}) (resp interface{}, err error) {
 	return resp, err
 }
 
-// stop ec2 instance accept array of instance-id
-
+// StopNode stop ec2 instance accept array of instance-id
 func (ec2 *EC2) StopNode(request interface{}) (resp interface{}, err error) {
 
 	param := request.(map[string]string)
@@ -50,8 +48,7 @@ func (ec2 *EC2) StopNode(request interface{}) (resp interface{}, err error) {
 	return resp, nil
 }
 
-// reboot ec2 instance accept array of instance-id
-
+// RebootNode reboot ec2 instance accept array of instance-id
 func (ec2 *EC2) RebootNode(request interface{}) (resp interface{}, err error) {
 
 	param := request.(map[string]string)
@@ -72,8 +69,7 @@ func (ec2 *EC2) RebootNode(request interface{}) (resp interface{}, err error) {
 	return resp, err
 }
 
-// delete ec2 instance accept array of instance-id
-
+// DeleteNode delete ec2 instance accept array of instance-id
 func (ec2 *EC2) DeleteNode(request interface{}) (resp interface{}, err error) {
 	param := request.(map[string]string)
 	instIds := []string{}
@@ -92,8 +88,7 @@ func (ec2 *EC2) DeleteNode(request interface{}) (resp interface{}, err error) {
 	return resp, err
 }
 
-//create Ec2 instances accept map[string]interface{} with attribute Define in EC2 documentation
-
+//CreateNode create Ec2 instances accept map[string]interface{} with attribute Define in EC2 documentation
 func (ec2 *EC2) CreateNode(request interface{}) (resp interface{}, err error) {
 
 	var options RunInstances
@@ -111,8 +106,8 @@ func (ec2 *EC2) CreateNode(request interface{}) (resp interface{}, err error) {
 			Region = regionV
 
 		case "ImageId":
-			ImageId, _ := value.(string)
-			options.ImageId = ImageId
+			ImageID, _ := value.(string)
+			options.ImageID = ImageID
 
 		case "MinCount":
 			MinCount, _ := value.(int)
@@ -127,16 +122,16 @@ func (ec2 *EC2) CreateNode(request interface{}) (resp interface{}, err error) {
 			options.KeyName = KeyName
 
 		case "KernelId":
-			KernelId, _ := value.(string)
-			options.KernelId = KernelId
+			KernelID, _ := value.(string)
+			options.KernelID = KernelID
 
 		case "InstanceType":
 			InstanceType, _ := value.(string)
 			options.InstanceType = InstanceType
 
 		case "RamdiskId":
-			RamdiskId, _ := value.(string)
-			options.RamdiskId = RamdiskId
+			RAMDiskID, _ := value.(string)
+			options.RamdiskID = RAMDiskID
 
 		case "AvailZone":
 			AvailZone, _ := value.(string)
@@ -151,8 +146,8 @@ func (ec2 *EC2) CreateNode(request interface{}) (resp interface{}, err error) {
 			options.Monitoring = Monitoring
 
 		case "SubnetId":
-			SubnetId, _ := value.(string)
-			options.SubnetId = SubnetId
+			SubnetID, _ := value.(string)
+			options.SubnetID = SubnetID
 
 		case "DisableAPITermination":
 			DisableAPITermination, _ := value.(bool)
@@ -170,7 +165,7 @@ func (ec2 *EC2) CreateNode(request interface{}) (resp interface{}, err error) {
 			SecurityGroupparam, _ := value.([]map[string]string)
 			for i := 0; i < len(SecurityGroupparam); i++ {
 				var securityGroup SecurityGroup
-				securityGroup.Id = SecurityGroupparam[i]["Id"]
+				securityGroup.ID = SecurityGroupparam[i]["Id"]
 				securityGroup.Name = SecurityGroupparam[i]["Name"]
 				options.SecurityGroups = append(options.SecurityGroups, securityGroup)
 			}
@@ -188,7 +183,7 @@ func (ec2 *EC2) CreateNode(request interface{}) (resp interface{}, err error) {
 						BlockDeviceMappingParam.VirtualName = BlockDeviceparamvalue.(string)
 
 					case "SnapshotId":
-						BlockDeviceMappingParam.SnapshotId = BlockDeviceparamvalue.(string)
+						BlockDeviceMappingParam.SnapshotID = BlockDeviceparamvalue.(string)
 
 					case "VolumeType":
 						BlockDeviceMappingParam.VolumeType = BlockDeviceparamvalue.(string)
@@ -215,11 +210,11 @@ func (ec2 *EC2) CreateNode(request interface{}) (resp interface{}, err error) {
 				for RunNetworkInterfaceparamkey, RunNetworkInterfaceparamvalue := range RunNetworkInterfaceparam[i] {
 					switch RunNetworkInterfaceparamkey {
 					case "Id":
-						runNetworkInterface.Id = RunNetworkInterfaceparamvalue.(string)
+						runNetworkInterface.ID = RunNetworkInterfaceparamvalue.(string)
 					case "DeviceIndex":
 						runNetworkInterface.DeviceIndex = RunNetworkInterfaceparamvalue.(int)
 					case "SubnetId":
-						runNetworkInterface.Id = RunNetworkInterfaceparamvalue.(string)
+						runNetworkInterface.ID = RunNetworkInterfaceparamvalue.(string)
 					case "Description":
 						runNetworkInterface.Description = RunNetworkInterfaceparamvalue.(string)
 					case "DeleteOnTermination":
@@ -260,7 +255,7 @@ func (ec2 *EC2) CreateNode(request interface{}) (resp interface{}, err error) {
 
 	params := makeParams("RunInstances")
 
-	params["ImageId"] = options.ImageId
+	params["ImageId"] = options.ImageID
 
 	params["InstanceType"] = options.InstanceType
 	var min, max int
@@ -278,8 +273,8 @@ func (ec2 *EC2) CreateNode(request interface{}) (resp interface{}, err error) {
 	params["MaxCount"] = strconv.Itoa(max)
 	i, j := 1, 1
 	for _, g := range options.SecurityGroups {
-		if g.Id != "" {
-			params["SecurityGroupId."+strconv.Itoa(i)] = g.Id
+		if g.ID != "" {
+			params["SecurityGroupId."+strconv.Itoa(i)] = g.ID
 			i++
 		} else {
 			params["SecurityGroup."+strconv.Itoa(j)] = g.Name
@@ -297,11 +292,11 @@ func (ec2 *EC2) CreateNode(request interface{}) (resp interface{}, err error) {
 	if options.KeyName != "" {
 		params["KeyName"] = options.KeyName
 	}
-	if options.KernelId != "" {
-		params["KernelId"] = options.KernelId
+	if options.KernelID != "" {
+		params["KernelId"] = options.KernelID
 	}
-	if options.RamdiskId != "" {
-		params["RamdiskId"] = options.RamdiskId
+	if options.RamdiskID != "" {
+		params["RamdiskId"] = options.RamdiskID
 	}
 	if options.UserData != nil {
 		userData := make([]byte, base64.StdEncoding.EncodedLen(len(options.UserData)))
@@ -317,8 +312,8 @@ func (ec2 *EC2) CreateNode(request interface{}) (resp interface{}, err error) {
 	if options.Monitoring {
 		params["Monitoring.Enabled"] = "true"
 	}
-	if options.SubnetId != "" {
-		params["SubnetId"] = options.SubnetId
+	if options.SubnetID != "" {
+		params["SubnetId"] = options.SubnetID
 	}
 	if options.DisableAPITermination {
 		params["DisableApiTermination"] = "true"

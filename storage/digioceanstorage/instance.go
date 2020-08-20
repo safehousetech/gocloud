@@ -4,9 +4,10 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	digioceanAuth "github.com/safehousetech/gocloud/digioceanauth"
 	"io/ioutil"
 	"net/http"
+
+	digioceanAuth "github.com/safehousetech/gocloud/digioceanauth"
 )
 
 // storageBasePath is the endpoint URL for digitalocean API.
@@ -63,6 +64,7 @@ func (digioceanstorage *Digioceanstorage) CreateDisk(request interface{}) (resp 
 	createStorageResp, err := http.DefaultClient.Do(createStorageReq)
 	if err != nil {
 		fmt.Println(err)
+		return
 	}
 
 	defer createStorageResp.Body.Close()
@@ -94,6 +96,7 @@ func (digioceanstorage *Digioceanstorage) DeleteDisk(request interface{}) (resp 
 	deleteStorageResp, err := http.DefaultClient.Do(deleteSnapshotReq)
 	if err != nil {
 		fmt.Println(err)
+		return
 	}
 
 	defer deleteStorageResp.Body.Close()
@@ -152,6 +155,7 @@ func (digioceanstorage *Digioceanstorage) CreateSnapshot(request interface{}) (r
 	createSnapshotResp, err := http.DefaultClient.Do(createSnapshotReq)
 	if err != nil {
 		fmt.Println(err)
+		return
 	}
 
 	defer createSnapshotResp.Body.Close()
@@ -183,6 +187,7 @@ func (digioceanstorage *Digioceanstorage) DeleteSnapshot(request interface{}) (r
 	deleteSnapshotResp, err := http.DefaultClient.Do(deleteSnapshotReq)
 	if err != nil {
 		fmt.Println(err)
+		return
 	}
 
 	defer deleteSnapshotResp.Body.Close()
@@ -248,6 +253,7 @@ func (digioceanstorage *Digioceanstorage) AttachDisk(request interface{}) (resp 
 	attachVolumetoDropletResp, err := http.DefaultClient.Do(attachVolumetoDropletReq)
 	if err != nil {
 		fmt.Println(err)
+		return
 	}
 
 	defer attachVolumetoDropletResp.Body.Close()
@@ -313,6 +319,7 @@ func (digioceanstorage *Digioceanstorage) DetachDisk(request interface{}) (resp 
 	detachVolumetoDropletResp, err := http.DefaultClient.Do(detachVolumetoDropletReq)
 	if err != nil {
 		fmt.Println(err)
+		return
 	}
 
 	defer detachVolumetoDropletResp.Body.Close()

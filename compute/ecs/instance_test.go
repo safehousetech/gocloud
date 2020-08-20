@@ -2,8 +2,9 @@ package ecs
 
 import (
 	"fmt"
-	"github.com/safehousetech/gocloud/aliauth"
 	"testing"
+
+	"github.com/safehousetech/gocloud/aliauth"
 )
 
 func init() {
@@ -199,5 +200,5 @@ func TestParseCreateNodeResp(t *testing.T) {
 		t.Errorf("CreateNode Test Fail: %s", err)
 		return
 	}
-	t.Logf("Ali node is created successfully. %s", createNodeResp.InstanceId)
+	t.Logf("Ali node is created successfully. %s", createNodeResp.InstanceID)
 }

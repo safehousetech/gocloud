@@ -4,9 +4,10 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	awsauth "github.com/safehousetech/gocloud/awsauth"
 	"io/ioutil"
 	"net/http"
+
+	awsauth "github.com/safehousetech/gocloud/awsauth"
 )
 
 //PrepareSignatureV4query creates PrepareSignatureV4 for request.
@@ -28,7 +29,12 @@ func (awsmachinelearning *Awsmachinelearning) PrepareSignatureV4query(params map
 	request, _ := http.NewRequest("POST", ECSEndpoint, bytes.NewBuffer(requestparametersjsonstringbyte))
 	request = awsauth.SignatureV4(request, requestparametersjsonstringbyte, amztarget, method, params["Region"], service, host, ContentType, signedheaders)
 	resp, err := client.Do(request)
-	fmt.Println(err)
+
+	if err != nil {
+		fmt.Println(err)
+		return err
+	}
+
 	defer resp.Body.Close()
 	body, err := ioutil.ReadAll(resp.Body)
 	response["body"] = string(body)

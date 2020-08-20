@@ -12,7 +12,7 @@ func TestCreateDns(t *testing.T) {
 		"DnsName":     "rootmonk.me.",
 		"Name":        "gocloud",
 	}
-	_, err := googledns.CreateDns(createdns)
+	_, err := googledns.CreateDNS(createdns)
 
 	if err != nil {
 		t.Errorf("Test Fail")
@@ -27,7 +27,7 @@ func TestListDns(t *testing.T) {
 		"Project": "sheltermap-1493101612061",
 	}
 
-	_, err := googledns.ListDns(listdns)
+	_, err := googledns.ListDNS(listdns)
 
 	if err != nil {
 		t.Errorf("Test Fail")
@@ -41,7 +41,7 @@ func TestListResourceDnsRecordSets(t *testing.T) {
 		"Project":     "sheltermap-1493101612061",
 		"managedZone": "gocloud3",
 	}
-	_, err := googledns.ListResourceDnsRecordSets(listResourcednsRecordSets)
+	_, err := googledns.ListResourceDNSRecordSets(listResourcednsRecordSets)
 
 	if err != nil {
 		t.Errorf("Test Fail")
@@ -55,7 +55,7 @@ func TestDeleteDns(t *testing.T) {
 		"Project":     "sheltermap-1493101612061",
 		"managedZone": "gocloud3",
 	}
-	_, err := googledns.DeleteDns(deletedns)
+	_, err := googledns.DeleteDNS(deletedns)
 
 	if err != nil {
 		t.Errorf("Test Fail")

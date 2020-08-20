@@ -3,6 +3,7 @@ package bigquery
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 	"time"
@@ -14,60 +15,60 @@ import (
 func (bigquery *Bigquery) CreateDatasets(request interface{}) (resp interface{}, err error) {
 
 	param := request.(map[string]interface{})
-	var projectId string
+	var projectID string
 	var option CreateDatasets
 
 	for key, value := range param {
 		switch key {
 
 		case "ProjectId":
-			ProjectIdV, _ := value.(string)
-			projectId = ProjectIdV
+			ProjectIDV, _ := value.(string)
+			projectID = ProjectIDV
 
 		case "CreationTime":
 			creationTime := time.Now().UTC().Format(time.RFC3339)
-			option.creationTime = creationTime
+			option.CreationTime = creationTime
 
 		case "DefaultTableExpirationMs":
 			defaultTableExpirationMsV, _ := value.(string)
-			option.defaultTableExpirationMs = defaultTableExpirationMsV
+			option.DefaultTableExpirationMs = defaultTableExpirationMsV
 
 		case "Description":
 			descriptionV, _ := value.(string)
-			option.description = descriptionV
+			option.Description = descriptionV
 
 		case "Etag":
 			etagV, _ := value.(string)
-			option.etag = etagV
+			option.Etag = etagV
 
 		case "FriendlyName":
 			friendlyNameV, _ := value.(string)
-			option.friendlyName = friendlyNameV
+			option.FriendlyName = friendlyNameV
 
 		case "Id":
 			idV, _ := value.(string)
-			option.id = idV
+			option.ID = idV
 
 		case "Kind":
 			kindV, _ := value.(string)
-			option.kind = kindV
+			option.Kind = kindV
 
 		case "LastModifiedTime":
 			lastModifiedTimeV, _ := value.(string)
-			option.lastModifiedTime = lastModifiedTimeV
+			option.LastModifiedTime = lastModifiedTimeV
 
 		case "Location":
 			locationV, _ := value.(string)
-			option.location = locationV
+			option.Location = locationV
 
 		case "SelfLink":
 			selfLinkV, _ := value.(string)
-			option.selfLink = selfLinkV
+			option.SelfLink = selfLinkV
 
 		case "DatasetReference":
 			datasetReferenceV, _ := value.(map[string]string)
-			option.datasetReference.datasetID = datasetReferenceV["DatasetID"]
-			option.datasetReference.projectID = datasetReferenceV["ProjectID"]
+			option.DatasetReference.DatasetID = datasetReferenceV["DatasetID"]
+			option.DatasetReference.ProjectID = datasetReferenceV["ProjectID"]
 
 		case "Access":
 			accessparam, _ := value.([]map[string]interface{})
@@ -77,23 +78,23 @@ func (bigquery *Bigquery) CreateDatasets(request interface{}) (resp interface{},
 					switch accessparamkey {
 					case "Domain":
 						DomainV, _ := accessparamvalue.(string)
-						access.domain = DomainV
+						access.Domain = DomainV
 
 					case "GroupByEmail":
 						GroupByEmailV, _ := accessparamvalue.(string)
-						access.groupByEmail = GroupByEmailV
+						access.GroupByEmail = GroupByEmailV
 
 					case "Role":
 						RoleV, _ := accessparamvalue.(string)
-						access.role = RoleV
+						access.Role = RoleV
 
 					case "SpecialGroup":
 						SpecialGroupV, _ := accessparamvalue.(string)
-						access.specialGroup = SpecialGroupV
+						access.SpecialGroup = SpecialGroupV
 
 					case "UserByEmail":
 						UserByEmailV, _ := accessparamvalue.(string)
-						access.userByEmail = UserByEmailV
+						access.UserByEmail = UserByEmailV
 
 					case "View":
 						viewparam, _ := value.(map[string]interface{})
@@ -101,19 +102,19 @@ func (bigquery *Bigquery) CreateDatasets(request interface{}) (resp interface{},
 							switch viewparamkey {
 							case "ProjectID":
 								projectIDV, _ := viewparamvalue.(string)
-								access.view.projectID = projectIDV
+								access.View.ProjectID = projectIDV
 
 							case "DatasetID":
 								datasetIDV, _ := viewparamvalue.(string)
-								access.view.datasetID = datasetIDV
+								access.View.DatasetID = datasetIDV
 
 							case "TableID":
 								tableIDV, _ := viewparamvalue.(string)
-								access.view.tableID = tableIDV
+								access.View.TableID = tableIDV
 							}
 						}
 					}
-					option.access = append(option.access, access)
+					option.Access = append(option.Access, access)
 				}
 			}
 		}
@@ -129,7 +130,7 @@ func (bigquery *Bigquery) CreateDatasets(request interface{}) (resp interface{},
 
 	var createdatasetsjsonstringbyte = []byte(createdatasetsjsonstring)
 
-	url := "https://www.googleapis.com/bigquery/v2/projects/" + projectId + "/datasets"
+	url := "https://www.googleapis.com/bigquery/v2/projects/" + projectID + "/datasets"
 
 	client := googleauth.SignJWT()
 
@@ -138,6 +139,11 @@ func (bigquery *Bigquery) CreateDatasets(request interface{}) (resp interface{},
 	createdatasetsrequest.Header.Set("Content-Type", "application/json")
 
 	createdatasetsresp, err := client.Do(createdatasetsrequest)
+
+	if err != nil {
+		fmt.Println(err)
+		return nil, err
+	}
 
 	defer createdatasetsresp.Body.Close()
 
@@ -173,6 +179,11 @@ func (bigquery *Bigquery) DeleteDatasets(request interface{}) (resp interface{},
 
 	deletedatasetsrequestresp, err := client.Do(deletedatasetsrequest)
 
+	if err != nil {
+		fmt.Println(err)
+		return nil, err
+	}
+
 	defer deletedatasetsrequestresp.Body.Close()
 
 	body, err := ioutil.ReadAll(deletedatasetsrequestresp.Body)
@@ -198,6 +209,10 @@ func (bigquery *Bigquery) GetDatasets(request interface{}) (resp interface{}, er
 	getdatasetsrequest.Header.Set("Content-Type", "application/json")
 
 	getdatasetsrequestresp, err := client.Do(getdatasetsrequest)
+	if err != nil {
+		fmt.Println(err)
+		return nil, err
+	}
 
 	defer getdatasetsrequestresp.Body.Close()
 
@@ -214,63 +229,63 @@ func (bigquery *Bigquery) GetDatasets(request interface{}) (resp interface{}, er
 func (bigquery *Bigquery) UpdateDatasets(request interface{}) (resp interface{}, err error) {
 
 	param := request.(map[string]interface{})
-	var projectId, datasetId string
+	var projectID, datasetID string
 	var option CreateDatasets
 
 	for key, value := range param {
 		switch key {
 		case "ProjectId":
-			projectIdV, _ := value.(string)
-			projectId = projectIdV
+			projectIDV, _ := value.(string)
+			projectID = projectIDV
 
 		case "DatasetId":
-			datasetIdV, _ := value.(string)
-			datasetId = datasetIdV
+			datasetIDV, _ := value.(string)
+			datasetID = datasetIDV
 
 		case "CreationTime":
 			creationTime := time.Now().UTC().Format(time.RFC3339)
-			option.creationTime = creationTime
+			option.CreationTime = creationTime
 
 		case "DefaultTableExpirationMs":
 			defaultTableExpirationMsV, _ := value.(string)
-			option.defaultTableExpirationMs = defaultTableExpirationMsV
+			option.DefaultTableExpirationMs = defaultTableExpirationMsV
 
 		case "Description":
 			descriptionV, _ := value.(string)
-			option.description = descriptionV
+			option.Description = descriptionV
 
 		case "Etag":
 			etagV, _ := value.(string)
-			option.etag = etagV
+			option.Etag = etagV
 
 		case "FriendlyName":
 			friendlyNameV, _ := value.(string)
-			option.friendlyName = friendlyNameV
+			option.FriendlyName = friendlyNameV
 
 		case "Id":
 			idV, _ := value.(string)
-			option.id = idV
+			option.ID = idV
 
 		case "Kind":
 			kindV, _ := value.(string)
-			option.kind = kindV
+			option.Kind = kindV
 
 		case "LastModifiedTime":
 			lastModifiedTimeV, _ := value.(string)
-			option.lastModifiedTime = lastModifiedTimeV
+			option.LastModifiedTime = lastModifiedTimeV
 
 		case "Location":
 			locationV, _ := value.(string)
-			option.location = locationV
+			option.Location = locationV
 
 		case "SelfLink":
 			selfLinkV, _ := value.(string)
-			option.selfLink = selfLinkV
+			option.SelfLink = selfLinkV
 
 		case "DatasetReference":
 			datasetReferenceV, _ := value.(map[string]string)
-			option.datasetReference.datasetID = datasetReferenceV["DatasetID"]
-			option.datasetReference.projectID = datasetReferenceV["ProjectID"]
+			option.DatasetReference.DatasetID = datasetReferenceV["DatasetID"]
+			option.DatasetReference.ProjectID = datasetReferenceV["ProjectID"]
 
 		case "Access":
 			accessparam, _ := value.([]map[string]interface{})
@@ -280,23 +295,23 @@ func (bigquery *Bigquery) UpdateDatasets(request interface{}) (resp interface{},
 					switch accessparamkey {
 					case "Domain":
 						DomainV, _ := accessparamvalue.(string)
-						access.domain = DomainV
+						access.Domain = DomainV
 
 					case "GroupByEmail":
 						GroupByEmailV, _ := accessparamvalue.(string)
-						access.groupByEmail = GroupByEmailV
+						access.GroupByEmail = GroupByEmailV
 
 					case "Role":
 						RoleV, _ := accessparamvalue.(string)
-						access.role = RoleV
+						access.Role = RoleV
 
 					case "SpecialGroup":
 						SpecialGroupV, _ := accessparamvalue.(string)
-						access.specialGroup = SpecialGroupV
+						access.SpecialGroup = SpecialGroupV
 
 					case "UserByEmail":
 						UserByEmailV, _ := accessparamvalue.(string)
-						access.userByEmail = UserByEmailV
+						access.UserByEmail = UserByEmailV
 
 					case "View":
 						viewparam, _ := value.(map[string]interface{})
@@ -304,19 +319,19 @@ func (bigquery *Bigquery) UpdateDatasets(request interface{}) (resp interface{},
 							switch viewparamkey {
 							case "ProjectID":
 								projectIDV, _ := viewparamvalue.(string)
-								access.view.projectID = projectIDV
+								access.View.ProjectID = projectIDV
 
 							case "DatasetID":
 								datasetIDV, _ := viewparamvalue.(string)
-								access.view.datasetID = datasetIDV
+								access.View.DatasetID = datasetIDV
 
 							case "TableID":
 								tableIDV, _ := viewparamvalue.(string)
-								access.view.tableID = tableIDV
+								access.View.TableID = tableIDV
 							}
 						}
 					}
-					option.access = append(option.access, access)
+					option.Access = append(option.Access, access)
 				}
 			}
 		}
@@ -332,7 +347,7 @@ func (bigquery *Bigquery) UpdateDatasets(request interface{}) (resp interface{},
 
 	var updatedatasetsjsonstringbyte = []byte(updatedatasetsjsonstring)
 
-	url := "https://www.googleapis.com/bigquery/v2/projects/" + projectId + "/datasets/" + datasetId
+	url := "https://www.googleapis.com/bigquery/v2/projects/" + projectID + "/datasets/" + datasetID
 
 	client := googleauth.SignJWT()
 
@@ -341,6 +356,10 @@ func (bigquery *Bigquery) UpdateDatasets(request interface{}) (resp interface{},
 	updatedatasetsrequest.Header.Set("Content-Type", "application/json")
 
 	updatedatasetsresp, err := client.Do(updatedatasetsrequest)
+	if err != nil {
+		fmt.Println(err)
+		return nil, err
+	}
 
 	defer updatedatasetsresp.Body.Close()
 
@@ -358,15 +377,15 @@ func (bigquery *Bigquery) ListDatasets(request interface{}) (resp interface{}, e
 
 	options := request.(map[string]interface{})
 
-	var projectId, pageToken, filter string
+	var projectID, pageToken, filter string
 	var all bool
 	var maxResults int
 
 	for key, value := range options {
 		switch key {
 		case "ProjectId":
-			projectIdV, _ := value.(string)
-			projectId = projectIdV
+			projectIDV, _ := value.(string)
+			projectID = projectIDV
 
 		case "All":
 			allV, _ := value.(bool)
@@ -386,7 +405,7 @@ func (bigquery *Bigquery) ListDatasets(request interface{}) (resp interface{}, e
 		}
 	}
 
-	url := "https://www.googleapis.com/bigquery/v2/projects/" + projectId + "/datasets"
+	url := "https://www.googleapis.com/bigquery/v2/projects/" + projectID + "/datasets"
 
 	client := googleauth.SignJWT()
 
@@ -394,7 +413,7 @@ func (bigquery *Bigquery) ListDatasets(request interface{}) (resp interface{}, e
 
 	listdatasetsrequestparam := listdatasetsrequest.URL.Query()
 
-	if all != false {
+	if all {
 		listdatasetsrequestparam.Add("all", "true")
 	}
 
@@ -415,6 +434,10 @@ func (bigquery *Bigquery) ListDatasets(request interface{}) (resp interface{}, e
 	listdatasetsrequest.Header.Set("Content-Type", "application/json")
 
 	listdatasetsrequestresp, err := client.Do(listdatasetsrequest)
+	if err != nil {
+		fmt.Println(err)
+		return nil, err
+	}
 
 	defer listdatasetsrequestresp.Body.Close()
 

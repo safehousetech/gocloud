@@ -9,7 +9,7 @@ type GCE struct {
 	CanIPForward      bool               `json:"canIpForward"`
 	NetworkInterfaces []NetworkInterface `json:"networkInterfaces"`
 	Description       string             `json:"description"`
-	selfLink          string             `json:"selfLink"`
+	SelfLink          string             `json:"selfLink"`
 	Scheduling        `json:"scheduling"`
 }
 
@@ -50,7 +50,8 @@ type Scheduling struct {
 	AutomaticRestart  bool   `json:"automaticRestart"`
 }
 
-type GCEResponse struct {
+//Response ...
+type Response struct {
 	Kind          string `json:"kind"`
 	ID            string `json:"id"`
 	Name          string `json:"name"`

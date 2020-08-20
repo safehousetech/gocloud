@@ -115,6 +115,7 @@ func (droplet *Droplet) CreateNode(request interface{}) (resp interface{}, err e
 	CreateNoderesp, err := http.DefaultClient.Do(CreateNodereq)
 	if err != nil {
 		fmt.Println(err)
+		return nil, err
 	}
 
 	defer CreateNoderesp.Body.Close()
@@ -158,6 +159,7 @@ func (droplet *Droplet) StartNode(request interface{}) (resp interface{}, err er
 	StartNoderesp, err := http.DefaultClient.Do(StartNodereq)
 	if err != nil {
 		fmt.Println(err)
+		return nil, err
 	}
 	defer StartNoderesp.Body.Close()
 
@@ -199,6 +201,7 @@ func (droplet *Droplet) StopNode(request interface{}) (resp interface{}, err err
 	StopNoderesp, err := http.DefaultClient.Do(StopNodereq)
 	if err != nil {
 		fmt.Println(err)
+		return nil, err
 	}
 	defer StopNoderesp.Body.Close()
 
@@ -240,6 +243,7 @@ func (droplet *Droplet) RebootNode(request interface{}) (resp interface{}, err e
 	RebootNoderesp, err := http.DefaultClient.Do(RebootNodereq)
 	if err != nil {
 		fmt.Println(err)
+		return nil, err
 	}
 	defer RebootNoderesp.Body.Close()
 
@@ -278,6 +282,7 @@ func (droplet *Droplet) DeleteNode(request interface{}) (resp interface{}, err e
 	DeleteNoderesp, err := http.DefaultClient.Do(DeleteNoderequest)
 	if err != nil {
 		fmt.Println(err)
+		return nil, err
 	}
 
 	defer DeleteNoderesp.Body.Close()

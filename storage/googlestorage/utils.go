@@ -1,6 +1,7 @@
 package googlestorage
 
-func CreateDiskdictnoaryconvert(option Creatdisk, Creatdiskjsonmap map[string]interface{}) {
+//CreateDiskDictnoaryConvert ...
+func CreateDiskDictnoaryConvert(option CreateDisk, Creatdiskjsonmap map[string]interface{}) {
 
 	if option.Name != "" {
 		Creatdiskjsonmap["name"] = option.Name
@@ -94,74 +95,76 @@ func CreateDiskdictnoaryconvert(option Creatdisk, Creatdiskjsonmap map[string]in
 
 }
 
-func CreateSnapshotdictnoaryconvert(option Snapshot, CreateSnapshotjsonmap map[string]interface{}) {
+//CreateSnapshotdictnoaryconvert ..
+func CreateSnapshotdictnoaryconvert(option Snapshot, CreateSnapshotJSONmap map[string]interface{}) {
 
 	if len(option.Licenses) != 0 {
-		CreateSnapshotjsonmap["licenses"] = option.Licenses
+		CreateSnapshotJSONmap["licenses"] = option.Licenses
 	}
 
 	if option.Name != "" {
-		CreateSnapshotjsonmap["name"] = option.Name
+		CreateSnapshotJSONmap["name"] = option.Name
 	}
 
 	if option.CreationTimestamp != "" {
-		CreateSnapshotjsonmap["creationTimestamp"] = option.CreationTimestamp
+		CreateSnapshotJSONmap["creationTimestamp"] = option.CreationTimestamp
 	}
 
 	if option.Description != "" {
-		CreateSnapshotjsonmap["description"] = option.Description
+		CreateSnapshotJSONmap["description"] = option.Description
 	}
 
-	if option.DiskSizeGb != "" {
-		CreateSnapshotjsonmap["diskSizeGb"] = option.DiskSizeGb
+	if option.DiskSizeGB != "" {
+		CreateSnapshotJSONmap["diskSizeGB"] = option.DiskSizeGB
 	}
 
 	if option.ID != "" {
-		CreateSnapshotjsonmap["id"] = option.ID
+		CreateSnapshotJSONmap["id"] = option.ID
 	}
 
 	if option.Kind != "" {
-		CreateSnapshotjsonmap["kind"] = option.Kind
+		CreateSnapshotJSONmap["kind"] = option.Kind
 	}
 
 	if option.Status != "" {
-		CreateSnapshotjsonmap["status"] = option.Status
+		CreateSnapshotJSONmap["status"] = option.Status
 	}
 
 	if option.SelfLink != "" {
-		CreateSnapshotjsonmap["selfLink"] = option.SelfLink
+		CreateSnapshotJSONmap["selfLink"] = option.SelfLink
 	}
 
 	if option.LabelFingerprint != "" {
-		CreateSnapshotjsonmap["labelFingerprint"] = option.LabelFingerprint
+		CreateSnapshotJSONmap["labelFingerprint"] = option.LabelFingerprint
 	}
 
 	if option.StorageBytes != "" {
-		CreateSnapshotjsonmap["storageBytes"] = option.StorageBytes
+		CreateSnapshotJSONmap["storageBytes"] = option.StorageBytes
 	}
 
 	if option.SourceDisk != "" {
-		CreateSnapshotjsonmap["sourceDisk"] = option.SourceDisk
+		CreateSnapshotJSONmap["sourceDisk"] = option.SourceDisk
 	}
 
 	if option.SourceDiskID != "" {
-		CreateSnapshotjsonmap["sourceDiskID"] = option.SourceDiskID
+		CreateSnapshotJSONmap["sourceDiskID"] = option.SourceDiskID
 	}
 
 	if option.StorageBytesStatus != "" {
-		CreateSnapshotjsonmap["storageBytesStatus"] = option.StorageBytesStatus
+		CreateSnapshotJSONmap["storageBytesStatus"] = option.StorageBytesStatus
 	}
 
 	if option.SourceDiskEncryptionKeys != (SourceDiskEncryptionKey{}) {
-		CreateSnapshotjsonmap["sourceDiskEncryptionKey"] = option.SourceDiskEncryptionKeys
+		CreateSnapshotJSONmap["sourceDiskEncryptionKey"] = option.SourceDiskEncryptionKeys
 	}
 
 	if option.SnapshotEncryptionKeys != (SnapshotEncryptionKey{}) {
-		CreateSnapshotjsonmap["snapshotEncryptionKey"] = option.SnapshotEncryptionKeys
+		CreateSnapshotJSONmap["snapshotEncryptionKey"] = option.SnapshotEncryptionKeys
 	}
 
 }
 
+//AttachDiskdictnoaryconvert ...
 func AttachDiskdictnoaryconvert(option AttachDisk, AttachDiskjsonmap map[string]interface{}) {
 
 	if len(option.Licenses) != 0 {
@@ -214,39 +217,39 @@ func AttachDiskdictnoaryconvert(option AttachDisk, AttachDiskjsonmap map[string]
 
 	if option.InitializeParam != (InitializeParams{}) {
 
-		InitializeParammap := make(map[string]interface{})
+		InitializeParamMap := make(map[string]interface{})
 
 		if option.InitializeParam.DiskName != "" {
-			InitializeParammap["diskName"] = option.InitializeParam.DiskName
+			InitializeParamMap["diskName"] = option.InitializeParam.DiskName
 		}
 
 		if option.InitializeParam.DiskType != "" {
-			InitializeParammap["diskType"] = option.InitializeParam.DiskType
+			InitializeParamMap["diskType"] = option.InitializeParam.DiskType
 		}
 
 		if option.InitializeParam.DiskSizeGb != "" {
-			InitializeParammap["diskSizeGb"] = option.InitializeParam.DiskSizeGb
+			InitializeParamMap["diskSizeGb"] = option.InitializeParam.DiskSizeGb
 		}
 
 		if option.InitializeParam.SourceImage != "" {
-			InitializeParammap["sourceImage"] = option.InitializeParam.SourceImage
+			InitializeParamMap["sourceImage"] = option.InitializeParam.SourceImage
 		}
 
 		if (option.InitializeParam.SourceImageEncryptionKeys != SourceImageEncryptionKey{}) {
 
-			SourceImageEncryptionKeysmmap := make(map[string]interface{})
+			SourceImageEncryptionKeysMap := make(map[string]interface{})
 
 			if option.InitializeParam.SourceImageEncryptionKeys.RawKey != "" {
-				SourceImageEncryptionKeysmmap["rawKey"] = option.InitializeParam.SourceImageEncryptionKeys.RawKey
+				SourceImageEncryptionKeysMap["rawKey"] = option.InitializeParam.SourceImageEncryptionKeys.RawKey
 			}
 			if option.InitializeParam.SourceImageEncryptionKeys.RawKey != "" {
-				SourceImageEncryptionKeysmmap["sha256"] = option.InitializeParam.SourceImageEncryptionKeys.Sha256
+				SourceImageEncryptionKeysMap["sha256"] = option.InitializeParam.SourceImageEncryptionKeys.Sha256
 			}
 
-			InitializeParammap["sourceImage"] = SourceImageEncryptionKeysmmap
+			InitializeParamMap["sourceImage"] = SourceImageEncryptionKeysMap
 		}
 
-		AttachDiskjsonmap["initializeParams"] = InitializeParammap
+		AttachDiskjsonmap["initializeParams"] = InitializeParamMap
 	}
 
 }

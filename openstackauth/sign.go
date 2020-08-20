@@ -18,6 +18,7 @@ func openstackauth() {
 
 	if err != nil {
 		fmt.Println(err)
+		return
 	}
 
 	defer jsonFile.Close()
@@ -40,6 +41,7 @@ func openstackauth() {
 	if err != nil {
 		fmt.Println("CreateNoderesp error")
 		fmt.Println(err)
+		return
 	}
 
 	defer CreateNoderesp.Body.Close()

@@ -1,14 +1,17 @@
 package amazonstorage
 
-import "testing"
-import awsAuth "github.com/safehousetech/gocloud/auth"
+import (
+	"testing"
+
+	awsAuth "github.com/safehousetech/gocloud/auth"
+)
 
 func init() {
 	awsAuth.LoadConfig()
 }
 
 func TestCreateDisk(t *testing.T) {
-	var amazonstorage Amazonstorage
+	var amazonstorage AmazonStorage
 
 	createdisk := map[string]interface{}{
 		"AvailZone":  "us-east-1a",
@@ -24,7 +27,7 @@ func TestCreateDisk(t *testing.T) {
 }
 
 func TestDeleteDisk(t *testing.T) {
-	var amazonstorage Amazonstorage
+	var amazonstorage AmazonStorage
 
 	deletedisk := map[string]string{
 		"VolumeId": "vol-0996a16ff8f032760",
@@ -38,7 +41,7 @@ func TestDeleteDisk(t *testing.T) {
 }
 
 func TestAttachDisk(t *testing.T) {
-	var amazonstorage Amazonstorage
+	var amazonstorage AmazonStorage
 
 	attachdisk := map[string]string{
 		"VolumeId":   "vol-049426a70587418d7",
@@ -55,7 +58,7 @@ func TestAttachDisk(t *testing.T) {
 }
 
 func TestDetachDisk(t *testing.T) {
-	var amazonstorage Amazonstorage
+	var amazonstorage AmazonStorage
 
 	detachdisk := map[string]string{
 		"VolumeId":   "vol-049426a70587418d7",
@@ -73,7 +76,7 @@ func TestDetachDisk(t *testing.T) {
 }
 
 func TestCreateSnapshot(t *testing.T) {
-	var amazonstorage Amazonstorage
+	var amazonstorage AmazonStorage
 
 	createsnapshot := map[string]string{
 		"VolumeId":    "vol-047d011f7536d2b7c",
@@ -88,7 +91,7 @@ func TestCreateSnapshot(t *testing.T) {
 }
 
 func TestDeleteSnapshot(t *testing.T) {
-	var amazonstorage Amazonstorage
+	var amazonstorage AmazonStorage
 
 	deletesnapshot := map[string]string{
 		"SnapshotId": "snap-0f0839076356ce6cb",

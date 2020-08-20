@@ -31,7 +31,7 @@ type Listener struct {
 	InstanceProtocol string
 	LoadBalancerPort string
 	Protocol         string
-	SSLCertificateId string
+	SSLCertificateID string
 }
 
 //AttachNodeWithLoadBalancer represents AttachNodeWithLoadBalancer attribute.

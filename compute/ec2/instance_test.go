@@ -1,7 +1,10 @@
 package ec2
 
-import "testing"
-import awsAuth "github.com/safehousetech/gocloud/auth"
+import (
+	"testing"
+
+	awsAuth "github.com/safehousetech/gocloud/auth"
+)
 
 func init() {
 	awsAuth.LoadConfig()

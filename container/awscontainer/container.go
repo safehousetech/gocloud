@@ -118,7 +118,7 @@ func (ecscontainer *Ecscontainer) StartTask(request interface{}) (resp interface
 								containerOverride.Memory = containerOverrideparamvalue.(int)
 
 							case "cpu":
-								containerOverride.Cpu = containerOverrideparamvalue.(int)
+								containerOverride.CPU = containerOverrideparamvalue.(int)
 
 							case "command":
 								containerOverride.Command = containerOverrideparamvalue.([]string)
@@ -239,7 +239,7 @@ func (ecscontainer *Ecscontainer) RunTask(request interface{}) (resp interface{}
 								containerOverride.Memory = containerOverrideparamvalue.(int)
 
 							case "cpu":
-								containerOverride.Cpu = containerOverrideparamvalue.(int)
+								containerOverride.CPU = containerOverrideparamvalue.(int)
 
 							case "command":
 								containerOverride.Command = containerOverrideparamvalue.([]string)

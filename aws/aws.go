@@ -18,7 +18,7 @@ import (
 //AWS struct reperents amazon cloud provider.
 type AWS struct {
 	ec2.EC2
-	amazonstorage.Amazonstorage
+	amazonstorage.AmazonStorage
 	awsloadbalancer.Awsloadbalancer
 	awscontainer.Ecscontainer
 	awsdns.Awsdns
@@ -30,46 +30,57 @@ type AWS struct {
 	kinesis.Kinesis
 }
 
+//Compute ...
 func (*AWS) Compute() gocloudinterface.Compute {
 	return &ec2.EC2{}
 }
 
+//Storage ...
 func (*AWS) Storage() gocloudinterface.Storage {
-	return &amazonstorage.Amazonstorage{}
+	return &amazonstorage.AmazonStorage{}
 }
 
+//LoadBalancer ...
 func (*AWS) LoadBalancer() gocloudinterface.LoadBalancer {
 	return &awsloadbalancer.Awsloadbalancer{}
 }
 
+//Container ...
 func (*AWS) Container() gocloudinterface.Container {
 	return &awscontainer.Ecscontainer{}
 }
 
+//DNS ...
 func (*AWS) DNS() gocloudinterface.DNS {
 	return &awsdns.Awsdns{}
 }
 
+//Serverless ...
 func (*AWS) Serverless() gocloudinterface.Serverless {
 	return &lambda.Lambda{}
 }
 
+//Database ...
 func (*AWS) Database() gocloudinterface.Database {
 	return &dynamodb.Dynamodb{}
 }
 
+//MachineLearning ...
 func (*AWS) MachineLearning() gocloudinterface.MachineLearning {
 	return &awsmachinelearning.Awsmachinelearning{}
 }
 
+//Analytics ...
 func (*AWS) Analytics() gocloudinterface.Analytics {
 	return &redshift.Redshift{}
 }
 
+//Notification ...
 func (*AWS) Notification() gocloudinterface.Notification {
 	return &amazonsimplenotification.Amazonsimplenotification{}
 }
 
-func (*AWS) Streamdataprocessing() gocloudinterface.Streamdataprocessing {
+//StreamDataProcessing ..
+func (*AWS) StreamDataProcessing() gocloudinterface.Streamdataprocessing {
 	return &kinesis.Kinesis{}
 }

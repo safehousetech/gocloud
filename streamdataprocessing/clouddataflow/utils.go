@@ -1,6 +1,6 @@
 package clouddataflow
 
-func createstreamdictnoaryconvert(option Createstream, createstreamjsonmap map[string]interface{}) {
+func createstreamdictnoaryconvert(option CreateStream, createstreamjsonmap map[string]interface{}) {
 
 	if option.ID != "" {
 		createstreamjsonmap["id"] = option.ID
@@ -46,44 +46,44 @@ func createstreamdictnoaryconvert(option Createstream, createstreamjsonmap map[s
 	prepareEnvironment(option, createstreamjsonmap)
 }
 
-func prepareEnvironment(option Createstream, createstreamjsonmap map[string]interface{}) {
+func prepareEnvironment(option CreateStream, createstreamjsonmap map[string]interface{}) {
 
 	environmentv := make(map[string]interface{})
 
 	versionv := make(map[string]interface{})
 
-	if option.environment.version.Major != "" {
-		versionv["major"] = option.environment.version.Major
+	if option.Environment.Version.Major != "" {
+		versionv["major"] = option.Environment.Version.Major
 	}
 
-	if option.environment.version.JobType != "" {
-		versionv["job_type"] = option.environment.version.JobType
+	if option.Environment.Version.JobType != "" {
+		versionv["job_type"] = option.Environment.Version.JobType
 	}
 
 	environmentv["version"] = versionv
 
 	userAgentv := make(map[string]interface{})
 
-	if option.environment.userAgent.Name != "" {
-		userAgentv["name"] = option.environment.userAgent.Name
+	if option.Environment.UserAgent.Name != "" {
+		userAgentv["name"] = option.Environment.UserAgent.Name
 	}
 
-	if option.environment.userAgent.BuildDate != "" {
-		userAgentv["build.date"] = option.environment.userAgent.BuildDate
+	if option.Environment.UserAgent.BuildDate != "" {
+		userAgentv["build.date"] = option.Environment.UserAgent.BuildDate
 	}
 
-	if option.environment.userAgent.Version != "" {
-		userAgentv["version"] = option.environment.userAgent.Version
+	if option.Environment.UserAgent.Version != "" {
+		userAgentv["version"] = option.Environment.UserAgent.Version
 	}
 
 	supportv := make(map[string]interface{})
 
-	if option.environment.userAgent.support.Status != "" {
-		supportv["status"] = option.environment.userAgent.support.Status
+	if option.Environment.UserAgent.Support.Status != "" {
+		supportv["status"] = option.Environment.UserAgent.Support.Status
 	}
 
-	if option.environment.userAgent.support.URL != "" {
-		supportv["url"] = option.environment.userAgent.support.URL
+	if option.Environment.UserAgent.Support.URL != "" {
+		supportv["url"] = option.Environment.UserAgent.Support.URL
 	}
 
 	userAgentv["support"] = supportv
@@ -93,18 +93,18 @@ func prepareEnvironment(option Createstream, createstreamjsonmap map[string]inte
 	createstreamjsonmap["environment"] = environmentv
 }
 
-func prepareStageStates(option Createstream, createstreamjsonmap map[string]interface{}) {
+func prepareStageStates(option CreateStream, createstreamjsonmap map[string]interface{}) {
 
-	if len(option.stageStates) > 0 {
+	if len(option.StageStates) > 0 {
 
 		stageStatesarray := make([]map[string]interface{}, 0)
 
-		for i := 0; i < len(option.stageStates); i++ {
+		for i := 0; i < len(option.StageStates); i++ {
 
 			stageState := make(map[string]interface{})
-			stageState["currentStateTime"] = option.stageStates[i].CurrentStateTime
-			stageState["executionStageName"] = option.stageStates[i].ExecutionStageName
-			stageState["executionStageName"] = option.stageStates[i].ExecutionStageName
+			stageState["currentStateTime"] = option.StageStates[i].CurrentStateTime
+			stageState["executionStageName"] = option.StageStates[i].ExecutionStageName
+			stageState["executionStageName"] = option.StageStates[i].ExecutionStageName
 
 			stageStatesarray = append(stageStatesarray, stageState)
 

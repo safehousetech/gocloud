@@ -2,38 +2,43 @@ package aliloadbalancer
 
 import "encoding/json"
 
+//CreateLoadBalancerResp ...
 type CreateLoadBalancerResp struct {
 	StatusCode       int
-	LoadBalancerId   string
+	LoadBalancerID   string
 	Address          string
 	NetworkType      string
-	MasterZoneId     string
-	SlaveZoneId      string
+	MasterZoneID     string
+	SlaveZoneID      string
 	LoadBalancerName string
 }
 
+//AttachLoadBalancerResp ...
 type AttachLoadBalancerResp struct {
 	StatusCode     int
-	LoadBalancerId string
+	LoadBalancerID string
 	BackendServers struct {
 		BackendServer []BackendServerInfo
 	}
 }
 
+//DetachLoadBalancerResp ...
 type DetachLoadBalancerResp struct {
 	StatusCode     int
-	LoadBalancerId string
+	LoadBalancerID string
 	BackendServers struct {
 		BackendServer []BackendServerInfo
 	}
 }
 
+//BackendServerInfo ...
 type BackendServerInfo struct {
-	ServerId string
+	ServerID string
 	Weight   int
 	Type     string
 }
 
+//ParseCreateLoadBalancerResp ...
 func ParseCreateLoadBalancerResp(resp interface{}) (createLoadBalancerResp CreateLoadBalancerResp, err error) {
 	response := resp.(map[string]interface{})
 	err = json.Unmarshal([]byte(response["body"].(string)), &createLoadBalancerResp)
@@ -41,6 +46,7 @@ func ParseCreateLoadBalancerResp(resp interface{}) (createLoadBalancerResp Creat
 	return
 }
 
+//ParseAttachLoadBalancerResp ...
 func ParseAttachLoadBalancerResp(resp interface{}) (attachLoadBalancerResp AttachLoadBalancerResp, err error) {
 	response := resp.(map[string]interface{})
 	err = json.Unmarshal([]byte(response["body"].(string)), &attachLoadBalancerResp)
@@ -48,6 +54,7 @@ func ParseAttachLoadBalancerResp(resp interface{}) (attachLoadBalancerResp Attac
 	return
 }
 
+//ParseDetachLoadBalancerResp ...
 func ParseDetachLoadBalancerResp(resp interface{}) (detachLoadBalancerResp DetachLoadBalancerResp, err error) {
 	response := resp.(map[string]interface{})
 	err = json.Unmarshal([]byte(response["body"].(string)), &detachLoadBalancerResp)

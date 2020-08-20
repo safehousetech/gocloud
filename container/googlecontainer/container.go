@@ -172,7 +172,11 @@ func (googlecontainer *Googlecontainer) CreateCluster(request interface{}) (resp
 
 	CreateClusterresp, err := client.Do(CreateClusterrequest)
 
-	fmt.Println(err)
+	if err != nil {
+		fmt.Println(err)
+		return nil, err
+	}
+
 	defer CreateClusterresp.Body.Close()
 
 	body, err := ioutil.ReadAll(CreateClusterresp.Body)
@@ -199,6 +203,11 @@ func (googlecontainer *Googlecontainer) DeleteCluster(request interface{}) (resp
 
 	DeleteClusterresp, err := client.Do(DeleteClusterrequest)
 
+	if err != nil {
+		fmt.Println(err)
+		return nil, err
+	}
+
 	defer DeleteClusterresp.Body.Close()
 
 	body, err := ioutil.ReadAll(DeleteClusterresp.Body)
@@ -215,9 +224,9 @@ func (googlecontainer *Googlecontainer) CreateService(request interface{}) (resp
 
 	var option nodepool
 
-	var Projectid string
+	var ProjectID string
 
-	var ClusterId string
+	var ClusterID string
 
 	var Zone string
 
@@ -226,7 +235,7 @@ func (googlecontainer *Googlecontainer) CreateService(request interface{}) (resp
 	for key, value := range param {
 		switch key {
 		case "Project":
-			Projectid, _ = value.(string)
+			ProjectID, _ = value.(string)
 
 		case "Name":
 			name, _ := value.(string)
@@ -237,8 +246,8 @@ func (googlecontainer *Googlecontainer) CreateService(request interface{}) (resp
 			Zone = ZoneV
 
 		case "clusterId":
-			ClusterIdV, _ := value.(string)
-			ClusterId = ClusterIdV
+			ClusterIDV, _ := value.(string)
+			ClusterID = ClusterIDV
 
 		case "statusMessage":
 			StatusMessageV, _ := value.(string)
@@ -348,7 +357,7 @@ func (googlecontainer *Googlecontainer) CreateService(request interface{}) (resp
 
 	var CreateServicejsonstringbyte = []byte(CreateServicejsonstring)
 
-	url := "https://container.googleapis.com/v1/projects/" + Projectid + "/zones/" + Zone + "/clusters/" + ClusterId + "/nodePools"
+	url := "https://container.googleapis.com/v1/projects/" + ProjectID + "/zones/" + Zone + "/clusters/" + ClusterID + "/nodePools"
 
 	client := googleauth.SignJWT()
 
@@ -357,6 +366,11 @@ func (googlecontainer *Googlecontainer) CreateService(request interface{}) (resp
 	CreateServicerequest.Header.Set("Content-Type", "application/json")
 
 	CreateServicerresp, err := client.Do(CreateServicerequest)
+
+	if err != nil {
+		fmt.Println(err)
+		return nil, err
+	}
 
 	defer CreateServicerresp.Body.Close()
 
@@ -369,7 +383,7 @@ func (googlecontainer *Googlecontainer) CreateService(request interface{}) (resp
 	return resp, err
 }
 
-//runtask runs container.
+//RunTask runs container.
 func (googlecontainer *Googlecontainer) RunTask(request interface{}) (resp interface{}, err error) {
 	fmt.Println("\nThis API is not provided by Google cloud")
 	return
@@ -395,6 +409,11 @@ func (googlecontainer *Googlecontainer) DeleteService(request interface{}) (resp
 
 	DeleteServiceresp, err := client.Do(DeleteServicerequest)
 
+	if err != nil {
+		fmt.Println(err)
+		return nil, err
+	}
+
 	defer DeleteServiceresp.Body.Close()
 
 	body, err := ioutil.ReadAll(DeleteServiceresp.Body)
@@ -418,6 +437,11 @@ func (googlecontainer *Googlecontainer) StopTask(request interface{}) (resp inte
 	StopTaskrequest.Header.Set("Content-Type", "application/json")
 
 	StopTaskresp, err := client.Do(StopTaskrequest)
+
+	if err != nil {
+		fmt.Println(err)
+		return nil, err
+	}
 
 	defer StopTaskresp.Body.Close()
 

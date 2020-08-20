@@ -39,7 +39,7 @@ func (lambda *Lambda) CreateFunction(request interface{}) (resp interface{}, err
 
 	param := request.(map[string]interface{})
 	var region string
-	var createfunction Createfunction
+	var createfunction CreateFunction
 
 	for key, value := range param {
 		switch key {
@@ -50,43 +50,43 @@ func (lambda *Lambda) CreateFunction(request interface{}) (resp interface{}, err
 
 		case "FunctionName":
 			functionNamev, _ := value.(string)
-			createfunction.functionName = functionNamev
+			createfunction.FunctionName = functionNamev
 
 		case "Handler":
 			handlerv, _ := value.(string)
-			createfunction.handler = handlerv
+			createfunction.Handler = handlerv
 
 		case "KMSKeyArn":
 			kMSKeyArnv, _ := value.(string)
-			createfunction.kMSKeyArn = kMSKeyArnv
+			createfunction.KMSKeyArn = kMSKeyArnv
 
 		case "MemorySize":
 			memorySizev, _ := value.(int)
-			createfunction.memorySize = memorySizev
+			createfunction.MemorySize = memorySizev
 
 		case "Role":
 			rolev, _ := value.(string)
-			createfunction.role = rolev
+			createfunction.Role = rolev
 
 		case "Publish":
 			publishv, _ := value.(bool)
-			createfunction.publish = publishv
+			createfunction.Publish = publishv
 
 		case "Runtime":
 			runtimev, _ := value.(string)
-			createfunction.runtime = runtimev
+			createfunction.Runtime = runtimev
 
 		case "Tags":
 			tagsv, _ := value.(string)
-			createfunction.tags.String = tagsv
+			createfunction.Tags.String = tagsv
 
 		case "Description":
 			descriptionv, _ := value.(string)
-			createfunction.description = descriptionv
+			createfunction.Description = descriptionv
 
 		case "Timeout":
 			timeoutv, _ := value.(int)
-			createfunction.timeout = timeoutv
+			createfunction.Timeout = timeoutv
 
 		case "DeadLetterConfig":
 			deadLetterConfigparam, _ := value.(map[string]string)
@@ -96,7 +96,7 @@ func (lambda *Lambda) CreateFunction(request interface{}) (resp interface{}, err
 				switch deadLetterConfigparamkey {
 				case "TargetArn":
 					targetArnv := deadLetterConfigparamvalue
-					createfunction.deadLetterConfig.targetArn = targetArnv
+					createfunction.DeadLetterConfig.TargetArn = targetArnv
 				}
 
 			}
@@ -108,7 +108,7 @@ func (lambda *Lambda) CreateFunction(request interface{}) (resp interface{}, err
 				switch tracingConfigparamkey {
 				case "Mode":
 					modev := tracingConfigparamvalue
-					createfunction.tracingConfig.mode = modev
+					createfunction.TracingConfig.Mode = modev
 				}
 
 			}
@@ -120,11 +120,11 @@ func (lambda *Lambda) CreateFunction(request interface{}) (resp interface{}, err
 				switch vpcConfigparamkey {
 				case "SubnetIds":
 					subnetIdsv := vpcConfigparamvalue
-					createfunction.vpcConfig.subnetIds = subnetIdsv
+					createfunction.VpcConfig.SubnetIds = subnetIdsv
 
 				case "SecurityGroupIds":
 					securityGroupIdsv := vpcConfigparamvalue
-					createfunction.vpcConfig.securityGroupIds = securityGroupIdsv
+					createfunction.VpcConfig.SecurityGroupIds = securityGroupIdsv
 
 				}
 			}
@@ -136,28 +136,28 @@ func (lambda *Lambda) CreateFunction(request interface{}) (resp interface{}, err
 				switch codeparamkey {
 				case "S3Bucket":
 					s3Bucketv, _ := codeparamvalue.(string)
-					createfunction.code.s3Bucket = s3Bucketv
+					createfunction.Code.S3Bucket = s3Bucketv
 
 				case "S3Key":
 					s3Keyv, _ := codeparamvalue.(string)
-					createfunction.code.s3Key = s3Keyv
+					createfunction.Code.S3Key = s3Keyv
 
 				case "S3ObjectVersion":
 					s3ObjectVersionv, _ := codeparamvalue.(string)
-					createfunction.code.s3ObjectVersion = s3ObjectVersionv
+					createfunction.Code.S3ObjectVersion = s3ObjectVersionv
 
 				case "ZipFile":
 					zipFilev, _ := codeparamvalue.(string)
 					contents, _ := ioutil.ReadFile(zipFilev + ".zip")
-					createfunction.code.zipFile = contents
+					createfunction.Code.zipFile = contents
 
 				case "Location":
 					locationv, _ := codeparamvalue.(string)
-					createfunction.code.location = locationv
+					createfunction.Code.Location = locationv
 
 				case "RepositoryType":
 					repositoryTypev, _ := codeparamvalue.(string)
-					createfunction.code.repositoryType = repositoryTypev
+					createfunction.Code.RepositoryType = repositoryTypev
 				}
 			}
 
@@ -174,73 +174,73 @@ func (lambda *Lambda) CreateFunction(request interface{}) (resp interface{}, err
 	return resp, err
 }
 
-func preparecreatefunctiondict(params map[string]interface{}, createfunction Createfunction) {
+func preparecreatefunctiondict(params map[string]interface{}, createfunction CreateFunction) {
 
-	if createfunction.functionName != "" {
-		params["FunctionName"] = createfunction.functionName
+	if createfunction.FunctionName != "" {
+		params["FunctionName"] = createfunction.FunctionName
 	}
 
-	if createfunction.handler != "" {
-		params["Handler"] = createfunction.handler
+	if createfunction.Handler != "" {
+		params["Handler"] = createfunction.Handler
 	}
 
-	if createfunction.kMSKeyArn != "" {
-		params["KMSKeyArn"] = createfunction.kMSKeyArn
+	if createfunction.KMSKeyArn != "" {
+		params["KMSKeyArn"] = createfunction.KMSKeyArn
 	}
 
-	if createfunction.memorySize > 0 {
-		params["MemorySize"] = createfunction.memorySize
+	if createfunction.MemorySize > 0 {
+		params["MemorySize"] = createfunction.MemorySize
 	}
 
-	params["Publish"] = createfunction.publish
+	params["Publish"] = createfunction.Publish
 
-	if createfunction.role != "" {
-		params["Role"] = createfunction.role
+	if createfunction.Role != "" {
+		params["Role"] = createfunction.Role
 	}
 
-	if createfunction.runtime != "" {
-		params["Runtime"] = createfunction.runtime
+	if createfunction.Runtime != "" {
+		params["Runtime"] = createfunction.Runtime
 	}
 
-	if createfunction.tags.String != "" {
-		params["Tags"] = createfunction.tags.String
+	if createfunction.Tags.String != "" {
+		params["Tags"] = createfunction.Tags.String
 	}
 
-	if createfunction.description != "" {
-		params["Description"] = createfunction.description
+	if createfunction.Description != "" {
+		params["Description"] = createfunction.Description
 	}
 
-	if createfunction.timeout > 0 {
-		params["Timeout"] = createfunction.timeout
+	if createfunction.Timeout > 0 {
+		params["Timeout"] = createfunction.Timeout
 	}
 
-	if createfunction.deadLetterConfig.targetArn != "" {
+	if createfunction.DeadLetterConfig.TargetArn != "" {
 		param := make(map[string]interface{})
-		param["TargetArn"] = createfunction.deadLetterConfig.targetArn
+		param["TargetArn"] = createfunction.DeadLetterConfig.TargetArn
 		params["DeadLetterConfig"] = param
 	}
 
-	if createfunction.tracingConfig.mode != "" {
+	if createfunction.TracingConfig.Mode != "" {
 		param := make(map[string]interface{})
-		param["Mode"] = createfunction.tracingConfig.mode
+		param["Mode"] = createfunction.TracingConfig.Mode
 		params["TracingConfig"] = param
 	}
 
-	if createfunction.tracingConfig.mode != "" {
+	if createfunction.TracingConfig.Mode != "" {
 		param := make(map[string]interface{})
-		param["Mode"] = createfunction.tracingConfig.mode
+		param["Mode"] = createfunction.TracingConfig.Mode
 		params["TracingConfig"] = param
 	}
 
-	if (len(createfunction.vpcConfig.securityGroupIds) > 0) || (len(createfunction.vpcConfig.subnetIds) > 0) {
+	if (len(createfunction.VpcConfig.SecurityGroupIds) > 0) || (len(createfunction.VpcConfig.SubnetIds) > 0) {
 		param := make(map[string]interface{})
 
-		if len(createfunction.vpcConfig.securityGroupIds) > 0 {
-			param["SecurityGroupIds"] = createfunction.vpcConfig.securityGroupIds
+		if len(createfunction.VpcConfig.SecurityGroupIds) > 0 {
+			param["SecurityGroupIds"] = createfunction.VpcConfig.SecurityGroupIds
 		}
 
-		if len(createfunction.vpcConfig.subnetIds) > 0 {
-			param["SubnetIds"] = createfunction.vpcConfig.subnetIds
+		if len(createfunction.VpcConfig.SubnetIds) > 0 {
+			param["SubnetIds"] = createfunction.VpcConfig.SubnetIds
 		}
 
 		params["VpcConfig"] = param
@@ -250,32 +250,32 @@ func preparecreatefunctiondict(params map[string]interface{}, createfunction Cre
 
 }
 
-func preparecode(params map[string]interface{}, createfunction Createfunction) {
+func preparecode(params map[string]interface{}, createfunction CreateFunction) {
 
 	param := make(map[string]interface{})
 
-	if createfunction.code.s3Bucket != "" {
-		param["s3Bucket"] = createfunction.code.s3Bucket
+	if createfunction.Code.S3Bucket != "" {
+		param["s3Bucket"] = createfunction.Code.S3Bucket
 	}
 
-	if createfunction.code.s3Key != "" {
-		param["S3Key"] = createfunction.code.s3Key
+	if createfunction.Code.S3Key != "" {
+		param["S3Key"] = createfunction.Code.S3Key
 	}
 
-	if createfunction.code.s3ObjectVersion != "" {
-		param["S3ObjectVersion"] = createfunction.code.s3ObjectVersion
+	if createfunction.Code.S3ObjectVersion != "" {
+		param["S3ObjectVersion"] = createfunction.Code.S3ObjectVersion
 	}
 
-	if len(createfunction.code.zipFile) > 0 {
-		param["ZipFile"] = createfunction.code.zipFile
+	if len(createfunction.Code.zipFile) > 0 {
+		param["ZipFile"] = createfunction.Code.zipFile
 	}
 
-	if createfunction.code.repositoryType != "" {
-		param["RepositoryType"] = createfunction.code.repositoryType
+	if createfunction.Code.RepositoryType != "" {
+		param["RepositoryType"] = createfunction.Code.RepositoryType
 	}
 
-	if createfunction.code.location != "" {
-		param["Location"] = createfunction.code.location
+	if createfunction.Code.Location != "" {
+		param["Location"] = createfunction.Code.Location
 	}
 
 	params["Code"] = param

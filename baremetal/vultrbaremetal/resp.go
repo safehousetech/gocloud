@@ -4,17 +4,20 @@ import (
 	"encoding/json"
 )
 
+//ListBareMetalResp .
 type ListBareMetalResp struct {
 	StatusCode     int
 	BareMetalSlice []BareMetalInfo
 }
 
+//V6Network .
 type V6Network struct {
 	V6Network     string  `json:"v6_network"`
 	V6MainIP      string  `json:"v6_main_ip"`
 	V6NetworkSize float64 `json:"v6_network_size"`
 }
 
+//BareMetalInfo .
 type BareMetalInfo struct {
 	SUBID           string
 	OS              string  `json:"os"`
@@ -37,11 +40,13 @@ type BareMetalInfo struct {
 	APPID           string
 }
 
+//CreateBareMetalResp .
 type CreateBareMetalResp struct {
 	StatusCode int
 	SUBID      string
 }
 
+//ParseCreateBareMetalResp .
 func ParseCreateBareMetalResp(resp interface{}) (createBareMetalResp CreateBareMetalResp, err error) {
 	response := resp.(map[string]interface{})
 	err = json.Unmarshal([]byte(response["body"].(string)), &createBareMetalResp)
@@ -49,6 +54,7 @@ func ParseCreateBareMetalResp(resp interface{}) (createBareMetalResp CreateBareM
 	return
 }
 
+//ParseListBareMetalResp .
 func ParseListBareMetalResp(resp interface{}) (listBareMetalResp ListBareMetalResp, err error) {
 	response := resp.(map[string]interface{})
 	respMap := make(map[string]interface{})

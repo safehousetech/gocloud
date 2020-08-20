@@ -77,7 +77,7 @@ type ContainerOverride struct {
 	Name              string
 	MemoryReservation string
 	Memory            int
-	Cpu               int
+	CPU               int
 	Command           []string
 	Environments      []Environment
 }

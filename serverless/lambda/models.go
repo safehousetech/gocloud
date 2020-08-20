@@ -25,22 +25,22 @@ type Listfunction struct {
 }
 
 //CreateFunction struct represents aws serverless Create function.
-type Createfunction struct {
-	functionName     string           `json:"FunctionName"`
-	handler          string           `json:"Handler"`
-	kMSKeyArn        string           `json:"KMSKeyArn"`
-	memorySize       int              `json:"MemorySize"`
-	publish          bool             `json:"Publish"`
-	role             string           `json:"Role"`
-	runtime          string           `json:"Runtime"`
-	tags             Tags             `json:"Tags"`
-	description      string           `json:"Description"`
-	timeout          int              `json:"Timeout"`
-	deadLetterConfig DeadLetterConfig `json:"DeadLetterConfig"`
-	environment      Environment      `json:"Environment"`
-	tracingConfig    TracingConfig    `json:"TracingConfig"`
-	vpcConfig        VpcConfig        `json:"VpcConfig"`
-	code             Code             `json:"Code"`
+type CreateFunction struct {
+	FunctionName     string           `json:"FunctionName"`
+	Handler          string           `json:"Handler"`
+	KMSKeyArn        string           `json:"KMSKeyArn"`
+	MemorySize       int              `json:"MemorySize"`
+	Publish          bool             `json:"Publish"`
+	Role             string           `json:"Role"`
+	Runtime          string           `json:"Runtime"`
+	Tags             Tags             `json:"Tags"`
+	Description      string           `json:"Description"`
+	Timeout          int              `json:"Timeout"`
+	DeadLetterConfig DeadLetterConfig `json:"DeadLetterConfig"`
+	Environment      Environment      `json:"Environment"`
+	TracingConfig    TracingConfig    `json:"TracingConfig"`
+	VpcConfig        VpcConfig        `json:"VpcConfig"`
+	Code             Code             `json:"Code"`
 }
 
 //Tags struct represents CreateFunction parameters.
@@ -50,13 +50,13 @@ type Tags struct {
 
 //TracingConfig struct represents CreateFunction parameters.
 type TracingConfig struct {
-	mode string `json:"Mode"`
+	Mode string `json:"Mode"`
 }
 
 //VpcConfig struct represents CreateFunction parameters.
 type VpcConfig struct {
-	securityGroupIds []string `json:"SecurityGroupIds"`
-	subnetIds        []string `json:"SubnetIds"`
+	SecurityGroupIds []string `json:"SecurityGroupIds"`
+	SubnetIds        []string `json:"SubnetIds"`
 }
 
 //Variables struct represents CreateFunction parameters.
@@ -66,22 +66,22 @@ type Variables struct {
 
 //Environment struct represents CreateFunction parameters.
 type Environment struct {
-	variables Variables `json:"Variables"`
+	Variables Variables `json:"Variables"`
 }
 
 //DeadLetterConfig struct represents CreateFunction parameters.
 type DeadLetterConfig struct {
-	targetArn string `json:"TargetArn"`
+	TargetArn string `json:"TargetArn"`
 }
 
 //Code struct represents CreateFunction parameters.
 type Code struct {
-	s3Bucket        string `json:"S3Bucket"`
-	s3Key           string `json:"S3Key"`
-	s3ObjectVersion string `json:"S3ObjectVersion"`
+	S3Bucket        string `json:"S3Bucket"`
+	S3Key           string `json:"S3Key"`
+	S3ObjectVersion string `json:"S3ObjectVersion"`
 	//zipFile         string `json:"ZipFile"`
-	repositoryType string `json:"RepositoryType"`
-	location       string `json:"Location"`
+	RepositoryType string `json:"RepositoryType"`
+	Location       string `json:"Location"`
 
 	zipFile []byte `type:"blob"`
 }

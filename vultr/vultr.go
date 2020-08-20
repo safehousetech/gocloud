@@ -25,18 +25,22 @@ type Vultr struct {
 	vultrmachinelearning.Vultrmachinelearning
 }
 
+//Compute ...
 func (*Vultr) Compute() gocloudinterface.Compute {
 	return &vultrcompute.VultrCompute{}
 }
 
+//Storage ...
 func (*Vultr) Storage() gocloudinterface.Storage {
 	return &vultrstorage.VultrStorage{}
 }
 
+//DNS ...
 func (*Vultr) DNS() gocloudinterface.DNS {
 	return &vultrdns.VultrDNS{}
 }
 
+//BareMetal ...
 func (*Vultr) BareMetal() gocloudinterface.BareMetal {
 	return &vultrbaremetal.VultrBareMetal{}
 }

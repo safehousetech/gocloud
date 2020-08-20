@@ -2,18 +2,19 @@ package alidns
 
 import (
 	"fmt"
-	"github.com/safehousetech/gocloud/aliauth"
 	"strconv"
+
+	"github.com/safehousetech/gocloud/aliauth"
 )
 
-// ListResourceDnsRecordSets list resource DNS record sets accept map[string]interface{}
-func (alidns *Alidns) ListResourceDnsRecordSets(request interface{}) (resp interface{}, err error) {
+// ListResourceDNSRecordSets list resource DNS record sets accept map[string]interface{}
+func (alidns *Alidns) ListResourceDNSRecordSets(request interface{}) (resp interface{}, err error) {
 	fmt.Println("\nThis API is not provided by Alibaba cloud")
 	return resp, err
 }
 
-// ListDns list DNS record accept map[string]interface{}
-func (alidns *Alidns) ListDns(request interface{}) (resp interface{}, err error) {
+// ListDNS list DNS record accept map[string]interface{}
+func (alidns *Alidns) ListDNS(request interface{}) (resp interface{}, err error) {
 	var options ListDNS
 
 	param := make(map[string]interface{})
@@ -55,8 +56,8 @@ func (alidns *Alidns) ListDns(request interface{}) (resp interface{}, err error)
 	return resp, err
 }
 
-// DeleteDns delete DNS record accept map[string]interface{}
-func (alidns *Alidns) DeleteDns(request interface{}) (resp interface{}, err error) {
+// DeleteDNS delete DNS record accept map[string]interface{}
+func (alidns *Alidns) DeleteDNS(request interface{}) (resp interface{}, err error) {
 	var options DeleteDNS
 
 	param := make(map[string]interface{})
@@ -66,7 +67,7 @@ func (alidns *Alidns) DeleteDns(request interface{}) (resp interface{}, err erro
 	for key, value := range param {
 		switch key {
 		case "RecordId":
-			options.RecordId = value.(string)
+			options.RecordID = value.(string)
 		}
 	}
 	// Put all of options into params
@@ -78,8 +79,8 @@ func (alidns *Alidns) DeleteDns(request interface{}) (resp interface{}, err erro
 	return resp, err
 }
 
-// CreateDns add DNS record accept map[string]interface{}
-func (alidns *Alidns) CreateDns(request interface{}) (resp interface{}, err error) {
+// CreateDNS add DNS record accept map[string]interface{}
+func (alidns *Alidns) CreateDNS(request interface{}) (resp interface{}, err error) {
 	var options CreateDNS
 
 	param := make(map[string]interface{})

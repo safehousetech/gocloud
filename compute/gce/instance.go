@@ -4,13 +4,13 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	googleauth "github.com/safehousetech/gocloud/googleauth"
 	"io/ioutil"
 	"net/http"
+
+	googleauth "github.com/safehousetech/gocloud/googleauth"
 )
 
-//create gce instance
-
+// CreateNode create gce instance
 func (gce *GCE) CreateNode(request interface{}) (resp interface{}, err error) {
 	var gceinstance GCE
 	var projectid string
@@ -30,7 +30,7 @@ func (gce *GCE) CreateNode(request interface{}) (resp interface{}, err error) {
 
 		case "selfLink":
 			selfLink, _ := value.(string)
-			gceinstance.selfLink = selfLink
+			gceinstance.SelfLink = selfLink
 
 		case "Description":
 			Description, _ := value.(string)
@@ -142,7 +142,11 @@ func (gce *GCE) CreateNode(request interface{}) (resp interface{}, err error) {
 	CreateNoderequest.Header.Set("Content-Type", "application/json")
 
 	CreateNoderesp, err := client.Do(CreateNoderequest)
-	fmt.Println(err)
+	if err != nil {
+		fmt.Println(err)
+		return nil, err
+	}
+
 	defer CreateNoderesp.Body.Close()
 
 	body, err := ioutil.ReadAll(CreateNoderesp.Body)
@@ -154,6 +158,7 @@ func (gce *GCE) CreateNode(request interface{}) (resp interface{}, err error) {
 	return resp, err
 }
 
+//StartNode ...
 func (gce *GCE) StartNode(request interface{}) (resp interface{}, err error) {
 
 	options := request.(map[string]string)
@@ -164,6 +169,10 @@ func (gce *GCE) StartNode(request interface{}) (resp interface{}, err error) {
 	StartNoderequest.Header.Set("Content-Type", "application/json")
 
 	StartNoderesp, err := client.Do(StartNoderequest)
+
+	if err != nil {
+		return nil, err
+	}
 
 	defer StartNoderesp.Body.Close()
 
@@ -176,9 +185,8 @@ func (gce *GCE) StartNode(request interface{}) (resp interface{}, err error) {
 	return resp, err
 }
 
-//stop gce instance currentnly running
-//accept projectid, zone, instance
-
+//StopNode stop gce instance currentnly running
+//accept projectID, zone, instance
 func (gce *GCE) StopNode(request interface{}) (resp interface{}, err error) {
 
 	options := request.(map[string]string)
@@ -189,6 +197,11 @@ func (gce *GCE) StopNode(request interface{}) (resp interface{}, err error) {
 	StopNoderequest.Header.Set("Content-Type", "application/json")
 
 	StopNoderesp, err := client.Do(StopNoderequest)
+
+	if err != nil {
+		return nil, err
+	}
+
 	defer StopNoderesp.Body.Close()
 
 	body, err := ioutil.ReadAll(StopNoderesp.Body)
@@ -201,9 +214,8 @@ func (gce *GCE) StopNode(request interface{}) (resp interface{}, err error) {
 	return resp, err
 }
 
-//delete gce instance currentnly running
+//DeleteNode delete gce instance currentnly running
 //accept projectid, zone, instance
-
 func (gce *GCE) DeleteNode(request interface{}) (resp interface{}, err error) {
 
 	options := request.(map[string]string)
@@ -213,7 +225,15 @@ func (gce *GCE) DeleteNode(request interface{}) (resp interface{}, err error) {
 	DeleteNoderequest, err := http.NewRequest("DELETE", url, nil)
 	DeleteNoderequest.Header.Set("Content-Type", "application/json")
 
+	if err != nil {
+		return nil, err
+	}
+
 	DeleteNoderesp, err := client.Do(DeleteNoderequest)
+
+	if err != nil {
+		return nil, err
+	}
 
 	defer DeleteNoderesp.Body.Close()
 	body, err := ioutil.ReadAll(DeleteNoderesp.Body)
@@ -226,9 +246,8 @@ func (gce *GCE) DeleteNode(request interface{}) (resp interface{}, err error) {
 	return resp, err
 }
 
-//reboot/reset gce instance currentnly ***running***
+//RebootNode reboot/reset gce instance currentnly ***running***
 //accept projectid, zone, instance
-
 func (gce *GCE) RebootNode(request interface{}) (resp interface{}, err error) {
 
 	options := request.(map[string]string)
@@ -239,6 +258,10 @@ func (gce *GCE) RebootNode(request interface{}) (resp interface{}, err error) {
 	RebootNoderequest.Header.Set("Content-Type", "application/json")
 
 	RebootNoderesp, err := client.Do(RebootNoderequest)
+
+	if err != nil {
+		return nil, err
+	}
 
 	defer RebootNoderesp.Body.Close()
 
@@ -264,6 +287,10 @@ func (gce *GCE) listnode(request interface{}) (resp interface{}, err error) {
 	listnoderequest.Header.Set("Content-Type", "application/json")
 
 	listnoderesp, err := client.Do(listnoderequest)
+
+	if err != nil {
+		return nil, err
+	}
 
 	defer listnoderesp.Body.Close()
 	body, err := ioutil.ReadAll(listnoderesp.Body)

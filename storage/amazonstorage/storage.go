@@ -4,51 +4,52 @@ import (
 	"strconv"
 )
 
-func (amazonstorage *Amazonstorage) CreateDisk(request interface{}) (resp interface{}, err error) {
+//CreateDisk ...
+func (amazonstorage *AmazonStorage) CreateDisk(request interface{}) (resp interface{}, err error) {
 
 	param, _ := request.(map[string]interface{})
 
-	var createvolume CreateVolume
-	var Region string
+	var createVolume CreateVolume
+	var region string
 	for key, value := range param {
 		switch key {
 
 		case "Region":
 			regionV, _ := value.(string)
-			Region = regionV
+			region = regionV
 
 		case "AvailZone":
-			AvailZoneV, _ := value.(string)
-			createvolume.AvailZone = AvailZoneV
+			availZoneV, _ := value.(string)
+			createVolume.AvailZone = availZoneV
 
 		case "VolumeType":
 			VolumeTypeV, _ := value.(string)
-			createvolume.VolumeType = VolumeTypeV
+			createVolume.VolumeType = VolumeTypeV
 
 		case "VolumeSize":
 			VolumeSizeV, _ := value.(int)
-			createvolume.VolumeSize = VolumeSizeV
+			createVolume.VolumeSize = VolumeSizeV
 
 		case "IOPS":
 			IOPSV, _ := value.(int64)
-			createvolume.IOPS = IOPSV
+			createVolume.IOPS = IOPSV
 
 		case "Encrypted":
 			EncryptedV, _ := value.(bool)
-			createvolume.Encrypted = EncryptedV
+			createVolume.Encrypted = EncryptedV
 
 		case "SnapshotId":
-			SnapshotIdV, _ := value.(string)
-			createvolume.SnapshotId = SnapshotIdV
+			SnapshotIDV, _ := value.(string)
+			createVolume.SnapshotID = SnapshotIDV
 		}
 	}
 
 	params := makeParams("CreateVolume")
-	prepareVolume(params, createvolume)
+	prepareVolume(params, createVolume)
 
 	response := make(map[string]interface{})
 
-	err = amazonstorage.PrepareSignatureV2query(params, Region, response)
+	err = amazonstorage.PrepareSignatureV2query(params, region, response)
 	if err != nil {
 		return nil, err
 	}
@@ -57,15 +58,16 @@ func (amazonstorage *Amazonstorage) CreateDisk(request interface{}) (resp interf
 
 }
 
-func (amazonstorage *Amazonstorage) DeleteDisk(request interface{}) (resp interface{}, err error) {
+//DeleteDisk ...DeleteDisk
+func (amazonstorage *AmazonStorage) DeleteDisk(request interface{}) (resp interface{}, err error) {
 	param, _ := request.(map[string]string)
 	params := makeParams("DeleteVolume")
 	params["VolumeId"] = param["VolumeId"]
-	Region := param["Region"]
+	region := param["Region"]
 
 	response := make(map[string]interface{})
 
-	err = amazonstorage.PrepareSignatureV2query(params, Region, response)
+	err = amazonstorage.PrepareSignatureV2query(params, region, response)
 	if err != nil {
 		return nil, err
 	}
@@ -74,8 +76,8 @@ func (amazonstorage *Amazonstorage) DeleteDisk(request interface{}) (resp interf
 
 }
 
-//volumeId, description string
-func (amazonstorage *Amazonstorage) CreateSnapshot(request interface{}) (resp interface{}, err error) {
+//CreateSnapshot ...
+func (amazonstorage *AmazonStorage) CreateSnapshot(request interface{}) (resp interface{}, err error) {
 
 	param, _ := request.(map[string]string)
 	params := makeParams("CreateSnapshot")
@@ -93,7 +95,8 @@ func (amazonstorage *Amazonstorage) CreateSnapshot(request interface{}) (resp in
 	return resp, nil
 }
 
-func (amazonstorage *Amazonstorage) DeleteSnapshot(request interface{}) (resp interface{}, err error) {
+//DeleteSnapshot ...
+func (amazonstorage *AmazonStorage) DeleteSnapshot(request interface{}) (resp interface{}, err error) {
 	ids := []string{}
 	param, _ := request.(map[string]string)
 	ids = append(ids, param["SnapshotId"])
@@ -114,7 +117,8 @@ func (amazonstorage *Amazonstorage) DeleteSnapshot(request interface{}) (resp in
 
 }
 
-func (amazonstorage *Amazonstorage) AttachDisk(request interface{}) (resp interface{}, err error) {
+//AttachDisk ...
+func (amazonstorage *AmazonStorage) AttachDisk(request interface{}) (resp interface{}, err error) {
 	param, _ := request.(map[string]string)
 	params := makeParams("AttachVolume")
 	params["VolumeId"] = param["VolumeId"]
@@ -131,7 +135,8 @@ func (amazonstorage *Amazonstorage) AttachDisk(request interface{}) (resp interf
 	return resp, nil
 }
 
-func (amazonstorage *Amazonstorage) DetachDisk(request interface{}) (resp interface{}, err error) {
+//DetachDisk ...
+func (amazonstorage *AmazonStorage) DetachDisk(request interface{}) (resp interface{}, err error) {
 	param, _ := request.(map[string]string)
 	params := makeParams("DetachVolume")
 	params["VolumeId"] = param["VolumeId"]

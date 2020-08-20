@@ -4,7 +4,8 @@ import (
 	"encoding/xml"
 )
 
-type Amazonstorage struct {
+//AmazonStorage ...
+type AmazonStorage struct {
 }
 
 const (
@@ -15,19 +16,21 @@ const (
 	vpcAPIVersion = "2013-10-15"
 )
 
+//CreateVolume ...
 type CreateVolume struct {
 	AvailZone  string
-	SnapshotId string
+	SnapshotID string
 	VolumeType string
 	VolumeSize int
 	Encrypted  bool
 	IOPS       int64
 }
 
+//Volume ...
 type Volume struct {
-	Id          string             `xml:"volumeId"`
+	ID          string             `xml:"volumeId"`
 	Size        int                `xml:"size"`
-	SnapshotId  string             `xml:"snapshotId"`
+	SnapshotID  string             `xml:"snapshotId"`
 	Status      string             `xml:"status"`
 	IOPS        int64              `xml:"iops"`
 	AvailZone   string             `xml:"availabilityZone"`
@@ -38,57 +41,65 @@ type Volume struct {
 	Attachments []VolumeAttachment `xml:"attachmentSet>item"`
 }
 
+//Tag ..
 type Tag struct {
 	Key   string `xml:"key"`
 	Value string `xml:"value"`
 }
 
+//VolumeAttachment ...
 type VolumeAttachment struct {
-	VolumeId            string `xml:"volumeId"`
+	VolumeID            string `xml:"volumeId"`
 	Device              string `xml:"device"`
-	InstanceId          string `xml:"instanceId"`
+	InstanceID          string `xml:"instanceId"`
 	Status              string `xml:"status"`
 	DeleteOnTermination bool   `xml:"deleteOnTermination"`
 }
 
+//CreateVolumeResp ...
 type CreateVolumeResp struct {
-	RequestId string `xml:"requestId"`
+	RequestID string `xml:"requestId"`
 	Volume
 }
 
+//SimpleResp ...
 type SimpleResp struct {
 	XMLName   xml.Name
-	RequestId string `xml:"requestId"`
+	RequestID string `xml:"requestId"`
 }
 
+//VolumeAttachmentResp ...
 type VolumeAttachmentResp struct {
-	RequestId  string `xml:"requestId"`
-	VolumeId   string `xml:"volumeId"`
+	RequestID  string `xml:"requestId"`
+	VolumeID   string `xml:"volumeId"`
 	Device     string `xml:"device"`
-	InstanceId string `xml:"instanceId"`
+	InstanceID string `xml:"instanceId"`
 	Status     string `xml:"status"`
 	AttachTime string `xml:"attachTime"`
 }
 
+//SnapshotsResp ...
 type SnapshotsResp struct {
-	RequestId string     `xml:"requestId"`
+	RequestID string     `xml:"requestId"`
 	Snapshots []Snapshot `xml:"snapshotSet>item"`
 }
 
+//Snapshot ...
 type Snapshot struct {
-	Id          string `xml:"snapshotId"`
-	VolumeId    string `xml:"volumeId"`
+	ID          string `xml:"snapshotId"`
+	VolumeID    string `xml:"volumeId"`
 	VolumeSize  string `xml:"volumeSize"`
 	Status      string `xml:"status"`
 	StartTime   string `xml:"startTime"`
 	Description string `xml:"description"`
 	Progress    string `xml:"progress"`
-	OwnerId     string `xml:"ownerId"`
+	OwnerID     string `xml:"ownerId"`
 	OwnerAlias  string `xml:"ownerAlias"`
 	Tags        []Tag  `xml:"tagSet>item"`
 }
 
+//CreateSnapshotResp ...
 type CreateSnapshotResp struct {
-	RequestId string `xml:"requestId"`
+	RequestID string `xml:"requestId"`
 	Snapshot
 }

@@ -1,15 +1,17 @@
 package nova
 
-//WIP
+// CreateServer WIP
 type CreateServer struct {
-	server                 Server                 `json:"server"`
-	oSSCHHNTSchedulerHints OSSCHHNTSchedulerHints `json:"OS-SCH-HNT:scheduler_hints"`
+	Server                  Server                 `json:"server"`
+	OOSSCHHNTSchedulerHints OSSCHHNTSchedulerHints `json:"OS-SCH-HNT:scheduler_hints"`
 }
 
+//OSSCHHNTSchedulerHints .
 type OSSCHHNTSchedulerHints struct {
 	SameHost string `json:"same_host"`
 }
 
+//Server .
 type Server struct {
 	AccessIPv4 string `json:"accessIPv4"`
 
@@ -27,24 +29,27 @@ type Server struct {
 
 	OSDCFDiskConfig string `json:"OS-DCF:diskConfig"`
 
-	personality []Personality `json:"personality"`
+	Personality []Personality `json:"personality"`
 
 	UserData string `json:"user_data"`
 
-	metadata Metadata `json:"metadata"`
+	MetaData Metadata `json:"metadata"`
 
-	securityGroups []SecurityGroups `json:"security_groups"`
+	SecurityGroups []SecurityGroups `json:"security_groups"`
 }
 
+//Personality .
 type Personality struct {
 	Path     string `json:"path"`
 	Contents string `json:"contents"`
 }
 
+//Metadata .
 type Metadata struct {
 	MyServerName string `json:"My Server Name"`
 }
 
+//SecurityGroups .
 type SecurityGroups struct {
 	Name string `json:"name"`
 }

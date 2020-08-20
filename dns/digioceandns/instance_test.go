@@ -27,7 +27,7 @@ func TestCreateDns(t *testing.T) {
 		"Tag":        nil,
 	}
 
-	_, err := digioceancloud.CreateDns(create)
+	_, err := digioceancloud.CreateDNS(create)
 
 	if err != nil {
 		t.Errorf("Test to create DigitalOcean DNS record failed.")
@@ -43,7 +43,7 @@ func TestDeleteDns(t *testing.T) {
 		"RecordID":   "28448433",
 	}
 
-	_, err := digioceancloud.DeleteDns(delete)
+	_, err := digioceancloud.DeleteDNS(delete)
 
 	if err != nil {
 		t.Errorf("Test to delete DigitalOcean DNS record failed.")
@@ -58,7 +58,7 @@ func TestListDns(t *testing.T) {
 		"DomainName": "example.com",
 	}
 
-	_, err := digioceancloud.ListDns(listRecords)
+	_, err := digioceancloud.ListDNS(listRecords)
 
 	if err != nil {
 		t.Errorf("Test to list DigitalOcean DNS record failed.")

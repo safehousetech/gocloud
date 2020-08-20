@@ -24,18 +24,22 @@ type DigitalOcean struct {
 	digioceanmachinelearning.Digioceanmachinelearning
 }
 
+//Compute .
 func (*DigitalOcean) Compute() gocloudinterface.Compute {
 	return &droplet.Droplet{}
 }
 
+//Storage .
 func (*DigitalOcean) Storage() gocloudinterface.Storage {
 	return &digioceanstorage.Digioceanstorage{}
 }
 
+//LoadBalancer .
 func (*DigitalOcean) LoadBalancer() gocloudinterface.LoadBalancer {
 	return &digioceanloadbalancer.DigioceanLoadBalancer{}
 }
 
+//DNS .
 func (*DigitalOcean) DNS() gocloudinterface.DNS {
 	return &digioceandns.Digioceandns{}
 }

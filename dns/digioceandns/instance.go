@@ -4,16 +4,17 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	digioceanAuth "github.com/safehousetech/gocloud/digioceanauth"
 	"io/ioutil"
 	"net/http"
+
+	digioceanAuth "github.com/safehousetech/gocloud/digioceanauth"
 )
 
 // dnsBasePath is the endpoint URL for digitalocean API.
 const dnsBasePath = "https://api.digitalocean.com/v2/domains"
 
-// CreateDns function creates a new DNS record.
-func (digioceandns *Digioceandns) CreateDns(request interface{}) (resp interface{}, err error) {
+// CreateDNS function creates a new DNS record.
+func (digioceandns *Digioceandns) CreateDNS(request interface{}) (resp interface{}, err error) {
 
 	var dnsInstance Digioceandns                                     // Initialize LoadBalancer struct
 	var domainName string                                            // To store domain name
@@ -86,6 +87,7 @@ func (digioceandns *Digioceandns) CreateDns(request interface{}) (resp interface
 	createDNSResp, err := http.DefaultClient.Do(createDNSReq)
 	if err != nil {
 		fmt.Println(err)
+		return
 	}
 
 	defer createDNSResp.Body.Close()
@@ -99,8 +101,8 @@ func (digioceandns *Digioceandns) CreateDns(request interface{}) (resp interface
 	return resp, err
 }
 
-// DeleteDns function deletes a DNS record.
-func (digioceandns *Digioceandns) DeleteDns(request interface{}) (resp interface{}, err error) {
+// DeleteDNS function deletes a DNS record.
+func (digioceandns *Digioceandns) DeleteDNS(request interface{}) (resp interface{}, err error) {
 
 	options := request.(map[string]string)
 
@@ -117,6 +119,7 @@ func (digioceandns *Digioceandns) DeleteDns(request interface{}) (resp interface
 	deleteDNSResp, err := http.DefaultClient.Do(deleteDNSReq)
 	if err != nil {
 		fmt.Println(err)
+		return
 	}
 
 	defer deleteDNSResp.Body.Close()
@@ -130,8 +133,8 @@ func (digioceandns *Digioceandns) DeleteDns(request interface{}) (resp interface
 	return resp, err
 }
 
-// ListDns function lists DNS records.
-func (digioceandns *Digioceandns) ListDns(request interface{}) (resp interface{}, err error) {
+// ListDNS function lists DNS records.
+func (digioceandns *Digioceandns) ListDNS(request interface{}) (resp interface{}, err error) {
 
 	options := request.(map[string]string)
 
@@ -148,6 +151,7 @@ func (digioceandns *Digioceandns) ListDns(request interface{}) (resp interface{}
 	listDNSResp, err := http.DefaultClient.Do(listDNSReq)
 	if err != nil {
 		fmt.Println(err)
+		return
 	}
 
 	defer listDNSResp.Body.Close()
@@ -161,9 +165,9 @@ func (digioceandns *Digioceandns) ListDns(request interface{}) (resp interface{}
 	return resp, err
 }
 
-// ListResourceDnsRecordSets function lists DNS record sets. DigitalOcean API
+// ListResourceDNSRecordSets function lists DNS record sets. DigitalOcean API
 // doesn't provide functionality to suppport this function.
-func (digioceandns *Digioceandns) ListResourceDnsRecordSets(request interface{}) (resp interface{}, err error) {
+func (digioceandns *Digioceandns) ListResourceDNSRecordSets(request interface{}) (resp interface{}, err error) {
 
 	return resp, err
 }

@@ -1,8 +1,9 @@
 package vultrstorage
 
 import (
-	"github.com/safehousetech/gocloud/vultrauth"
 	"testing"
+
+	"github.com/safehousetech/gocloud/vultrauth"
 )
 
 func init() {
@@ -114,7 +115,7 @@ func TestCreateDiskBuilder(t *testing.T) {
 	var vultrStorage VultrStorage
 	createDisk, err := NewCreateDiskBuilder().
 		DCID(1).
-		SizeGb(50).
+		SizeGB(50).
 		Label("test").
 		Build()
 	if err != nil {
@@ -260,7 +261,7 @@ func TestParseCreateDiskResp(t *testing.T) {
 	var vultrStorage VultrStorage
 	createDisk, err := NewCreateDiskBuilder().
 		DCID(1).
-		SizeGb(50).
+		SizeGB(50).
 		Label("test").
 		Build()
 	if err != nil {

@@ -32,7 +32,7 @@ func (kinesis *Kinesis) DeleteStream(request interface{}) (resp interface{}, err
 //CreateStream Create Stream
 func (kinesis *Kinesis) CreateStream(request interface{}) (resp interface{}, err error) {
 	param := request.(map[string]interface{})
-	var streamName, Region string
+	var streamName, region string
 	var shardCount int
 	for key, value := range param {
 		switch key {
@@ -41,8 +41,8 @@ func (kinesis *Kinesis) CreateStream(request interface{}) (resp interface{}, err
 			streamName = streamNameV
 
 		case "Region":
-			RegionV, _ := value.(string)
-			Region = RegionV
+			regionV, _ := value.(string)
+			region = regionV
 
 		case "ShardCount":
 			shardCountV, _ := value.(int)
@@ -51,7 +51,7 @@ func (kinesis *Kinesis) CreateStream(request interface{}) (resp interface{}, err
 	}
 
 	params := make(map[string]string)
-	preparecreatestream(params, Region)
+	preparecreatestream(params, region)
 
 	createstreamjsonmap := make(map[string]interface{})
 	preparecreatestreamdict(createstreamjsonmap, streamName, shardCount)
@@ -100,7 +100,7 @@ func (kinesis *Kinesis) ListStream(request interface{}) (resp interface{}, err e
 func (kinesis *Kinesis) DescribeStream(request interface{}) (resp interface{}, err error) {
 
 	param := request.(map[string]interface{})
-	var streamName, limit, exclusiveStartShardId, Region string
+	var streamName, limit, exclusiveStartShardID, region string
 
 	for key, value := range param {
 		switch key {
@@ -113,20 +113,20 @@ func (kinesis *Kinesis) DescribeStream(request interface{}) (resp interface{}, e
 			limit = limitV
 
 		case "ExclusiveStartShardId":
-			exclusiveStartShardIdV, _ := value.(string)
-			exclusiveStartShardId = exclusiveStartShardIdV
+			exclusiveStartShardIDV, _ := value.(string)
+			exclusiveStartShardID = exclusiveStartShardIDV
 
 		case "Region":
-			RegionV, _ := value.(string)
-			Region = RegionV
+			regionV, _ := value.(string)
+			region = regionV
 		}
 	}
 
 	params := make(map[string]string)
-	preparedescribestream(params, Region)
+	preparedescribestream(params, region)
 
 	describestreamjsonmap := make(map[string]interface{})
-	preparedescribestreamdict(describestreamjsonmap, streamName, limit, exclusiveStartShardId)
+	preparedescribestreamdict(describestreamjsonmap, streamName, limit, exclusiveStartShardID)
 
 	response := make(map[string]interface{})
 	err = kinesis.PrepareSignatureV4query(params, describestreamjsonmap, response)

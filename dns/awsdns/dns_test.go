@@ -1,7 +1,10 @@
 package awsdns
 
-import "testing"
-import awsAuth "github.com/safehousetech/gocloud/auth"
+import (
+	"testing"
+
+	awsAuth "github.com/safehousetech/gocloud/auth"
+)
 
 func init() {
 	awsAuth.LoadConfig()
@@ -14,7 +17,7 @@ func TestCreateDns(t *testing.T) {
 		"hostedZoneConfig": "hostedZoneConfig",
 	}
 
-	awsdns.CreateDns(createdns)
+	awsdns.CreateDNS(createdns)
 }
 
 func TestDeleteDns(t *testing.T) {
@@ -23,7 +26,7 @@ func TestDeleteDns(t *testing.T) {
 		"ID": "ZOD7SUP0ZGGQQ",
 	}
 
-	_, err := awsdns.DeleteDns(deletedns)
+	_, err := awsdns.DeleteDNS(deletedns)
 
 	if err != nil {
 		t.Errorf("Test Fail")
@@ -38,7 +41,7 @@ func TestListDns(t *testing.T) {
 		"maxItems": 2,
 	}
 
-	_, err := awsdns.ListDns(listdns)
+	_, err := awsdns.ListDNS(listdns)
 
 	if err != nil {
 		t.Errorf("Test Fail")
@@ -51,7 +54,7 @@ func TestListResourceDnsRecordSets(t *testing.T) {
 		"zone": "ZBNX5TIW033J2",
 	}
 
-	_, err := awsdns.ListResourceDnsRecordSets(listResourcednsRecordSets)
+	_, err := awsdns.ListResourceDNSRecordSets(listResourcednsRecordSets)
 
 	if err != nil {
 		t.Errorf("Test Fail")

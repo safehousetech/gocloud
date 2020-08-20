@@ -43,10 +43,10 @@ type Gocloud interface {
 	DeleteService(request interface{}) (resp interface{}, err error)
 	StopTask(request interface{}) (resp interface{}, err error)
 	StartTask(request interface{}) (resp interface{}, err error)
-	ListDns(request interface{}) (resp interface{}, err error)
-	CreateDns(request interface{}) (resp interface{}, err error)
-	DeleteDns(request interface{}) (resp interface{}, err error)
-	ListResourceDnsRecordSets(request interface{}) (resp interface{}, err error)
+	ListDNS(request interface{}) (resp interface{}, err error)
+	CreateDNS(request interface{}) (resp interface{}, err error)
+	DeleteDNS(request interface{}) (resp interface{}, err error)
+	ListResourceDNSRecordSets(request interface{}) (resp interface{}, err error)
 	GetFunction(request interface{}) (resp interface{}, err error)
 	CreateFunction(request interface{}) (resp interface{}, err error)
 	CallFunction(request interface{}) (resp interface{}, err error)
@@ -80,7 +80,7 @@ const (
 	// Rackspaceprovider reperents rackspace cloud.
 	Rackspaceprovider = "rackspace"
 
-	// Rackspaceprovider reperents rackspace cloud.
+	// Vultrprovider reperents rackspace cloud.
 	Vultrprovider = "vultr"
 )
 

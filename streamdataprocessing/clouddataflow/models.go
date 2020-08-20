@@ -1,11 +1,11 @@
 package clouddataflow
 
-//Clouddataflow struct reperesnts google streaming service.
-type Clouddataflow struct {
+//CloudDataFlow struct reperesnts google streaming service.
+type CloudDataFlow struct {
 }
 
-//Clouddataflow struct reperesnts Cloud dataflow service.
-type Createstream struct {
+//CreateStream struct reperesnts Cloud dataflow service.
+type CreateStream struct {
 	ID                   string               `json:"id"`
 	ClientRequestID      string               `json:"clientRequestId"`
 	CreateTime           string               `json:"createTime"`
@@ -19,14 +19,14 @@ type Createstream struct {
 	RequestedState       string               `json:"requestedState"`
 	TempFiles            []string             `json:"tempFiles"`
 	Type                 string               `json:"type"`
-	environment          Environment          `json:"environment"`
-	jobMetadata          JobMetadata          `json:"jobMetadata"`
-	labels               Labels               `json:"labels"`
-	pipelineDescription  PipelineDescription  `json:"pipelineDescription"`
-	stageStates          []StageStates        `json:"stageStates"`
-	steps                []Steps              `json:"steps"`
-	transformNameMapping TransformNameMapping `json:"transformNameMapping"`
-	executionInfo        ExecutionInfo        `json:"executionInfo"`
+	Environment          Environment          `json:"environment"`
+	JobMetadata          JobMetadata          `json:"jobMetadata"`
+	Labels               Labels               `json:"labels"`
+	PipelineDescription  PipelineDescription  `json:"pipelineDescription"`
+	StageStates          []StageStates        `json:"stageStates"`
+	Steps                []Steps              `json:"steps"`
+	TransformNameMapping TransformNameMapping `json:"transformNameMapping"`
+	ExecutionInfo        ExecutionInfo        `json:"executionInfo"`
 }
 
 //StageStates  struct reperesnts Clouddataflow internal params.
@@ -44,7 +44,7 @@ type Properties struct {
 
 //ExecutionInfo  struct reperesnts Clouddataflow internal params.
 type ExecutionInfo struct {
-	stages Stages `json:"stages"`
+	Stages Stages `json:"stages"`
 }
 
 //Stages  struct reperesnts Clouddataflow internal params.
@@ -59,7 +59,7 @@ type TransformNameMapping struct {
 type Steps struct {
 	Kind       string     `json:"kind"`
 	Name       string     `json:"name"`
-	properties Properties `json:"properties"`
+	Properties Properties `json:"properties"`
 }
 
 //DisplayData  struct reperesnts Clouddataflow internal params.
@@ -70,15 +70,15 @@ type DisplayData struct {
 type OriginalPipelineTransform struct {
 }
 
-//OriginalPipelineTransform  struct reperesnts Clouddataflow internal params.
+//ExecutionPipelineStage ...
 type ExecutionPipelineStage struct {
 }
 
 //PipelineDescription  struct reperesnts Clouddataflow internal params.
 type PipelineDescription struct {
-	displayData               []DisplayData               `json:"displayData"`
-	executionPipelineStage    []ExecutionPipelineStage    `json:"executionPipelineStage"`
-	originalPipelineTransform []OriginalPipelineTransform `json:"originalPipelineTransform"`
+	DisplayData               []DisplayData               `json:"displayData"`
+	ExecutionPipelineStage    []ExecutionPipelineStage    `json:"executionPipelineStage"`
+	OriginalPipelineTransform []OriginalPipelineTransform `json:"originalPipelineTransform"`
 }
 
 //JobMetadata  struct reperesnts Clouddataflow internal params.
@@ -102,19 +102,19 @@ type Environment struct {
 	ClusterManagerAPIService string              `json:"clusterManagerApiService"`
 	Dataset                  string              `json:"dataset"`
 	Experiments              []string            `json:"experiments"`
-	internalExperiments      InternalExperiments `json:"internalExperiments"`
-	sdkPipelineOptions       SdkPipelineOptions  `json:"sdkPipelineOptions"`
+	InternalExperiments      InternalExperiments `json:"internalExperiments"`
+	SdkPipelineOptions       SdkPipelineOptions  `json:"sdkPipelineOptions"`
 	ServiceAccountEmail      string              `json:"serviceAccountEmail"`
 	TempStoragePrefix        string              `json:"tempStoragePrefix"`
-	userAgent                UserAgent           `json:"userAgent"`
-	version                  Version             `json:"version"`
-	workerPools              WorkerPools         `json:"workerPools"`
+	UserAgent                UserAgent           `json:"userAgent"`
+	Version                  Version             `json:"version"`
+	WorkerPools              WorkerPools         `json:"workerPools"`
 }
 
 //UserAgent  struct reperesnts Clouddataflow internal params.
 type UserAgent struct {
 	Name      string  `json:"name"`
-	support   Support `json:"support"`
+	Support   Support `json:"support"`
 	BuildDate string  `json:"build.date"`
 	Version   string  `json:"version"`
 }
@@ -149,7 +149,7 @@ type TaskrunnerSettings struct {
 	LogToSerialconsole       bool                   `json:"logToSerialconsole"`
 	LogUploadLocation        string                 `json:"logUploadLocation"`
 	OauthScopes              []string               `json:"oauthScopes"`
-	parallelWorkerSettings   ParallelWorkerSettings `json:"parallelWorkerSettings"`
+	ParallelWorkerSettings   ParallelWorkerSettings `json:"parallelWorkerSettings"`
 	StreamingWorkerMainClass string                 `json:"streamingWorkerMainClass"`
 	TaskGroup                string                 `json:"taskGroup"`
 	TaskUser                 string                 `json:"taskUser"`
@@ -193,8 +193,8 @@ type AutoscalingSettings struct {
 
 //WorkerPools  struct reperesnts Clouddataflow internal params.
 type WorkerPools struct {
-	autoscalingSettings         AutoscalingSettings `json:"autoscalingSettings"`
-	dataDisks                   []DataDisks         `json:"dataDisks"`
+	AutoscalingSettings         AutoscalingSettings `json:"autoscalingSettings"`
+	DataDisks                   []DataDisks         `json:"dataDisks"`
 	DefaultPackageSet           string              `json:"defaultPackageSet"`
 	DiskSizeGb                  int                 `json:"diskSizeGb"`
 	DiskSourceImage             string              `json:"diskSourceImage"`
@@ -202,15 +202,15 @@ type WorkerPools struct {
 	IPConfiguration             string              `json:"ipConfiguration"`
 	Kind                        string              `json:"kind"`
 	MachineType                 string              `json:"machineType"`
-	metadata                    Metadata            `json:"metadata"`
+	Metadata                    Metadata            `json:"metadata"`
 	Network                     string              `json:"network"`
 	NumThreadsPerWorker         int                 `json:"numThreadsPerWorker"`
 	NumWorkers                  int                 `json:"numWorkers"`
 	OnHostMaintenance           string              `json:"onHostMaintenance"`
-	packages                    []Packages          `json:"packages"`
-	poolArgs                    PoolArgs            `json:"poolArgs"`
+	Packages                    []Packages          `json:"packages"`
+	PoolArgs                    PoolArgs            `json:"poolArgs"`
 	Subnetwork                  string              `json:"subnetwork"`
-	tsaskrunnerSettings         TaskrunnerSettings  `json:"taskrunnerSettings"`
+	TaskrunnerSettings          TaskrunnerSettings  `json:"taskrunnerSettings"`
 	TeardownPolicy              string              `json:"teardownPolicy"`
 	WorkerHarnessContainerImage string              `json:"workerHarnessContainerImage"`
 	Zone                        string              `json:"zone"`
