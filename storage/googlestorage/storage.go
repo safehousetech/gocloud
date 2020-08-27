@@ -143,7 +143,7 @@ func (googlestorage *GoogleStorage) CreateDisk(request interface{}) (resp interf
 
 	url := "https://www.googleapis.com/compute/v1/projects/" + projectID + "/zones/" + zone + "/disks"
 
-	client := googleauth.SignJWT()
+	client := googleauth.Client()
 
 	createDiskRequest, err := http.NewRequest("POST", url, bytes.NewBuffer(creatDiskJSONstringByte))
 
@@ -173,7 +173,7 @@ func (googlestorage *GoogleStorage) DeleteDisk(request interface{}) (resp interf
 
 	url := "https://www.googleapis.com/compute/v1/projects/" + options["projectid"] + "/zones/" + options["Zone"] + "/disks/" + options["disk"]
 
-	client := googleauth.SignJWT()
+	client := googleauth.Client()
 
 	deleteDiskRequest, err := http.NewRequest("DELETE", url, nil)
 	deleteDiskRequest.Header.Set("Content-Type", "application/json")
@@ -298,7 +298,7 @@ func (googlestorage *GoogleStorage) CreateSnapshot(request interface{}) (resp in
 
 	url := "https://www.googleapis.com/compute/v1/projects/" + projectID + "/zones/" + Zone + "/disks/" + Disk + "/createSnapshot"
 
-	client := googleauth.SignJWT()
+	client := googleauth.Client()
 
 	createSnapshotRequest, err := http.NewRequest("POST", url, bytes.NewBuffer(createSnapshotStringByte))
 	createSnapshotRequest.Header.Set("Content-Type", "application/json")
@@ -327,7 +327,7 @@ func (googlestorage *GoogleStorage) DeleteSnapshot(request interface{}) (resp in
 
 	url := "https://www.googleapis.com/compute/v1/projects/" + options["projectid"] + "/global/snapshots/" + options["snapshot"]
 
-	client := googleauth.SignJWT()
+	client := googleauth.Client()
 
 	deleteSnapshotRequest, err := http.NewRequest("DELETE", url, nil)
 	deleteSnapshotRequest.Header.Set("Content-Type", "application/json")
@@ -457,7 +457,7 @@ func (googlestorage *GoogleStorage) AttachDisk(request interface{}) (resp interf
 
 	url := "https://www.googleapis.com/compute/v1/projects/" + projectID + "/zones/" + zone + "/instances/" + instance + "/attachDisk"
 
-	client := googleauth.SignJWT()
+	client := googleauth.Client()
 
 	attachDiskRequest, err := http.NewRequest("POST", url, bytes.NewBuffer(attachDiskJSONstringByte))
 	attachDiskRequest.Header.Set("Content-Type", "application/json")
@@ -486,7 +486,7 @@ func (googlestorage *GoogleStorage) DetachDisk(request interface{}) (resp interf
 
 	url := "https://www.googleapis.com/compute/v1/projects/" + options["projectid"] + "/zones/" + options["Zone"] + "/instances/" + options["instance"] + "/detachDisk"
 
-	client := googleauth.SignJWT()
+	client := googleauth.Client()
 
 	detachDiskRequest, err := http.NewRequest("POST", url, nil)
 

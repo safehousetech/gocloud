@@ -23,7 +23,7 @@ func (cloudDataFlow *CloudDataFlow) DescribeStream(request interface{}) (resp in
 	options := request.(map[string]string)
 
 	url := "https://dataflow.googleapis.com/v1b3/projects/" + options["Project"] + "/jobs/" + options["JobId"]
-	client := googleauth.SignJWT()
+	client := googleauth.Client()
 
 	describestreamrequest, err := http.NewRequest("GET", url, nil)
 	describestreamrequestparam := describestreamrequest.URL.Query()
@@ -63,7 +63,7 @@ func (cloudDataFlow *CloudDataFlow) ListStream(request interface{}) (resp interf
 
 	url := "https://dataflow.googleapis.com/v1b3/projects/" + options["Project"] + "/jobs"
 
-	client := googleauth.SignJWT()
+	client := googleauth.Client()
 
 	liststreamrequest, err := http.NewRequest("GET", url, nil)
 
@@ -288,7 +288,7 @@ func (cloudDataFlow *CloudDataFlow) UpdateStream(request interface{}) (resp inte
 	var updatestreamjsonstringbyte = []byte(updatestreamjsonstring)
 
 	url := "https://dataflow.googleapis.com/v1b3/projects/" + option.ProjectID + "/jobs/" + jobID
-	client := googleauth.SignJWT()
+	client := googleauth.Client()
 
 	updatestreamrequest, err := http.NewRequest("POST", url, bytes.NewBuffer(updatestreamjsonstringbyte))
 	updatestreamrequestparam := updatestreamrequest.URL.Query()
@@ -492,7 +492,7 @@ func (cloudDataFlow *CloudDataFlow) CreateStream(request interface{}) (resp inte
 	var createstreamjsonstringbyte = []byte(createstreamjsonstring)
 
 	url := "https://dataflow.googleapis.com/v1b3/projects/" + option.ProjectID + "/jobs"
-	client := googleauth.SignJWT()
+	client := googleauth.Client()
 
 	createstreamrequest, err := http.NewRequest("POST", url, bytes.NewBuffer(createstreamjsonstringbyte))
 	createstreamrequestparam := createstreamrequest.URL.Query()

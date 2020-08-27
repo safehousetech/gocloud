@@ -164,7 +164,7 @@ func (googlecontainer *Googlecontainer) CreateCluster(request interface{}) (resp
 
 	url := "https://container.googleapis.com/v1/projects/" + Projectid + "/zones/" + Zone + "/clusters"
 
-	client := googleauth.SignJWT()
+	client := googleauth.Client()
 
 	CreateClusterrequest, err := http.NewRequest("POST", url, bytes.NewBuffer(CreateClusterjsonstringbyte))
 
@@ -195,7 +195,7 @@ func (googlecontainer *Googlecontainer) DeleteCluster(request interface{}) (resp
 
 	url := "https://container.googleapis.com/v1/projects/" + options["Project"] + "/zones/" + options["Zone"] + "/clusters/" + options["clusterId"]
 
-	client := googleauth.SignJWT()
+	client := googleauth.Client()
 
 	DeleteClusterrequest, err := http.NewRequest("DELETE", url, nil)
 
@@ -359,7 +359,7 @@ func (googlecontainer *Googlecontainer) CreateService(request interface{}) (resp
 
 	url := "https://container.googleapis.com/v1/projects/" + ProjectID + "/zones/" + Zone + "/clusters/" + ClusterID + "/nodePools"
 
-	client := googleauth.SignJWT()
+	client := googleauth.Client()
 
 	CreateServicerequest, err := http.NewRequest("POST", url, bytes.NewBuffer(CreateServicejsonstringbyte))
 
@@ -402,7 +402,7 @@ func (googlecontainer *Googlecontainer) DeleteService(request interface{}) (resp
 
 	url := "https://container.googleapis.com/v1/projects/" + options["Project"] + "/zones/" + options["Zone"] + "/clusters/" + options["clusterId"] + "/nodePools/" + options["nodePoolId"]
 
-	client := googleauth.SignJWT()
+	client := googleauth.Client()
 
 	DeleteServicerequest, err := http.NewRequest("DELETE", url, nil)
 	DeleteServicerequest.Header.Set("Content-Type", "application/json")
@@ -431,7 +431,7 @@ func (googlecontainer *Googlecontainer) StopTask(request interface{}) (resp inte
 
 	url := "https://container.googleapis.com/v1/projects/" + options["Project"] + "/zones/" + options["Zone"] + "/operations/" + options["OperationId"] + ":cancel"
 
-	client := googleauth.SignJWT()
+	client := googleauth.Client()
 
 	StopTaskrequest, err := http.NewRequest("POST", url, nil)
 	StopTaskrequest.Header.Set("Content-Type", "application/json")

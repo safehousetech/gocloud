@@ -24,7 +24,7 @@ func (googledns *Googledns) ListResourceDNSRecordSets(request interface{}) (resp
 
 	url := "https://www.googleapis.com/dns/v1/projects/" + options["project"] + "/managedZones/" + options["managedZone"] + "/rrsets"
 
-	client := googleauth.SignJWT()
+	client := googleauth.Client()
 
 	ListResourceDNSRecordSetsrequest, err := http.NewRequest("GET", url, nil)
 
@@ -129,7 +129,7 @@ func (googledns *Googledns) CreateDNS(request interface{}) (resp interface{}, er
 
 	url := "https://www.googleapis.com/dns/v1/projects/" + Project + "/managedZones"
 
-	client := googleauth.SignJWT()
+	client := googleauth.Client()
 
 	CreateDnsrequest, err := http.NewRequest("POST", url, bytes.NewBuffer(CreateDnsjsonstringbyte))
 
@@ -160,7 +160,7 @@ func (googledns *Googledns) ListDNS(request interface{}) (resp interface{}, err 
 
 	url := "https://www.googleapis.com/dns/v1/projects/" + options["Project"] + "/managedZones/"
 
-	client := googleauth.SignJWT()
+	client := googleauth.Client()
 
 	ListDnsrequest, err := http.NewRequest("GET", url, nil)
 
@@ -203,7 +203,7 @@ func (googledns *Googledns) DeleteDNS(request interface{}) (resp interface{}, er
 
 	url := "https://www.googleapis.com/dns/v1/projects/" + options["Project"] + "/managedZones/" + options["managedZone"]
 
-	client := googleauth.SignJWT()
+	client := googleauth.Client()
 
 	DeleteDnsrequest, err := http.NewRequest("DELETE", url, nil)
 

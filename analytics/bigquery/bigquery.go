@@ -132,7 +132,7 @@ func (bigquery *Bigquery) CreateDatasets(request interface{}) (resp interface{},
 
 	url := "https://www.googleapis.com/bigquery/v2/projects/" + projectID + "/datasets"
 
-	client := googleauth.SignJWT()
+	client := googleauth.Client()
 
 	createdatasetsrequest, err := http.NewRequest("POST", url, bytes.NewBuffer(createdatasetsjsonstringbyte))
 
@@ -163,7 +163,7 @@ func (bigquery *Bigquery) DeleteDatasets(request interface{}) (resp interface{},
 
 	url := "https://www.googleapis.com/bigquery/v2/projects/" + options["ProjectId"] + "/datasets/" + options["DatasetId"]
 
-	client := googleauth.SignJWT()
+	client := googleauth.Client()
 
 	deletedatasetsrequest, err := http.NewRequest("DELETE", url, nil)
 
@@ -202,7 +202,7 @@ func (bigquery *Bigquery) GetDatasets(request interface{}) (resp interface{}, er
 
 	url := "https://www.googleapis.com/bigquery/v2/projects/" + options["ProjectId"] + "/datasets/" + options["DatasetId"]
 
-	client := googleauth.SignJWT()
+	client := googleauth.Client()
 
 	getdatasetsrequest, err := http.NewRequest("GET", url, nil)
 
@@ -349,7 +349,7 @@ func (bigquery *Bigquery) UpdateDatasets(request interface{}) (resp interface{},
 
 	url := "https://www.googleapis.com/bigquery/v2/projects/" + projectID + "/datasets/" + datasetID
 
-	client := googleauth.SignJWT()
+	client := googleauth.Client()
 
 	updatedatasetsrequest, err := http.NewRequest("PUT", url, bytes.NewBuffer(updatedatasetsjsonstringbyte))
 
@@ -407,7 +407,7 @@ func (bigquery *Bigquery) ListDatasets(request interface{}) (resp interface{}, e
 
 	url := "https://www.googleapis.com/bigquery/v2/projects/" + projectID + "/datasets"
 
-	client := googleauth.SignJWT()
+	client := googleauth.Client()
 
 	listdatasetsrequest, err := http.NewRequest("GET", url, nil)
 

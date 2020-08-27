@@ -16,7 +16,7 @@ func (bigtable *Bigtable) ListTables(request interface{}) (resp interface{}, err
 
 	url := "https://bigtableadmin.googleapis.com/v2/" + options["parent"] + "/tables"
 
-	client := googleauth.SignJWT()
+	client := googleauth.Client()
 
 	listbigtablerequest, err := http.NewRequest("GET", url, nil)
 
@@ -60,7 +60,7 @@ func (bigtable *Bigtable) DeleteTables(request interface{}) (resp interface{}, e
 
 	url := "https://bigtableadmin.googleapis.com/v2/" + options["name"]
 
-	client := googleauth.SignJWT()
+	client := googleauth.Client()
 
 	Deletebigtablerequest, err := http.NewRequest("DELETE", url, nil)
 
@@ -90,7 +90,7 @@ func (bigtable *Bigtable) DescribeTables(request interface{}) (resp interface{},
 
 	url := "https://bigtableadmin.googleapis.com/v2/" + options["name"]
 
-	client := googleauth.SignJWT()
+	client := googleauth.Client()
 
 	Describebigtablerequest, err := http.NewRequest("GET", url, nil)
 
@@ -177,7 +177,7 @@ func (bigtable *Bigtable) CreateTables(request interface{}) (resp interface{}, e
 
 	url := "https://bigtableadmin.googleapis.com/v2/" + parent + "/tables"
 
-	client := googleauth.SignJWT()
+	client := googleauth.Client()
 
 	Createbigtablerequest, err := http.NewRequest("POST", url, bytes.NewBuffer(Createbigtablejsonstringbyte))
 

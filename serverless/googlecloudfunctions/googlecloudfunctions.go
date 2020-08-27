@@ -86,7 +86,7 @@ func (googlecloudfunctions *Googlecloudfunctions) CreateFunction(request interfa
 
 	url := "https://cloudfunctions.googleapis.com/v1/" + Location + "/functions"
 
-	client := googleauth.SignJWT()
+	client := googleauth.Client()
 
 	CreateGooglecloudfunctionrequest, err := http.NewRequest("POST", url, bytes.NewBuffer(CreateGooglecloudfunctionjsonstringbyte))
 
@@ -116,7 +116,7 @@ func (googlecloudfunctions *Googlecloudfunctions) DeleteFunction(request interfa
 
 	url := "https://cloudfunctions.googleapis.com/v1/" + options["name"]
 
-	client := googleauth.SignJWT()
+	client := googleauth.Client()
 
 	DeleteGooglecloudfunctionrequest, err := http.NewRequest("DELETE", url, nil)
 
@@ -146,7 +146,7 @@ func (googlecloudfunctions *Googlecloudfunctions) GetFunction(request interface{
 
 	url := "https://cloudfunctions.googleapis.com/v1/" + options["name"]
 
-	client := googleauth.SignJWT()
+	client := googleauth.Client()
 
 	GetGooglecloudfunctionrequest, err := http.NewRequest("GET", url, nil)
 
@@ -177,7 +177,7 @@ func (googlecloudfunctions *Googlecloudfunctions) ListFunction(request interface
 
 	url := "https://cloudfunctions.googleapis.com/v1/" + options["name"] + "/functions"
 
-	client := googleauth.SignJWT()
+	client := googleauth.Client()
 
 	listgooglecloudfunctionrequest, err := http.NewRequest("GET", url, nil)
 
@@ -229,7 +229,7 @@ func (googlecloudfunctions *Googlecloudfunctions) CallFunction(request interface
 
 	var callGooglecloudfunctionjsonstringbyte = []byte(callGooglecloudfunctionjsonstring)
 
-	client := googleauth.SignJWT()
+	client := googleauth.Client()
 
 	callGooglecloudfunctionrequest, err := http.NewRequest("POST", url, bytes.NewBuffer(callGooglecloudfunctionjsonstringbyte))
 

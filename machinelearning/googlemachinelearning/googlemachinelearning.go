@@ -134,7 +134,7 @@ func (googlemachinelearning *Googlemachinelearning) CreateMLModel(request interf
 
 	url := "https://ml.googleapis.com/v1/" + Parent + "/models"
 
-	client := googleauth.SignJWT()
+	client := googleauth.Client()
 
 	createMLModelrequest, err := http.NewRequest("POST", url, bytes.NewBuffer(createMLModeljsonstringbyte))
 
@@ -165,7 +165,7 @@ func (googlemachinelearning *Googlemachinelearning) DeleteMLModel(request interf
 
 	url := "https://ml.googleapis.com/v1/" + options["name"]
 
-	client := googleauth.SignJWT()
+	client := googleauth.Client()
 
 	DeleteMLModelrequest, err := http.NewRequest("DELETE", url, nil)
 
@@ -198,7 +198,7 @@ func (googlemachinelearning *Googlemachinelearning) GetMLModel(request interface
 
 	url := "https://ml.googleapis.com/v1/" + options["name"]
 
-	client := googleauth.SignJWT()
+	client := googleauth.Client()
 
 	GetMLModelrequest, err := http.NewRequest("GET", url, nil)
 
@@ -343,7 +343,7 @@ func (googlemachinelearning *Googlemachinelearning) UpdateMLModel(request interf
 
 	url := "https://ml.googleapis.com/v1/" + Parent
 
-	client := googleauth.SignJWT()
+	client := googleauth.Client()
 
 	updateMLModelrequest, err := http.NewRequest("PATCH", url, bytes.NewBuffer(updateMLModeljsonstringbyte))
 
