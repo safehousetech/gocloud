@@ -3,6 +3,7 @@ package gce
 //GCE struct reperesnts Google Compute Engine.
 type GCE struct {
 	Name              string             `json:"name"`
+	InstanceTemplate  string             `json:"-"`
 	Zone              string             `json:"zone"`
 	MachineType       string             `json:"machineType"`
 	Disks             []Disk             `json:"disks"`

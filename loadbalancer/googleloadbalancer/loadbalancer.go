@@ -98,7 +98,7 @@ func (googleloadbalancer *Googleloadbalancer) CreateLoadBalancer(request interfa
 
 	url := "https://www.googleapis.com/compute/beta/projects/" + Project + "/regions/" + Region + "/targetPools"
 
-	client := googleauth.SignJWT()
+	client := googleauth.Client()
 
 	CreateLoadBalancerrequest, err := http.NewRequest("POST", url, bytes.NewBuffer(CreateLoadBalancerstringbyte))
 
@@ -128,7 +128,7 @@ func (googleloadbalancer *Googleloadbalancer) DeleteLoadBalancer(request interfa
 
 	url := "https://www.googleapis.com/compute/beta/projects/" + options["Project"] + "/regions/" + options["Region"] + "/targetPools/" + options["TargetPool"]
 
-	client := googleauth.SignJWT()
+	client := googleauth.Client()
 
 	DeleteLoadBalancerrequest, err := http.NewRequest("DELETE", url, nil)
 	DeleteLoadBalancerrequest.Header.Set("Content-Type", "application/json")
@@ -159,7 +159,7 @@ func (googleloadbalancer *Googleloadbalancer) ListLoadBalancer(request interface
 
 	//  url := "https://www.googleapis.com/compute/beta/projects/" + Project + "/regions/" + Region + "/targetPools"
 
-	client := googleauth.SignJWT()
+	client := googleauth.Client()
 
 	ListLoadBalancerrequest, err := http.NewRequest("GET", url, nil)
 	ListLoadBalancerrequest.Header.Set("Content-Type", "application/json")
@@ -233,7 +233,7 @@ func (googleloadbalancer *Googleloadbalancer) AttachNodeWithLoadBalancer(request
 
 	var AttachNodeWithLoadBalancerstringbyte = []byte(AttachNodeWithLoadBalancerjsonstring)
 
-	client := googleauth.SignJWT()
+	client := googleauth.Client()
 
 	AttachNodeWithLoadBalancerrequest, err := http.NewRequest("POST", url, bytes.NewBuffer(AttachNodeWithLoadBalancerstringbyte))
 
@@ -307,7 +307,7 @@ func (googleloadbalancer *Googleloadbalancer) DetachNodeWithLoadBalancer(request
 
 	var DetachNodeWithLoadBalancerstringbyte = []byte(DetachNodeWithLoadBalancerjsonstring)
 
-	client := googleauth.SignJWT()
+	client := googleauth.Client()
 
 	DetachNodeWithLoadBalancerrequest, err := http.NewRequest("POST", url, bytes.NewBuffer(DetachNodeWithLoadBalancerstringbyte))
 

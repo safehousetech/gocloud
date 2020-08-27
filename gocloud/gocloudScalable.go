@@ -9,6 +9,7 @@ import (
 	"github.com/safehousetech/gocloud/digioceanauth"
 	"github.com/safehousetech/gocloud/gocloudinterface"
 	"github.com/safehousetech/gocloud/google"
+	"github.com/safehousetech/gocloud/googleauth"
 	"github.com/safehousetech/gocloud/vultr"
 	"github.com/safehousetech/gocloud/vultrauth"
 )
@@ -94,6 +95,7 @@ type googleProvider interface {
 
 //GoogleProvider return Google cloud API to users
 func GoogleProvider() *google.Google {
+	googleauth.LoadConfig()
 	return new(google.Google)
 }
 

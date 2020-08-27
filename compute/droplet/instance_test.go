@@ -1,8 +1,9 @@
 package droplet
 
 import (
-	digioceanAuth "github.com/safehousetech/gocloud/digioceanauth"
 	"testing"
+
+	digioceanAuth "github.com/safehousetech/gocloud/digioceanauth"
 )
 
 func init() {

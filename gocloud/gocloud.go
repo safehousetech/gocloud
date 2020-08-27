@@ -11,6 +11,7 @@ import (
 	"github.com/safehousetech/gocloud/digiocean"
 	digioceanAuth "github.com/safehousetech/gocloud/digioceanauth"
 	"github.com/safehousetech/gocloud/google"
+	googleAuth "github.com/safehousetech/gocloud/googleauth"
 	"github.com/safehousetech/gocloud/openstack"
 	"github.com/safehousetech/gocloud/rackspace"
 	"github.com/safehousetech/gocloud/rackspaceauth"
@@ -96,6 +97,7 @@ func CloudProvider(provider string) (Gocloud, error) {
 		return new(aws.AWS), nil
 
 	case Googleprovider:
+		googleAuth.LoadConfig()
 		return new(google.Google), nil
 
 	case Openstackprovider:

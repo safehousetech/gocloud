@@ -1,26 +1,44 @@
 package gce
 
-import "testing"
+import (
+	"testing"
+
+	googleauth "github.com/safehousetech/gocloud/googleauth"
+)
+
+var fixture struct {
+	project  string
+	instance string
+	zone     string
+	region   string
+}
+
+func init() {
+	googleauth.LoadConfig()
+	fixture.project = "awesome-delight-283812"
+	fixture.instance = "testing-scorelab2"
+	fixture.region = "us-east4"
+	fixture.zone = fixture.region + "-c"
+}
 
 func TestDeleteNode(t *testing.T) {
 	var gce GCE
-	deletenode := map[string]string{
-		"projectid": "sheltermap-1493101612061",
-		"instance":  "testing-scorelab2",
-		"Zone":      "us-east4-c",
+	config := map[string]string{
+		"projectid": fixture.project,
+		"instance":  fixture.instance,
+		"Zone":      fixture.zone,
 	}
-	gce.DeleteNode(deletenode)
+	gce.DeleteNode(config)
 }
 
 func TestStopNode(t *testing.T) {
 	var gce GCE
-	stopnode := map[string]string{
-		"projectid": "sheltermap-1493101612061",
-		"instance":  "testing-scorelab2",
-		"Zone":      "us-east4-c",
+	config := map[string]string{
+		"projectid": fixture.project,
+		"instance":  fixture.instance,
+		"Zone":      fixture.zone,
 	}
-
-	_, err := gce.StopNode(stopnode)
+	_, err := gce.StopNode(config)
 
 	if err != nil {
 		t.Errorf("Test Fail")
@@ -29,12 +47,12 @@ func TestStopNode(t *testing.T) {
 
 func TestRebootNode(t *testing.T) {
 	var gce GCE
-	reboot := map[string]string{
-		"projectid": "sheltermap-1493101612061",
-		"instance":  "testing-scorelab",
-		"Zone":      "us-east4-c",
+	config := map[string]string{
+		"projectid": fixture.project,
+		"instance":  fixture.instance,
+		"Zone":      fixture.zone,
 	}
-	_, err := gce.RebootNode(reboot)
+	_, err := gce.RebootNode(config)
 
 	if err != nil {
 		t.Errorf("Test Fail")
@@ -42,16 +60,14 @@ func TestRebootNode(t *testing.T) {
 }
 
 func TestCreateNode(t *testing.T) {
-
 	var gce GCE
-
 	InitializeParams := map[string]string{
 		"SourceImage": "https://www.googleapis.com/compute/v1/projects/debian-cloud/global/images/debian-8-jessie-v20160301",
-		"DiskType":    "projects/sheltermap-1493101612061/zones/us-east4-c/diskTypes/pd-standard",
+		"DiskType":    "projects/" + fixture.project + "/zones/" + fixture.zone + "/diskTypes/pd-standard",
 		"DiskSizeGb":  "10",
 	}
 
-	disk := []map[string]interface{}{
+	disks := []map[string]interface{}{
 		{
 			"Boot":             true,
 			"AutoDelete":       false,
@@ -70,18 +86,19 @@ func TestCreateNode(t *testing.T) {
 
 	NetworkInterfaces := []map[string]interface{}{
 		{
-			"Network":       "https://www.googleapis.com/compute/v1/projects/sheltermap-1493101612061/global/networks/default",
-			"Subnetwork":    "projects/sheltermap-1493101612061/regions/us-east4/subnetworks/default",
+			"Network":       "https://www.googleapis.com/compute/v1/projects/" + fixture.project + "/global/networks/default",
+			"Subnetwork":    "projects/sheltermap-1493101612061/regions/" + fixture.region + "/subnetworks/default",
 			"AccessConfigs": AccessConfigs,
 		},
 	}
 
 	createnode := map[string]interface{}{
-		"projectid":         "sheltermap-1493101612061",
-		"Name":              "testing-scorelab2",
-		"MachineType":       "https://www.googleapis.com/compute/v1/projects/sheltermap-1493101612061/zones/us-east4-c/machineTypes/n1-standard-1",
-		"Zone":              "us-east4-c",
-		"disk":              disk,
+		"projectid":         fixture.project,
+		"InstanceTemplate":  "sb1",
+		"Name":              fixture.instance,
+		"MachineType":       "https://www.googleapis.com/compute/v1/projects/" + fixture.project + "/zones/" + fixture.zone + "/machineTypes/n1-standard-1",
+		"Zone":              fixture.zone,
+		"disks":             disks,
 		"NetworkInterfaces": NetworkInterfaces,
 	}
 

@@ -12,6 +12,7 @@ import (
 
 // CreateNode create gce instance
 func (gce *GCE) CreateNode(request interface{}) (resp interface{}, err error) {
+
 	var gceinstance GCE
 	var projectid string
 	var Zone string
@@ -27,6 +28,10 @@ func (gce *GCE) CreateNode(request interface{}) (resp interface{}, err error) {
 			zoneV, _ := value.(string)
 			gceinstance.Zone = zoneV
 			Zone = zoneV
+
+		case "InstanceTemplate":
+			InstanceTemplate, _ := value.(string)
+			gceinstance.InstanceTemplate = InstanceTemplate
 
 		case "selfLink":
 			selfLink, _ := value.(string)
@@ -136,12 +141,15 @@ func (gce *GCE) CreateNode(request interface{}) (resp interface{}, err error) {
 	gceinstancejsonstring := string(gceinstancejson)
 	var gceinstancejsonstringbyte = []byte(gceinstancejsonstring)
 
-	client := googleauth.SignJWT()
 	urlv := "https://www.googleapis.com/compute/v1/projects/" + projectid + "/zones/" + Zone + "/instances"
+
+	if gceinstance.InstanceTemplate != "" {
+		urlv += "?sourceInstanceTemplate=https://compute.googleapis.com/compute/v1/projects/" + projectid + "/global/instanceTemplates/" + gceinstance.InstanceTemplate
+	}
+
 	CreateNoderequest, err := http.NewRequest("POST", urlv, bytes.NewBuffer(gceinstancejsonstringbyte))
 	CreateNoderequest.Header.Set("Content-Type", "application/json")
-
-	CreateNoderesp, err := client.Do(CreateNoderequest)
+	CreateNoderesp, err := googleauth.Client().Do(CreateNoderequest)
 	if err != nil {
 		fmt.Println(err)
 		return nil, err
@@ -163,7 +171,7 @@ func (gce *GCE) StartNode(request interface{}) (resp interface{}, err error) {
 
 	options := request.(map[string]string)
 	url := "https://www.googleapis.com/compute/v1/projects/" + options["projectid"] + "/zones/" + options["Zone"] + "/instances/" + options["instance"] + "/start"
-	client := googleauth.SignJWT()
+	client := googleauth.Client()
 
 	StartNoderequest, err := http.NewRequest("POST", url, nil)
 	StartNoderequest.Header.Set("Content-Type", "application/json")
@@ -191,7 +199,7 @@ func (gce *GCE) StopNode(request interface{}) (resp interface{}, err error) {
 
 	options := request.(map[string]string)
 	url := "https://www.googleapis.com/compute/v1/projects/" + options["projectid"] + "/zones/" + options["Zone"] + "/instances/" + options["instance"] + "/stop"
-	client := googleauth.SignJWT()
+	client := googleauth.Client()
 
 	StopNoderequest, err := http.NewRequest("POST", url, nil)
 	StopNoderequest.Header.Set("Content-Type", "application/json")
@@ -220,7 +228,7 @@ func (gce *GCE) DeleteNode(request interface{}) (resp interface{}, err error) {
 
 	options := request.(map[string]string)
 	url := "https://www.googleapis.com/compute/v1/projects/" + options["projectid"] + "/zones/" + options["Zone"] + "/instances/" + options["instance"]
-	client := googleauth.SignJWT()
+	client := googleauth.Client()
 
 	DeleteNoderequest, err := http.NewRequest("DELETE", url, nil)
 	DeleteNoderequest.Header.Set("Content-Type", "application/json")
@@ -252,7 +260,7 @@ func (gce *GCE) RebootNode(request interface{}) (resp interface{}, err error) {
 
 	options := request.(map[string]string)
 	url := "https://www.googleapis.com/compute/v1/projects/" + options["projectid"] + "/zones/" + options["Zone"] + "/instances/" + options["instance"] + "/reset"
-	client := googleauth.SignJWT()
+	client := googleauth.Client()
 
 	RebootNoderequest, err := http.NewRequest("POST", url, nil)
 	RebootNoderequest.Header.Set("Content-Type", "application/json")
@@ -281,7 +289,7 @@ func (gce *GCE) RebootNode(request interface{}) (resp interface{}, err error) {
 func (gce *GCE) listnode(request interface{}) (resp interface{}, err error) {
 	options := request.(map[string]string)
 	url := "https://www.googleapis.com/compute/v1/projects/" + options["projectid"] + "/zones/" + options["Zone"] + "/instances/"
-	client := googleauth.SignJWT()
+	client := googleauth.Client()
 
 	listnoderequest, err := http.NewRequest("POST", url, nil)
 	listnoderequest.Header.Set("Content-Type", "application/json")
